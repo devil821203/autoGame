@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/AI/AI.csproj" />
+    <ProjectReference Include="../../src/Persistence/Persistence.csproj" />
+  </ItemGroup>
+</Project>
