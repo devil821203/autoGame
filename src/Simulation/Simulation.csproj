@@ -1,3 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup><ProjectReference Include="../Domain/Domain.csproj" /></ItemGroup>
+  <ItemGroup><Content Include="../../config/**/*.json" Link="config/%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="../Domain/Domain.csproj" /><ProjectReference Include="../AI/AI.csproj" /></ItemGroup>
 </Project>

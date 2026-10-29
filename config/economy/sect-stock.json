@@ -1,0 +1,4 @@
+[
+  { "Owner": "sect", "Item": "herb", "Quantity": 40, "ActionId": "sect-start-herbs" },
+  { "Owner": "sect", "Item": "pill", "Quantity": 15, "ActionId": "sect-start-pills" }
+]

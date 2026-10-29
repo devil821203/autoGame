@@ -34,7 +34,7 @@ public sealed class JsonWorldStore : IWorldStore
 
     public WorldState Load(string path)
     {
-        var world = WorldCodec.Deserialize(File.ReadAllText(path));
+        var world = SaveMigration.Read(File.ReadAllText(path));
         WorldIntegrity.Validate(world);
         return world;
     }

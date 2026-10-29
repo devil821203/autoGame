@@ -1,0 +1,12 @@
+{
+  "EncounterChance": 0.2,
+  "WolfChance": 0.5,
+  "BanditStoneChance": 0.8,
+  "BanditPillChance": 0.1,
+  "HerbSuccessChance": 0.5,
+  "Loot": {
+    "Wolf": { "ResourceId": "beast-hide", "MinimumQuantity": 1, "MaximumQuantity": 1 },
+    "BanditMoney": { "ResourceId": "spirit-stone", "MinimumQuantity": 1, "MaximumQuantity": 5 },
+    "BanditRecovery": { "ResourceId": "$recovery", "MinimumQuantity": 1, "MaximumQuantity": 1 }
+  }
+}

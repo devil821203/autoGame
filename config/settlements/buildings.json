@@ -1,0 +1,12 @@
+﻿[
+  { "Kind": "TownHall", "Terrain": "Land", "RequiresEmployees": false },
+  { "Kind": "Housing", "Terrain": "Land", "RequiresEmployees": false },
+  { "Kind": "Farm", "Terrain": "Plains", "RequiresEmployees": true },
+  { "Kind": "Forestry", "Terrain": "Forest", "RequiresEmployees": true },
+  { "Kind": "Mine", "Terrain": "Mountain", "RequiresEmployees": true },
+  { "Kind": "Smithy", "Terrain": "Land", "RequiresEmployees": true },
+  { "Kind": "Pharmacy", "Terrain": "Land", "RequiresEmployees": true },
+  { "Kind": "Shop", "Terrain": "Land", "RequiresEmployees": true },
+  { "Kind": "Dormitory", "Terrain": "Land", "RequiresEmployees": false },
+  { "Kind": "SeniorDormitory", "Terrain": "Land", "RequiresEmployees": false }
+]

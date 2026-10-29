@@ -1,0 +1,13 @@
+{
+  "WorkUtility": 50,
+  "SupplyUtility": 60,
+  "MedicineStockTarget": 2,
+  "Characters": [
+    {"ActorId":"npc:01","Name":"醫師01","Profession":"Physician","LocationId":"sect","InitialStock":{"herb":40,"ointment":10}},
+    {"ActorId":"npc:04","Name":"藥師01","Profession":"Pharmacist","LocationId":"sect","InitialStock":{"herb":60}},
+    {"ActorId":"npc:07","Name":"鍛造師01","Profession":"Smith","LocationId":"sect","InitialStock":{"iron-material":20,"beast-hide":20}},
+    {"ActorId":"npc:02","Name":"性功修練者01","Profession":"SpiritTraining","LocationId":"sect","InitialStock":{}},
+    {"ActorId":"npc:05","Name":"命功修練者01","Profession":"BodyTraining","LocationId":"sect","InitialStock":{}},
+    {"ActorId":"npc:08","Name":"炁功修練者01","Profession":"QiTraining","LocationId":"sect","InitialStock":{}}
+  ]
+}

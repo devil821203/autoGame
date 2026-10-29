@@ -1,0 +1,4 @@
+[
+  { "Id": "sect-herbs", "Name": "宗門藥園", "Kind": "Sect", "Cost": 100, "Ticks": 8, "Service": "grove" },
+  { "Id": "sect-alchemy", "Name": "宗門煉丹房", "Kind": "Sect", "Cost": 200, "Ticks": 12, "Service": "alchemy" }
+]

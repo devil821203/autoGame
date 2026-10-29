@@ -1,0 +1,7 @@
+{
+  "SettlementId": "settlement:willow",
+  "PurchaseMultiplier": 0.8,
+  "SaleMultiplier": 2,
+  "ActionPoints": 1,
+  "OrganizationAutoTrade": true
+}

@@ -1,0 +1,14 @@
+﻿[
+  { "Id": "npc:00", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 0.1, "CombatDrive": 5 },
+  { "Id": "npc:01", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:02", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:03", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:04", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:05", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:06", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:07", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:08", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:09", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 1 },
+  { "Id": "npc:10", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 0.1, "CombatDrive": 3 },
+  { "Id": "npc:11", "OrganizationId": "sect", "Position": "Member", "WealthWeight": 1, "DesiredCultivation": 60, "GrowthWeight": 0.1, "CombatDrive": 3 }
+]

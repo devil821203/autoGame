@@ -1,0 +1,9 @@
+{
+  "RecruitmentCost": 100,
+  "DailySalary": 5,
+  "DormitoryBaseCapacity": 20,
+  "DormitoryCapacityPerLevel": 10,
+  "BaseMemberCapacity": 10,
+  "SeniorDormitoryCapacityPerLevel": 5,
+  "ActionPoints": 1
+}

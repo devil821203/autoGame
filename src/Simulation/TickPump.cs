@@ -1,7 +1,7 @@
 namespace Cultivation.Simulation;
 
 // Wall time belongs to the host, never to domain rules. Excess time remains queued.
-public sealed class TickPump(SimulationEngine engine, TimeSpan interval)
+public sealed class TickPump(SimulationEngine engine, TimeSpan interval, bool autonomous = false)
 {
     private long accumulated;
     private readonly long intervalTicks = interval.Ticks > 0 ? interval.Ticks : throw new ArgumentOutOfRangeException(nameof(interval));
@@ -13,7 +13,7 @@ public sealed class TickPump(SimulationEngine engine, TimeSpan interval)
         int count = 0;
         while (accumulated >= intervalTicks && count < maxSteps)
         {
-            engine.Step();
+            engine.Step(autonomous);
             accumulated -= intervalTicks;
             count++;
         }

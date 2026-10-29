@@ -1,0 +1,10 @@
+﻿{
+  "ExperiencePerLevel": 100,
+  "TreatmentHerbs": 1,
+  "TreatmentHealing": 20,
+  "HealingBonusPerLevel": 0.05,
+  "OintmentHerbs": 2,
+  "OintmentHealing": 40,
+  "BleedingPowderHealing": 50,
+  "BleedingPowderRounds": 5
+}

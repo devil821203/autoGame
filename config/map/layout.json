@@ -1,0 +1,30 @@
+{
+  "Width": 10,
+  "Height": 8,
+  "Features": [
+    { "Q": 1, "R": 1, "Mountain": true },
+    { "Q": 2, "R": 1, "Mountain": true },
+    { "Q": 3, "R": 1, "Mountain": true },
+    { "Q": 5, "R": 1, "Terrain": "Lake" },
+    { "Q": 6, "R": 1, "Terrain": "Lake" },
+    { "Q": 6, "R": 2, "Terrain": "Lake" },
+    { "Q": 7, "R": 5, "Terrain": "Desert" },
+    { "Q": 8, "R": 5, "Terrain": "Desert" },
+    { "Q": 8, "R": 6, "Terrain": "Desert" },
+    { "Q": 4, "R": 4, "Forest": true },
+    { "Q": 5, "R": 4, "Forest": true },
+    { "Q": 4, "R": 5, "Forest": true },
+    { "Q": 2, "R": 3, "PlaceId": "town", "Settlement": "青雲鎮" },
+    { "Q": 4, "R": 2, "PlaceId": "sect", "Settlement": "青雲宗" },
+    { "Q": 5, "R": 3, "PlaceId": "grove" },
+    { "Q": 5, "R": 2, "PlaceId": "alchemy" },
+    { "Q": 5, "R": 5, "PlaceId": "dungeon", "Forest": true },
+    { "Q": 1, "R": 5, "Settlement": "柳溪村" },
+    { "Q": 8, "R": 3, "Settlement": "望川城" }
+  ],
+  "Territories": [
+    { "OrganizationId": "sect", "Q": 4, "R": 2, "Width": 2, "Height": 2 },
+    { "OrganizationId": "gang", "Q": 1, "R": 3, "Width": 2, "Height": 1 },
+    { "OrganizationId": "stronghold", "Q": 3, "R": 5, "Width": 2, "Height": 1 }
+  ]
+}

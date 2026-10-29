@@ -1,0 +1,13 @@
+{
+  "OfferLifetimeTicks": 30,
+  "CooldownTicks": 5,
+  "LessonPrice": 10,
+  "LessonExperience": 2,
+  "AffinityGain": 5,
+  "TrustGain": 5,
+  "MaximumMembers": 30,
+  "SuccessionHealthThreshold": 50,
+  "MissionReputationPerItem": 1,
+  "LessonDiscountTrustThreshold": 50,
+  "LessonTrustDiscountPercent": 20
+}

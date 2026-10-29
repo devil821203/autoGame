@@ -1,0 +1,10 @@
+{
+  "IdleRetryTicks": 5,
+  "MaximumAdvanceSteps": 10000,
+  "WaitActionPoints": 0,
+  "WaitDurationTicks": 1,
+  "MinutesPerActionPoint": 10,
+  "MinutesPerDay": 1440,
+  "RestActionPointsPerStep": 1,
+  "TrainingBatchLimit": 30
+}

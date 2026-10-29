@@ -4,3 +4,4 @@
 .vs/
 saves/
 *.tmp
+.tools/

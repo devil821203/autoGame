@@ -1,1 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk" />
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Local build selects the expanded sync copies; all source versions are retained. -->
+  <ItemGroup>
+    <Compile Remove="Models.cs;CharacterProgression.cs;EconomyModels.cs" />
+  </ItemGroup>
+</Project>

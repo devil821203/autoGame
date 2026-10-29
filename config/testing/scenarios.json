@@ -1,0 +1,8 @@
+{
+  "DefaultId": "methods",
+  "Scenarios": [
+    { "Id": "methods", "Name": "功法／養成", "Description": "功法目標NPC、六種專職、性命炁、生活服務、時間AP與體力。被動及戰鬥招式尚未啟用。" },
+    { "Id": "settlement", "Name": "聚落／組織經濟", "Description": "柳溪村與柳溪幫：生產、人口、稅金、市場、建造升級、宿舍與招攬。此情境不啟用新功法修練。" },
+    { "Id": "battle", "Name": "雙陣地戰鬥", "Description": "雙方5×5、移動與普攻、自動戰鬥、裝備耐久。尚無功法招式、死亡處置及戰利品寶箱。" }
+  ]
+}

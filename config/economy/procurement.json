@@ -1,0 +1,11 @@
+{
+  "BuyerId": "test-buyer",
+  "SellerId": "sect",
+  "IntervalTicks": 20,
+  "DemandPerItem": 10,
+  "PriceChangePercent": 10,
+  "PillInitialPrice": 150,
+  "HideInitialPrice": 30,
+  "MinimumPrice": 1,
+  "MaximumPrice": 1000000
+}

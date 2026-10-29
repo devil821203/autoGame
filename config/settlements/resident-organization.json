@@ -1,0 +1,9 @@
+{
+  "Organization": { "Id": "willow-gang", "Name": "柳溪幫", "LeaderId": "npc:willow-leader", "Kind": "Gang" },
+  "LeaderTemplateId": "npc:12",
+  "LeaderName": "柳溪幫主",
+  "SettlementId": "settlement:willow",
+  "SceneTemplateId": "organization:gang",
+  "InitialSiteKind": "Headquarters",
+  "InitialStock": { "spirit-stone": 1000, "wood": 100 }
+}

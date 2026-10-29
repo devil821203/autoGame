@@ -1,0 +1,39 @@
+﻿[
+  {
+    "Id": "player",
+    "Realm": 2,
+    "MethodId": "qingmu",
+    "MethodExperience": 20
+  },
+  {
+    "Id": "npc:00",
+    "SocialWeight": 8
+  },
+  {
+    "Id": "npc:01",
+    "Caution": 0.3,
+    "SocialWeight": 8
+  },
+  {
+    "Id": "npc:02",
+    "Caution": 0.3,
+    "SocialWeight": 8
+  },
+  {
+    "Id": "npc:03",
+    "Caution": 0.3,
+    "SocialWeight": 8
+  },
+  {
+    "Id": "npc:04",
+    "WealthWeight": 0.25,
+    "Caution": 0.3,
+    "SocialWeight": 8
+  },
+  {
+    "Id": "npc:05",
+    "WealthWeight": 0.25,
+    "Caution": 0.3,
+    "SocialWeight": 8
+  }
+]

@@ -1,0 +1,4 @@
+{
+  "Years":10,"Seed":12345,"ProgressEveryTicks":120,"SamplesPerYear":4,"BatchSteps":120,"ValidateEveryTick":false,
+  "Performance":{"NearbyIntervalTicks":1,"RegionalIntervalTicks":1,"RemoteIntervalTicks":1,"RemoteCombatBatchTicks":1,"DiagnosticRetentionTicks":120,"LogCandidateDetails":false}
+}

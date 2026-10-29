@@ -1,0 +1,35 @@
+﻿[
+  {
+    "Id": "npc:00",
+    "AlchemyChance": 0.95,
+    "Health": 100
+  },
+  {
+    "Id": "npc:01",
+    "AlchemyChance": 0.85,
+    "WealthWeight": 1.8,
+    "Caution": 0.5
+  },
+  {
+    "Id": "npc:02",
+    "AlchemyChance": 0.9,
+    "WealthWeight": 1,
+    "GrowthWeight": 1,
+    "SocialWeight": 1,
+    "SectAffinity": 0.9
+  },
+  {
+    "Id": "npc:03",
+    "AlchemyChance": 0.65,
+    "WealthWeight": 1
+  },
+  {
+    "Id": "npc:04",
+    "AlchemyChance": 0,
+    "Caution": 0.5
+  },
+  {
+    "Id": "npc:05",
+    "Caution": 0.5
+  }
+]

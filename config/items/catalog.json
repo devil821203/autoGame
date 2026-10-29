@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "spirit-stone",
+    "Name": "錢財",
+    "Category": "貨幣"
+  },
+  {
+    "Id": "herb",
+    "Name": "藥草",
+    "Category": "原料"
+  },
+  {
+    "Id": "pill",
+    "Name": "回春丹",
+    "Category": "丹藥"
+  },
+  {
+    "Id": "beast-hide",
+    "Name": "獸皮",
+    "Category": "材料"
+  },
+  {
+    "Id": "iron-sword",
+    "Name": "鐵劍",
+    "Category": "武器"
+  },
+  {
+    "Id": "contribution",
+    "Name": "貢獻點",
+    "Category": "宗門貨幣"
+  }
+]

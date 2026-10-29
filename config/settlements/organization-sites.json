@@ -1,0 +1,12 @@
+{
+  "Status": "Enabled",
+  "InitialLevel": 1,
+  "ConstructionStones": 20,
+  "ConstructionWood": 10,
+  "UpgradeStones": 20,
+  "UpgradeWood": 10,
+  "Sites": [
+    { "Kind": "Branch", "Name": "組織分舵", "BaseBuildingCapacity": 3, "BuildingsPerLevel": 1 },
+    { "Kind": "Headquarters", "Name": "組織總舵", "BaseBuildingCapacity": 3, "BuildingsPerLevel": 2 }
+  ]
+}

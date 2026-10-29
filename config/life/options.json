@@ -1,0 +1,6 @@
+{
+  "TreatmentTicks":2, "SevereTreatmentTicks":5, "SevereHerbs":3, "SevereOintment":1, "SevereHealing":20,
+  "ExperiencePerCompletion":10,
+  "FineChance":0.25, "SuperiorChance":0.05, "QualityChancePerLevel":0.03,
+  "FineMultiplier":1.25, "SuperiorMultiplier":1.5
+}

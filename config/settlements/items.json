@@ -1,0 +1,5 @@
+[
+  { "Id": "food", "Name": "糧食", "Category": "material" },
+  { "Id": "wood", "Name": "木材", "Category": "material" },
+  { "Id": "mineral", "Name": "礦物", "Category": "material" }
+]

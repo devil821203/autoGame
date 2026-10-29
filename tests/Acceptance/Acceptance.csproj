@@ -3,5 +3,6 @@
   <ItemGroup>
     <ProjectReference Include="../../src/AI/AI.csproj" />
     <ProjectReference Include="../../src/Persistence/Persistence.csproj" />
+    <ProjectReference Include="../../src/Headless/Headless.csproj" />
   </ItemGroup>
 </Project>

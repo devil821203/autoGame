@@ -10,7 +10,8 @@ public static class WorldCodec
     public static string Serialize(WorldState world) => JsonSerializer.Serialize(world);
     public static WorldState Deserialize(string json) =>
         JsonSerializer.Deserialize<WorldState>(json) ?? throw new InvalidDataException("Empty world.");
-    public static WorldState Clone(WorldState world) => Deserialize(Serialize(world));
+    public static WorldState Clone(WorldState world) => JsonSerializer.Deserialize<WorldState>(JsonSerializer.SerializeToUtf8Bytes(world))
+        ?? throw new InvalidDataException("Empty world.");
     public static string Digest(WorldState world) =>
         Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(Serialize(world))));
 }

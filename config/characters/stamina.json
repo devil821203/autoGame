@@ -1,0 +1,12 @@
+﻿{
+  "Maximum": 100,
+  "FatigueThreshold": 30,
+  "ActivityCost": 10,
+  "FatigueMultiplier": 0.5,
+  "OutdoorRecovery": 15,
+  "OrdinaryRecovery": 30,
+  "HomeBedRecovery": 45,
+  "UnconsciousRecovery": 10,
+  "HealthRecoveryPerTick": 10
+}
+

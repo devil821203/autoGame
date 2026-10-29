@@ -1,0 +1,9 @@
+﻿{
+  "OrganizationId": "sect",
+  "BrewContribution": 30,
+  "GatherContribution": 4,
+  "PillExchangePrice": 120,
+  "HerbExchangePrice": 4,
+  "ReservedPills": 10,
+  "ReservedHerbs": 10
+}

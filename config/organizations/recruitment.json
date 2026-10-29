@@ -1,0 +1,8 @@
+{
+  "MemberTemplateId": "npc:03",
+  "MemberName": "新進成員",
+  "MemberCost": 1000,
+  "MoneyMinimum": 1,
+  "MoneyMaximum": 100,
+  "Supplies": { "herb": { "Minimum": 0, "Maximum": 5 }, "ointment": { "Minimum": 0, "Maximum": 2 }, "beast-hide": { "Minimum": 0, "Maximum": 3 } }
+}

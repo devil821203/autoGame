@@ -1,0 +1,10 @@
+{
+  "RoundTicks": 2,
+  "MaximumRounds": 20,
+  "DamageVariance": 2,
+  "PowerMultiplier": 2,
+  "RetreatChance": 0.8,
+  "MinimumEngageHealth": 30,
+  "MaximumLootStones": 25,
+  "VictoryExperience": 5
+}

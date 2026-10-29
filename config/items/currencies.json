@@ -1,0 +1,4 @@
+[
+  { "Kind": "Money", "Name": "錢財", "ResourceId": "spirit-stone", "Enabled": true },
+  { "Kind": "SpiritStone", "Name": "靈石", "ResourceId": null, "Enabled": false }
+]
