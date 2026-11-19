@@ -6,12 +6,12 @@ internal static class EquipmentDurabilityActions
 {
     internal const string Source="$equipment-instance";
     internal static long LegacyStock(WorldState w,string actor,string definition)=>Inventory.Balance(w,actor,definition)+
-        (w.EquipmentDurability?.LegacyWeapons.Count(g=>g.DefinitionId==definition&&Inventory.Balance(w,actor,g.Id)==1)??0);
+        (w.EquipmentDurability?.LegacyWeapons.Count(g=>g.DefinitionId==definition&&Inventory.Balance(w,actor,g.Id)==1&&!EquipmentRepairActions.Locked(w,g.Id))??0);
     internal static string EquipLegacy(WorldState w,string actor,string action,string? battle=null)
     {
         if(w.EquipmentDurability is not { } d)return w.Advancement!.WeaponId;
         string definition=w.Advancement!.WeaponId;
-        var existing=d.LegacyWeapons.Where(g=>g.DefinitionId==definition&&Inventory.Balance(w,actor,g.Id)==1)
+        var existing=d.LegacyWeapons.Where(g=>g.DefinitionId==definition&&Inventory.Balance(w,actor,g.Id)==1&&!EquipmentRepairActions.Locked(w,g.Id))
             .OrderByDescending(g=>EquipmentCondition.Remaining(w,g.Id)).ThenBy(g=>g.Id,StringComparer.Ordinal).FirstOrDefault();
         if(existing is not null&&(EquipmentCondition.Intact(w,existing.Id)||Inventory.Balance(w,actor,definition)==0))return existing.Id;
         string id="legacy-gear:"+action;
@@ -47,11 +47,12 @@ internal static class EquipmentDurabilityActions
         int before=d.Remaining.GetValueOrDefault(equipment,d.Rules.Maximum);
         if(before==0)return;
         int after=Math.Max(0,before-d.Rules.LossPerBattle);d.Remaining[equipment]=after;
-        d.Wear.Add(new(battle,equipment,actor,w.Clock.Tick,before,after,trigger));
+        d.Wear.Add(new(battle,equipment,actor,w.Clock.Tick,before,after,trigger,w.Time?.EquipmentRepair is null?0:w.NextSequence++));
         int n=w.Characters.FindIndex(c=>c.Id==actor);var a=w.Characters[n];
         if(a.EquippedWeaponId==equipment)w.Characters[n]=a with{LegacyWeaponBroken=after==0};
         if(w.LifeSystem is not null)LifeActions.RecomputeEquipment(w,actor);
         ActionExecutor.Emit(w,battle,"EquipmentDurabilityChanged",$"{actor}:{equipment}:{before}->{after}:{trigger}");
+        EventDecisions.Request(w,actor,DecisionTrigger.StateChanged);
     }
     internal static void Validate(WorldState w)
     {
@@ -71,7 +72,7 @@ internal static class EquipmentDurabilityActions
                 !w.Items.Any(i=>i.Id==g.Id)||!w.Characters.Any(c=>c.Id==g.OwnerId)||
                 ledger[g.CreationId].Count(e=>e.Tick==g.Tick&&e.From==g.OwnerId&&e.To=="consumed"&&e.ResourceId==g.DefinitionId&&e.Quantity==1&&e.Reason=="EquipmentInstanced")!=1||
                 ledger[g.CreationId].Count(e=>e.Tick==g.Tick&&e.From==Source&&e.To==g.OwnerId&&e.ResourceId==g.Id&&e.Quantity==1&&e.Reason=="EquipmentInstanceCreated")!=1||
-                w.Characters.Select(c=>Inventory.Balance(w,c.Id,g.Id)).Concat(w.Organizations.Select(o=>Inventory.Balance(w,o.Id,g.Id))).Sum()!=1)
+                EquipmentCustody.Total(w,g.Id)!=1)
                 throw new InvalidDataException("Invalid legacy equipment instance provenance");
         }
         bool Known(string id)=>d.LegacyWeapons.Any(g=>g.Id==id)||w.LifeSystem?.Equipment.Any(g=>g.Id==id)==true;
@@ -79,14 +80,23 @@ internal static class EquipmentDurabilityActions
         {
             if(!Known(id)||left<0||left>r.Maximum)throw new InvalidDataException("Invalid equipment durability value or ID");
             int previous=r.Maximum;
+            var repairs=(w.Time?.EquipmentRepair?.Receipts.Where(v=>v.EquipmentId==id&&v.Completed)??[]).OrderBy(v=>v.Sequence).ToList();
             foreach(var wear in d.Wear.Where(v=>v.EquipmentId==id))
             {
+                foreach(var fix in repairs.Where(f=>f.Sequence<wear.Sequence).ToArray()){
+                    if(fix.Before!=previous||fix.After!=Math.Min(r.Maximum,previous+w.Time!.EquipmentRepair!.Rules.RestoredDurability))throw new InvalidDataException("Invalid repair history");
+                    previous=fix.After;repairs.Remove(fix);
+                }
                 if(wear.Tick<0||wear.Tick>w.Clock.Tick||wear.Before!=previous||previous<=0||wear.After!=Math.Max(0,previous-r.LossPerBattle)||
                     !BattleExists(w,wear.BattleId,wear.ActorId)||wear.Trigger is not ("Attack" or "Damaged")||
                     wear.Trigger=="Damaged"&&w.LifeSystem?.Equipment.Any(g=>g.Id==id&&g.Slot=="armor")!=true||
                     wear.Trigger=="Attack"&&!(d.LegacyWeapons.Any(g=>g.Id==id)||w.LifeSystem?.Equipment.Any(g=>g.Id==id&&g.Slot=="weapon")==true))
                     throw new InvalidDataException("Invalid durability battle wear history");
                 previous=wear.After;
+            }
+            foreach(var fix in repairs){
+                if(fix.Before!=previous||fix.After!=Math.Min(r.Maximum,previous+w.Time!.EquipmentRepair!.Rules.RestoredDurability))throw new InvalidDataException("Invalid repair history");
+                previous=fix.After;
             }
             if(left!=previous)throw new InvalidDataException("Unbacked durability change");
         }

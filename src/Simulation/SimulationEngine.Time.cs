@@ -11,6 +11,7 @@ public sealed partial class SimulationEngine
         var w = cloneState ? WorldCodec.Clone(state) : state; Inventory.BeginFrame(w); TimeActions.Refresh(w);
         var results = new List<ActionResult>();
         bool PlayerBattle() => w.BoardBattle is { Phase: BoardBattlePhase.Active } b && b.Fighters.Any(f => f.ActorId == w.ControlledCharacterId);
+        if (WorldPeriodEvents.Enabled(w) && !PlayerBattle()) throw new InvalidOperationException("R1 world time must advance through the seconds queue");
         if (PlayerBattle())
         {
             LifeActions.QueueCombatMedicine(w);
@@ -40,11 +41,13 @@ public sealed partial class SimulationEngine
                 var catchup = w.Time!.BattleTime.FirstOrDefault(b => b.RemainingTicks > 0);
                 w.Clock = w.Clock with { Tick = checked(w.Clock.Tick + 1) };
                 TimeActions.Refresh(w);
-                MissionActions.Expire(w); SocialActions.Expire(w);
-                PartyActions.Advance(w); HuntActions.Advance(w); ResourceRegeneration.Advance(w);
+                if(!w.Time.IndependentMissionExpiryEvents)MissionActions.Expire(w);
+                if(!w.Time.IndependentSocialExpiryEvents)SocialActions.Expire(w);
+                PartyActions.Advance(w); HuntActions.Advance(w);
+                if(!w.Time.IndependentResourceEvents)ResourceRegeneration.Advance(w);
                 foreach (var task in w.Scheduled.OrderBy(t => t.DueTick).ThenBy(t => t.Sequence).ToArray())
                 {
-                    if (task.DueTick > w.Clock.Tick) continue;
+                    if (task.DueAtSeconds is not null||task.DueTick > w.Clock.Tick) continue;
                     if (task.Intent.Kind == ActionKind.Travel && w.HexMap is not null)
                     {
                         w.Scheduled.Remove(task);
@@ -59,10 +62,10 @@ public sealed partial class SimulationEngine
                     else ActionExecutor.Transfer(w, task.Intent, ActionExecutor.Escrow(task.Intent.Id), task.Intent.TargetId, "Completed");
                     w.Scheduled.Remove(task); CompletePlan(w, task.Intent);
                 }
-                foreach (var task in w.Time.Deferred.Where(t => t.DueTick <= w.Clock.Tick).ToArray())
+                foreach (var task in w.Time.Deferred.Where(t => t.DueAtSeconds is null&&t.DueTick <= w.Clock.Tick).ToArray())
                 {
                     w.Time.Deferred.Remove(task); w.Time.CompletingActionId = task.Intent.Id;
-                    var error = ActionValidator.Validate(w, task.Intent);
+                    var error = ActionValidator.ValidateAcceptedCompletion(w, task.Intent);
                     if (error is null)
                     {
                         ActionExecutor.Execute(w, task.Intent); ConvertTimedCombats(w); CompletePlan(w, task.Intent);
@@ -70,13 +73,17 @@ public sealed partial class SimulationEngine
                     else ActionExecutor.Emit(w, task.Intent.Id, "TimedCompletionRejected", error);
                     w.Time.CompletingActionId = null;
                 }
-                MortalTrainingActions.Complete(w);
+                if (w.Time.DiscreteEvents is null) MortalTrainingActions.Complete(w);
                 SettlementActions.Advance(w);
                 foreach (var finished in LifeActions.Complete(w)) CompletePlan(w, finished);
-                LifeActions.Effects(w);
-                TimeActions.RecoverRestAp(w, paidRest);
-                StaminaActions.Advance(w, actor => paidRest.Contains(actor.Id));
-                TestProcurement.Advance(w); SectDuties.Advance(w); SectPayroll.Advance(w); PartyActions.Advance(w);
+                if(!w.Time.IndependentRecoveryEvents){
+                    LifeActions.Effects(w);
+                    TimeActions.RecoverRestAp(w, paidRest);
+                    StaminaActions.Advance(w, actor => paidRest.Contains(actor.Id));
+                }
+                TestProcurement.Advance(w); SectDuties.Advance(w);
+                if(!w.Time.IndependentPayrollEvents)SectPayroll.Advance(w);
+                PartyActions.Advance(w);
                 if (catchup is not null)
                 {
                     int n = w.Time.BattleTime.FindIndex(b => b.BattleId == catchup.BattleId);
@@ -87,7 +94,7 @@ public sealed partial class SimulationEngine
                     ActionExecutor.Emit(w, "calendar:" + w.Clock.Tick, "DayStarted", CalendarCalculator.Date(w.Clock.Tick, w.Time.Rules).ToString());
             }
         }
-        if (drainCatchup)
+        if (drainCatchup && !WorldPeriodEvents.Enabled(w))
         {
             while (w.Time!.BattleTime.Any(r => r.RemainingTicks > 0) && !PlayerBattle())
             {
@@ -97,6 +104,8 @@ public sealed partial class SimulationEngine
         }
         TimeActions.Refresh(w);
         w.Memories.RemoveAll(m => m.Tick < w.Clock.Tick - w.Rules.MemoryTicks);
+        if(validate&&w.Time!.IndependentRecoveryEvents)RecoveryEvents.Sync(w,new EventScheduler(w.Time.DiscreteEvents!));
+        if (validate && WorldPeriodEvents.Enabled(w)) WorldPeriodEvents.Sync(w,new EventScheduler(w.Time!.DiscreteEvents!));
         PerformanceIntegrity.TrimDiagnostics(w); if (validate) WorldIntegrity.Validate(w); state = w;
         LastDiagnostics = new(w.Clock.Tick, watch.Elapsed.TotalMilliseconds, 0, 0, 0, results.Count,
             w.Scheduled.Count + w.Time!.Deferred.Count, 0, w.Characters.Count - 1,
@@ -114,10 +123,12 @@ public sealed partial class SimulationEngine
             IntentDeduplication.Record(w, i.Id);
             bool frozen = w.BoardBattle is { Phase: BoardBattlePhase.Active } current && current.Fighters.Any(f => f.ActorId == w.ControlledCharacterId);
             string? error = (combatOnly || frozen) && !TimeActions.IsBattleCommand(i.Kind) ? "World paused for player battle" : ActionValidator.Validate(w, i);
-            if (error is not null) { ActionExecutor.Emit(w, i.Id, "Rejected", error); results.Add(new(i.Id, false, error)); continue; }
+            if (error is not null) { ActionExecutor.Emit(w, i.Id, "Rejected", error); results.Add(new(i.Id, false, error)); if(w.Characters.Any(a=>a.Id==i.ActorId))EventDecisions.Request(w,i.ActorId,DecisionTrigger.Interrupted); continue; }
             if (i.DecisionDetail is not null) ActionExecutor.Emit(w, i.Id, "Decision", i.DecisionDetail);
             if (i.Plan is not null) { w.Plans.RemoveAll(p => p.ActorId == i.ActorId); w.Plans.Add(i.Plan); }
+            if (WorldPeriodEvents.Enabled(w)) w.Time!.DiscreteEvents!.ActionSequences.TryAdd(i.Id, queued.Sequence);
             int cost = TimeActions.Cost(w, i);
+            ActionLifecycle.Begin(w, i);
             if (i.Kind == ActionKind.Wait && w.Time!.ActionDriven?.WaitDurationTicks is { } waitDuration)
             {
                 if (cost > 0) TimeActions.Spend(w, i.Id, i.ActorId, cost, waitDuration);
@@ -125,13 +136,15 @@ public sealed partial class SimulationEngine
                     TimeActions.Refresh(w); int n = w.Time.Budgets.FindIndex(b => b.ActorId == i.ActorId);
                     w.Time.Budgets[n] = w.Time.Budgets[n] with { BusyThroughTick = checked(w.Clock.Tick + waitDuration) };
                 }
-                w.Time.Deferred.Add(new(i, checked(w.Clock.Tick + waitDuration)));
+                w.Time.Deferred.Add(new(i, checked(w.Clock.Tick + waitDuration),Sequence:w.NextSequence++));
             }
             else if (cost == 0) ActionExecutor.Execute(w, i);
             else
             {
                 TimeActions.Spend(w, i.Id, i.ActorId, cost);
-                if (i.Kind == ActionKind.Engage)
+                if(i.Kind==ActionKind.RepairEquipment)EquipmentRepairActions.Start(w,i);
+                else if(MarketOrders.Handles(i.Kind))MarketOrders.Start(w,i);
+                else if (i.Kind == ActionKind.Engage)
                 {
                     StartTimedBattle(w, i.Id, i.ActorId, i.TargetId, chargeInitiator: false);
                 }
@@ -150,8 +163,9 @@ public sealed partial class SimulationEngine
                         }
                     }
                 }
-                else w.Time!.Deferred.Add(new(i, checked(w.Clock.Tick + cost)));
+                else w.Time!.Deferred.Add(new(i, checked(w.Clock.Tick + cost),Sequence:w.NextSequence++));
             }
+            ActionLifecycle.Start(w, i.Id);
             results.Add(new(i.Id, true, "Accepted"));
         }
     }
@@ -166,6 +180,7 @@ public sealed partial class SimulationEngine
     {
         var previousBoard = w.BoardBattle;
         MortalTrainingActions.Interrupt(w, initiator); MortalTrainingActions.Interrupt(w, defender);
+          EquipmentRepairActions.InterruptActor(w,initiator); EquipmentRepairActions.InterruptActor(w,defender);
         PaidLifeServices.Interrupt(w, initiator); PaidLifeServices.Interrupt(w, defender);
         int battleCost = w.Time!.Rules.BattleActionPoints;
         var members = new List<string> { initiator };
@@ -181,6 +196,7 @@ public sealed partial class SimulationEngine
         {
             TimeActions.Refresh(w); int n = t.Budgets.FindIndex(b => b.ActorId == member);
             t.Budgets[n] = t.Budgets[n] with { BusyThroughTick = Math.Max(t.Budgets[n].BusyThroughTick, checked(w.Clock.Tick + battleCost)) };
+            if (WorldPeriodEvents.Enabled(w)) t.DiscreteEvents!.BattleReleaseDeadlines[member] = checked(t.DiscreteEvents.WorldTime + battleCost * DiscreteTime.SecondsPerStep(w));
         }
         w.BoardRules = new(t.Rules.MaximumBattleRounds);
         w.BoardBattle = new() { Id = id, Fighters = members.Select((m, n) => new BoardFighter(m, BattleSide.Left, new(n, 0), 10, 1)).ToList() };
@@ -216,6 +232,7 @@ public sealed partial class SimulationEngine
             HuntActions.Record(w, history);
         }
         LifeActions.EndBattle(w, b);
+        foreach(var fighter in b.Fighters)EventDecisions.Request(w,fighter.ActorId,DecisionTrigger.ActionCompleted);
         ActionExecutor.Emit(w, b.Id, "TimedBattleSettled", player ? "WorldCatchup:" + w.Time.Rules.BattleActionPoints : "NPCDirectResult");
     }
 }

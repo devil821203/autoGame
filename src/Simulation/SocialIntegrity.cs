@@ -20,7 +20,7 @@ internal static class SocialIntegrity
         if (r.OfferLifetimeTicks <= 0 || r.CooldownTicks <= 0 || r.LessonPrice <= 0 || r.LessonExperience <= 0 || r.AffinityGain is < 1 or > 100 || r.TrustGain is < 1 or > 100 || r.MaximumMembers <= 0) throw new InvalidDataException("Invalid social rules.");
         if (w.Relationships.Select(s => (s.FromId, s.ToId)).Distinct().Count() != w.Relationships.Count || w.Relationships.Any(s => !actors.ContainsKey(s.FromId) || !actors.ContainsKey(s.ToId) || s.FromId == s.ToId || s.Affinity is < -100 or > 100 || s.Trust is < -100 or > 100 || s.Grudge is < 0 or > 100)) throw new InvalidDataException("Invalid sparse relationships.");
         if (w.SocialOffers.Select(s => s.Id).Distinct().Count() != w.SocialOffers.Count || w.SocialOffers.Any(s => !actors.ContainsKey(s.FromId) || !actors.ContainsKey(s.ToId) || s.FromId == s.ToId || !Enum.IsDefined(s.Kind) || !Enum.IsDefined(s.Status) || s.ExpiresTick <= 0 ||
-            s.Status == SocialOfferStatus.Pending && s.ExpiresTick <= w.Clock.Tick || s.Kind is SocialOfferKind.Recruitment or SocialOfferKind.Succession && !w.Organizations.Any(o => o.Id == s.OrganizationId))) throw new InvalidDataException("Invalid social offer.");
+            s.Status == SocialOfferStatus.Pending && (w.Time?.IndependentSocialExpiryEvents==true?s.ExpiresAtSeconds<w.Time.DiscreteEvents!.WorldTime:s.ExpiresTick <= w.Clock.Tick) || s.Kind is SocialOfferKind.Recruitment or SocialOfferKind.Succession && !w.Organizations.Any(o => o.Id == s.OrganizationId))) throw new InvalidDataException("Invalid social offer.");
         foreach (var actor in w.Characters)
         {
             if (actor.SocialCooldownUntil < 0) throw new InvalidDataException("Invalid social cooldown.");

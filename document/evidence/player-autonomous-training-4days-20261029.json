@@ -1,0 +1,1468 @@
+{
+  "Scenario": "Current methods scenario; player autonomy enabled",
+  "DiagnosticBuild": "Standard project references using Domain.csproj local build selection",
+  "RequestedDays": 4,
+  "TargetTick": 576,
+  "CompletedTick": 576,
+  "Failure": null,
+  "Validation": "Full world integrity every tick; no forced NPC actions or resource changes; only existing player battle auto toggle",
+  "Initial": {
+    "Tick": 0,
+    "Members": [
+      {
+        "Id": "player",
+        "Name": "\u884C\u8005",
+        "OrganizationId": "sect",
+        "Profession": "None",
+        "Health": 100,
+        "SeverelyInjured": false,
+        "Stamina": 100,
+        "Money": 1000,
+        "ActionPoints": 30,
+        "ApRestRecoveries": 0,
+        "Cultivation": {
+          "Stage": 0,
+          "SpiritLevel": 0,
+          "BodyLevel": 0,
+          "QiLevel": 0,
+          "Experience": {},
+          "AttributeGrowth": {},
+          "BaseAttributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 10,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "QiInitiationExperience": 0,
+          "QiExperience": 0,
+          "Awakening": 0,
+          "AwakeningAttempts": 0
+        },
+        "MethodSkills": {
+          "QingyunMind": {
+            "Proficiency": 0,
+            "Layer": 0
+          },
+          "QingyunFist": {
+            "Proficiency": 0,
+            "Layer": 0
+          },
+          "MightyBrick": {
+            "Proficiency": 0,
+            "Layer": 0
+          }
+        },
+        "CompletedMethodTraining": 0,
+        "Attributes": {
+          "Intelligence": 10,
+          "MentalStrength": 10,
+          "DivineSense": 10,
+          "Willpower": 10,
+          "Strength": 10,
+          "Agility": 10,
+          "Constitution": 10,
+          "Sensitivity": 10,
+          "QiSense": 10,
+          "Comprehension": 10,
+          "Luck": 10
+        },
+        "CompletedTraining": 0,
+        "TrainingTargets": {}
+      }
+    ]
+  },
+  "Final": {
+    "Tick": 576,
+    "Members": [
+      {
+        "Id": "player",
+        "Name": "\u884C\u8005",
+        "OrganizationId": "sect",
+        "Profession": "None",
+        "Health": 100,
+        "SeverelyInjured": false,
+        "Stamina": 98,
+        "Money": 1000,
+        "ActionPoints": 30,
+        "ApRestRecoveries": 120,
+        "Cultivation": {
+          "Stage": 0,
+          "SpiritLevel": 0,
+          "BodyLevel": 1,
+          "QiLevel": 0,
+          "Experience": {
+            "Constitution": 0,
+            "Strength": 31
+          },
+          "AttributeGrowth": {
+            "Constitution": 1,
+            "Strength": 0
+          },
+          "BaseAttributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 10,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "QiInitiationExperience": 0,
+          "QiExperience": 0,
+          "Awakening": 0,
+          "AwakeningAttempts": 0
+        },
+        "MethodSkills": {
+          "QingyunMind": {
+            "Proficiency": 0,
+            "Layer": 0
+          },
+          "QingyunFist": {
+            "Proficiency": 100,
+            "Layer": 1
+          },
+          "MightyBrick": {
+            "Proficiency": 31,
+            "Layer": 0
+          }
+        },
+        "CompletedMethodTraining": 131,
+        "Attributes": {
+          "Intelligence": 10,
+          "MentalStrength": 10,
+          "DivineSense": 10,
+          "Willpower": 10,
+          "Strength": 10,
+          "Agility": 10,
+          "Constitution": 11,
+          "Sensitivity": 10,
+          "QiSense": 10,
+          "Comprehension": 10,
+          "Luck": 10
+        },
+        "CompletedTraining": 131,
+        "TrainingTargets": {
+          "method": 131
+        }
+      }
+    ]
+  },
+  "Samples": [
+    {
+      "Tick": 0,
+      "Members": [
+        {
+          "Id": "player",
+          "Name": "\u884C\u8005",
+          "OrganizationId": "sect",
+          "Profession": "None",
+          "Health": 100,
+          "SeverelyInjured": false,
+          "Stamina": 100,
+          "Money": 1000,
+          "ActionPoints": 30,
+          "ApRestRecoveries": 0,
+          "Cultivation": {
+            "Stage": 0,
+            "SpiritLevel": 0,
+            "BodyLevel": 0,
+            "QiLevel": 0,
+            "Experience": {},
+            "AttributeGrowth": {},
+            "BaseAttributes": {
+              "Intelligence": 10,
+              "MentalStrength": 10,
+              "DivineSense": 10,
+              "Willpower": 10,
+              "Strength": 10,
+              "Agility": 10,
+              "Constitution": 10,
+              "Sensitivity": 10,
+              "QiSense": 10,
+              "Comprehension": 10,
+              "Luck": 10
+            },
+            "QiInitiationExperience": 0,
+            "QiExperience": 0,
+            "Awakening": 0,
+            "AwakeningAttempts": 0
+          },
+          "MethodSkills": {
+            "QingyunMind": {
+              "Proficiency": 0,
+              "Layer": 0
+            },
+            "QingyunFist": {
+              "Proficiency": 0,
+              "Layer": 0
+            },
+            "MightyBrick": {
+              "Proficiency": 0,
+              "Layer": 0
+            }
+          },
+          "CompletedMethodTraining": 0,
+          "Attributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 10,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "CompletedTraining": 0,
+          "TrainingTargets": {}
+        }
+      ]
+    },
+    {
+      "Tick": 144,
+      "Members": [
+        {
+          "Id": "player",
+          "Name": "\u884C\u8005",
+          "OrganizationId": "sect",
+          "Profession": "None",
+          "Health": 100,
+          "SeverelyInjured": false,
+          "Stamina": 97,
+          "Money": 1000,
+          "ActionPoints": 30,
+          "ApRestRecoveries": 30,
+          "Cultivation": {
+            "Stage": 0,
+            "SpiritLevel": 0,
+            "BodyLevel": 0,
+            "QiLevel": 0,
+            "Experience": {
+              "Constitution": 33
+            },
+            "AttributeGrowth": {
+              "Constitution": 0
+            },
+            "BaseAttributes": {
+              "Intelligence": 10,
+              "MentalStrength": 10,
+              "DivineSense": 10,
+              "Willpower": 10,
+              "Strength": 10,
+              "Agility": 10,
+              "Constitution": 10,
+              "Sensitivity": 10,
+              "QiSense": 10,
+              "Comprehension": 10,
+              "Luck": 10
+            },
+            "QiInitiationExperience": 0,
+            "QiExperience": 0,
+            "Awakening": 0,
+            "AwakeningAttempts": 0
+          },
+          "MethodSkills": {
+            "QingyunMind": {
+              "Proficiency": 0,
+              "Layer": 0
+            },
+            "QingyunFist": {
+              "Proficiency": 33,
+              "Layer": 0
+            },
+            "MightyBrick": {
+              "Proficiency": 0,
+              "Layer": 0
+            }
+          },
+          "CompletedMethodTraining": 33,
+          "Attributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 10,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "CompletedTraining": 33,
+          "TrainingTargets": {
+            "method": 33
+          }
+        }
+      ]
+    },
+    {
+      "Tick": 288,
+      "Members": [
+        {
+          "Id": "player",
+          "Name": "\u884C\u8005",
+          "OrganizationId": "sect",
+          "Profession": "None",
+          "Health": 100,
+          "SeverelyInjured": false,
+          "Stamina": 97,
+          "Money": 1000,
+          "ActionPoints": 30,
+          "ApRestRecoveries": 60,
+          "Cultivation": {
+            "Stage": 0,
+            "SpiritLevel": 0,
+            "BodyLevel": 0,
+            "QiLevel": 0,
+            "Experience": {
+              "Constitution": 66
+            },
+            "AttributeGrowth": {
+              "Constitution": 0
+            },
+            "BaseAttributes": {
+              "Intelligence": 10,
+              "MentalStrength": 10,
+              "DivineSense": 10,
+              "Willpower": 10,
+              "Strength": 10,
+              "Agility": 10,
+              "Constitution": 10,
+              "Sensitivity": 10,
+              "QiSense": 10,
+              "Comprehension": 10,
+              "Luck": 10
+            },
+            "QiInitiationExperience": 0,
+            "QiExperience": 0,
+            "Awakening": 0,
+            "AwakeningAttempts": 0
+          },
+          "MethodSkills": {
+            "QingyunMind": {
+              "Proficiency": 0,
+              "Layer": 0
+            },
+            "QingyunFist": {
+              "Proficiency": 66,
+              "Layer": 0
+            },
+            "MightyBrick": {
+              "Proficiency": 0,
+              "Layer": 0
+            }
+          },
+          "CompletedMethodTraining": 66,
+          "Attributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 10,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "CompletedTraining": 66,
+          "TrainingTargets": {
+            "method": 66
+          }
+        }
+      ]
+    },
+    {
+      "Tick": 432,
+      "Members": [
+        {
+          "Id": "player",
+          "Name": "\u884C\u8005",
+          "OrganizationId": "sect",
+          "Profession": "None",
+          "Health": 100,
+          "SeverelyInjured": false,
+          "Stamina": 97,
+          "Money": 1000,
+          "ActionPoints": 30,
+          "ApRestRecoveries": 90,
+          "Cultivation": {
+            "Stage": 0,
+            "SpiritLevel": 0,
+            "BodyLevel": 0,
+            "QiLevel": 0,
+            "Experience": {
+              "Constitution": 99
+            },
+            "AttributeGrowth": {
+              "Constitution": 0
+            },
+            "BaseAttributes": {
+              "Intelligence": 10,
+              "MentalStrength": 10,
+              "DivineSense": 10,
+              "Willpower": 10,
+              "Strength": 10,
+              "Agility": 10,
+              "Constitution": 10,
+              "Sensitivity": 10,
+              "QiSense": 10,
+              "Comprehension": 10,
+              "Luck": 10
+            },
+            "QiInitiationExperience": 0,
+            "QiExperience": 0,
+            "Awakening": 0,
+            "AwakeningAttempts": 0
+          },
+          "MethodSkills": {
+            "QingyunMind": {
+              "Proficiency": 0,
+              "Layer": 0
+            },
+            "QingyunFist": {
+              "Proficiency": 99,
+              "Layer": 0
+            },
+            "MightyBrick": {
+              "Proficiency": 0,
+              "Layer": 0
+            }
+          },
+          "CompletedMethodTraining": 99,
+          "Attributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 10,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "CompletedTraining": 99,
+          "TrainingTargets": {
+            "method": 99
+          }
+        }
+      ]
+    },
+    {
+      "Tick": 576,
+      "Members": [
+        {
+          "Id": "player",
+          "Name": "\u884C\u8005",
+          "OrganizationId": "sect",
+          "Profession": "None",
+          "Health": 100,
+          "SeverelyInjured": false,
+          "Stamina": 98,
+          "Money": 1000,
+          "ActionPoints": 30,
+          "ApRestRecoveries": 120,
+          "Cultivation": {
+            "Stage": 0,
+            "SpiritLevel": 0,
+            "BodyLevel": 1,
+            "QiLevel": 0,
+            "Experience": {
+              "Constitution": 0,
+              "Strength": 31
+            },
+            "AttributeGrowth": {
+              "Constitution": 1,
+              "Strength": 0
+            },
+            "BaseAttributes": {
+              "Intelligence": 10,
+              "MentalStrength": 10,
+              "DivineSense": 10,
+              "Willpower": 10,
+              "Strength": 10,
+              "Agility": 10,
+              "Constitution": 10,
+              "Sensitivity": 10,
+              "QiSense": 10,
+              "Comprehension": 10,
+              "Luck": 10
+            },
+            "QiInitiationExperience": 0,
+            "QiExperience": 0,
+            "Awakening": 0,
+            "AwakeningAttempts": 0
+          },
+          "MethodSkills": {
+            "QingyunMind": {
+              "Proficiency": 0,
+              "Layer": 0
+            },
+            "QingyunFist": {
+              "Proficiency": 100,
+              "Layer": 1
+            },
+            "MightyBrick": {
+              "Proficiency": 31,
+              "Layer": 0
+            }
+          },
+          "CompletedMethodTraining": 131,
+          "Attributes": {
+            "Intelligence": 10,
+            "MentalStrength": 10,
+            "DivineSense": 10,
+            "Willpower": 10,
+            "Strength": 10,
+            "Agility": 10,
+            "Constitution": 11,
+            "Sensitivity": 10,
+            "QiSense": 10,
+            "Comprehension": 10,
+            "Luck": 10
+          },
+          "CompletedTraining": 131,
+          "TrainingTargets": {
+            "method": 131
+          }
+        }
+      ]
+    }
+  ],
+  "TrainingEvents": [
+    {
+      "Sequence": 416,
+      "Tick": 4,
+      "ActionId": "player-auto:player:3",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 648,
+      "Tick": 7,
+      "ActionId": "player-auto:player:6",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 881,
+      "Tick": 11,
+      "ActionId": "player-auto:player:10",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 1127,
+      "Tick": 15,
+      "ActionId": "player-auto:player:14",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 1331,
+      "Tick": 18,
+      "ActionId": "player-auto:player:17",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 1584,
+      "Tick": 22,
+      "ActionId": "player-auto:player:21",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 1792,
+      "Tick": 25,
+      "ActionId": "player-auto:player:24",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 2042,
+      "Tick": 29,
+      "ActionId": "player-auto:player:28",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 2245,
+      "Tick": 32,
+      "ActionId": "player-auto:player:31",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 2485,
+      "Tick": 36,
+      "ActionId": "player-auto:player:35",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 2687,
+      "Tick": 39,
+      "ActionId": "player-auto:player:38",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 2938,
+      "Tick": 43,
+      "ActionId": "player-auto:player:42",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 3134,
+      "Tick": 46,
+      "ActionId": "player-auto:player:45",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 3363,
+      "Tick": 50,
+      "ActionId": "player-auto:player:49",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 3555,
+      "Tick": 53,
+      "ActionId": "player-auto:player:52",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 3785,
+      "Tick": 57,
+      "ActionId": "player-auto:player:56",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 3977,
+      "Tick": 60,
+      "ActionId": "player-auto:player:59",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 4257,
+      "Tick": 64,
+      "ActionId": "player-auto:player:63",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 4449,
+      "Tick": 67,
+      "ActionId": "player-auto:player:66",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 4677,
+      "Tick": 71,
+      "ActionId": "player-auto:player:70",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 4876,
+      "Tick": 74,
+      "ActionId": "player-auto:player:73",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 5113,
+      "Tick": 78,
+      "ActionId": "player-auto:player:77",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 5311,
+      "Tick": 81,
+      "ActionId": "player-auto:player:80",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 5508,
+      "Tick": 84,
+      "ActionId": "player-auto:player:83",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 5753,
+      "Tick": 88,
+      "ActionId": "player-auto:player:87",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 5956,
+      "Tick": 91,
+      "ActionId": "player-auto:player:90",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 6213,
+      "Tick": 95,
+      "ActionId": "player-auto:player:94",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 6412,
+      "Tick": 98,
+      "ActionId": "player-auto:player:97",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 6693,
+      "Tick": 101,
+      "ActionId": "player-auto:player:100",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 6889,
+      "Tick": 103,
+      "ActionId": "player-auto:player:102",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 9822,
+      "Tick": 136,
+      "ActionId": "player-auto:player:135",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 10014,
+      "Tick": 139,
+      "ActionId": "player-auto:player:138",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 10242,
+      "Tick": 143,
+      "ActionId": "player-auto:player:142",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 10440,
+      "Tick": 146,
+      "ActionId": "player-auto:player:145",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 10726,
+      "Tick": 150,
+      "ActionId": "player-auto:player:149",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 10914,
+      "Tick": 153,
+      "ActionId": "player-auto:player:152",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 11146,
+      "Tick": 157,
+      "ActionId": "player-auto:player:156",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 11337,
+      "Tick": 160,
+      "ActionId": "player-auto:player:159",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 11615,
+      "Tick": 164,
+      "ActionId": "player-auto:player:163",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 11799,
+      "Tick": 167,
+      "ActionId": "player-auto:player:166",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 12035,
+      "Tick": 171,
+      "ActionId": "player-auto:player:170",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 12226,
+      "Tick": 174,
+      "ActionId": "player-auto:player:173",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 12469,
+      "Tick": 178,
+      "ActionId": "player-auto:player:177",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 12657,
+      "Tick": 181,
+      "ActionId": "player-auto:player:180",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 12890,
+      "Tick": 185,
+      "ActionId": "player-auto:player:184",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 13078,
+      "Tick": 188,
+      "ActionId": "player-auto:player:187",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 13311,
+      "Tick": 192,
+      "ActionId": "player-auto:player:191",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 13499,
+      "Tick": 195,
+      "ActionId": "player-auto:player:194",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 13785,
+      "Tick": 199,
+      "ActionId": "player-auto:player:198",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 13973,
+      "Tick": 202,
+      "ActionId": "player-auto:player:201",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 14157,
+      "Tick": 205,
+      "ActionId": "player-auto:player:204",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 14396,
+      "Tick": 209,
+      "ActionId": "player-auto:player:208",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 14590,
+      "Tick": 212,
+      "ActionId": "player-auto:player:211",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 14831,
+      "Tick": 216,
+      "ActionId": "player-auto:player:215",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 15023,
+      "Tick": 219,
+      "ActionId": "player-auto:player:218",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 15258,
+      "Tick": 223,
+      "ActionId": "player-auto:player:222",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 15446,
+      "Tick": 226,
+      "ActionId": "player-auto:player:225",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 15712,
+      "Tick": 230,
+      "ActionId": "player-auto:player:229",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 15959,
+      "Tick": 234,
+      "ActionId": "player-auto:player:233",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 16154,
+      "Tick": 237,
+      "ActionId": "player-auto:player:236",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 16361,
+      "Tick": 240,
+      "ActionId": "player-auto:player:239",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 16571,
+      "Tick": 243,
+      "ActionId": "player-auto:player:242",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 16822,
+      "Tick": 247,
+      "ActionId": "player-auto:player:246",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 19727,
+      "Tick": 280,
+      "ActionId": "player-auto:player:279",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 19993,
+      "Tick": 284,
+      "ActionId": "player-auto:player:283",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 20185,
+      "Tick": 287,
+      "ActionId": "player-auto:player:286",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 20417,
+      "Tick": 291,
+      "ActionId": "player-auto:player:290",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 20609,
+      "Tick": 294,
+      "ActionId": "player-auto:player:293",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 20892,
+      "Tick": 298,
+      "ActionId": "player-auto:player:297",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 21084,
+      "Tick": 301,
+      "ActionId": "player-auto:player:300",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 21312,
+      "Tick": 305,
+      "ActionId": "player-auto:player:304",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 21507,
+      "Tick": 308,
+      "ActionId": "player-auto:player:307",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 21748,
+      "Tick": 312,
+      "ActionId": "player-auto:player:311",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 21939,
+      "Tick": 315,
+      "ActionId": "player-auto:player:314",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 22173,
+      "Tick": 319,
+      "ActionId": "player-auto:player:318",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 22361,
+      "Tick": 322,
+      "ActionId": "player-auto:player:321",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 22595,
+      "Tick": 326,
+      "ActionId": "player-auto:player:325",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 22787,
+      "Tick": 329,
+      "ActionId": "player-auto:player:328",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 23016,
+      "Tick": 333,
+      "ActionId": "player-auto:player:332",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 23208,
+      "Tick": 336,
+      "ActionId": "player-auto:player:335",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 23437,
+      "Tick": 340,
+      "ActionId": "player-auto:player:339",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 23629,
+      "Tick": 343,
+      "ActionId": "player-auto:player:342",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 23858,
+      "Tick": 347,
+      "ActionId": "player-auto:player:346",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 24050,
+      "Tick": 350,
+      "ActionId": "player-auto:player:349",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 24328,
+      "Tick": 354,
+      "ActionId": "player-auto:player:353",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 24515,
+      "Tick": 357,
+      "ActionId": "player-auto:player:356",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 24757,
+      "Tick": 361,
+      "ActionId": "player-auto:player:360",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 24951,
+      "Tick": 364,
+      "ActionId": "player-auto:player:363",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 25192,
+      "Tick": 368,
+      "ActionId": "player-auto:player:367",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 25386,
+      "Tick": 371,
+      "ActionId": "player-auto:player:370",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 25623,
+      "Tick": 375,
+      "ActionId": "player-auto:player:374",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 25820,
+      "Tick": 378,
+      "ActionId": "player-auto:player:377",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 26069,
+      "Tick": 382,
+      "ActionId": "player-auto:player:381",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 26265,
+      "Tick": 385,
+      "ActionId": "player-auto:player:384",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 26465,
+      "Tick": 388,
+      "ActionId": "player-auto:player:387",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 26711,
+      "Tick": 392,
+      "ActionId": "player-auto:player:391",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 29619,
+      "Tick": 425,
+      "ActionId": "player-auto:player:424",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 29825,
+      "Tick": 428,
+      "ActionId": "player-auto:player:427",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 30062,
+      "Tick": 432,
+      "ActionId": "player-auto:player:431",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D0/\u70810"
+    },
+    {
+      "Sequence": 30274,
+      "Tick": 435,
+      "ActionId": "player-auto:player:434",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:QingyunFist:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 30518,
+      "Tick": 439,
+      "ActionId": "player-auto:player:438",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 30715,
+      "Tick": 442,
+      "ActionId": "player-auto:player:441",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 30948,
+      "Tick": 446,
+      "ActionId": "player-auto:player:445",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 31178,
+      "Tick": 450,
+      "ActionId": "player-auto:player:449",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 31372,
+      "Tick": 453,
+      "ActionId": "player-auto:player:452",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 31603,
+      "Tick": 457,
+      "ActionId": "player-auto:player:456",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 31796,
+      "Tick": 460,
+      "ActionId": "player-auto:player:459",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 32031,
+      "Tick": 464,
+      "ActionId": "player-auto:player:463",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 32220,
+      "Tick": 467,
+      "ActionId": "player-auto:player:466",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 32455,
+      "Tick": 471,
+      "ActionId": "player-auto:player:470",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 32644,
+      "Tick": 474,
+      "ActionId": "player-auto:player:473",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 32878,
+      "Tick": 478,
+      "ActionId": "player-auto:player:477",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 33147,
+      "Tick": 482,
+      "ActionId": "player-auto:player:481",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 33332,
+      "Tick": 485,
+      "ActionId": "player-auto:player:484",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 33569,
+      "Tick": 489,
+      "ActionId": "player-auto:player:488",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 33761,
+      "Tick": 492,
+      "ActionId": "player-auto:player:491",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 34007,
+      "Tick": 496,
+      "ActionId": "player-auto:player:495",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 34198,
+      "Tick": 499,
+      "ActionId": "player-auto:player:498",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 34393,
+      "Tick": 502,
+      "ActionId": "player-auto:player:501",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 34635,
+      "Tick": 506,
+      "ActionId": "player-auto:player:505",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 34828,
+      "Tick": 509,
+      "ActionId": "player-auto:player:508",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 35062,
+      "Tick": 513,
+      "ActionId": "player-auto:player:512",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 35251,
+      "Tick": 516,
+      "ActionId": "player-auto:player:515",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 35535,
+      "Tick": 520,
+      "ActionId": "player-auto:player:519",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 35724,
+      "Tick": 523,
+      "ActionId": "player-auto:player:522",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 35953,
+      "Tick": 527,
+      "ActionId": "player-auto:player:526",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 36159,
+      "Tick": 530,
+      "ActionId": "player-auto:player:529",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 36370,
+      "Tick": 533,
+      "ActionId": "player-auto:player:532",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 36621,
+      "Tick": 537,
+      "ActionId": "player-auto:player:536",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 39517,
+      "Tick": 570,
+      "ActionId": "player-auto:player:569",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    },
+    {
+      "Sequence": 39760,
+      "Tick": 574,
+      "ActionId": "player-auto:player:573",
+      "Kind": "MortalTrainingCompleted",
+      "Detail": "player:method:MightyBrick:\u7D93\u9A571:\u9AD4\u529B-1:\u60270/\u547D1/\u70810"
+    }
+  ]
+}

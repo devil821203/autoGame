@@ -1,10 +1,11 @@
-﻿using Cultivation.Domain;
+using Cultivation.Domain;
 using Godot;
 
 namespace Cultivation.Presentation;
 
 public partial class DemoMapPanel : Control
 {
+    private readonly Font drawFont = PresentationFonts.Create();
     public Func<WorldState> ReadWorld { get; set; } = null!;
     public event Action<ActionIntent>? Requested;
     private readonly (string Id, string Name, Vector2 Point)[] places =
@@ -26,7 +27,7 @@ public partial class DemoMapPanel : Control
     public override void _Draw()
     {
         if (ReadWorld is null) return;
-        var w = ReadWorld(); var font = ThemeDB.FallbackFont;
+        var w = ReadWorld(); var font = drawFont;
         if (w.HexMap is not null)
         {
             DrawString(font, new(20, 30), "目前為六角世界；請使用「六角世界」頁查看逐格旅行與領地。", fontSize: 18);

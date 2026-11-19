@@ -28,6 +28,29 @@ internal static class OrganizationLaborTests
     }
     private static void AdvanceTo(SimulationEngine e,long tick){while(e.Snapshot().Clock.Tick<tick)e.Step();}
     public static IEnumerable<(string Name,Action Body)> Cases=>new (string,Action)[]{
+        ("R3 recruited member receives one startup request and deterministic first evaluation after snapshot",()=>{
+            var w=EventFixture();var e=new SimulationEngine(w);Site(e);Build(e,SettlementBuildingKind.SeniorDormitory);
+            w=e.Snapshot();w.Time!.EventDecisions!.Ready.Clear();e=new(w);
+            w=Act(e,ActionKind.RecruitOrganizationMember);string id=w.MemberRecruitments.Single().MemberId;
+            var mode=w.Time!.EventDecisions!;
+            Check(mode.Ready.ContainsKey(id)&&mode.Ready[id].Reasons.SetEquals(new[]{DecisionTrigger.Startup}),"New member has no startup request");
+            Check(mode.Ready.Keys.All(actor=>actor==id||actor==w.ControlledCharacterId),"Recruitment woke unrelated actors");
+            Check(w.Time.Budgets.Any(b=>b.ActorId==id)&&Inventory.Balance(w,id,"spirit-stone")>0,"Startup precedes initialization");
+            var resumed=new SimulationEngine(WorldCodec.Deserialize(WorldCodec.Serialize(w)));
+            long target=w.Time.DiscreteEvents!.WorldTime;
+            e.AdvanceTo(target,true);resumed.AdvanceTo(target,true);var after=e.Snapshot();
+            Check(after.Time!.EventDecisions!.Traces.TryGetValue(id,out var trace)&&trace.Reasons.Contains(DecisionTrigger.Startup),"New actor was not evaluated");
+            Check(WorldCodec.Digest(after)==WorldCodec.Digest(resumed.Snapshot()),"Recruitment startup continuation differs");
+            WorldIntegrity.Validate(after);
+        }),
+        ("R3 abstract labor recruitment creates no actor or startup request",()=>{
+            var e=new SimulationEngine(EventFixture());Site(e);Build(e,SettlementBuildingKind.Dormitory);
+            var w=e.Snapshot();int count=w.Characters.Count;w.Time!.EventDecisions!.Ready.Clear();e=new(w);
+            w=Act(e,ActionKind.RecruitOrganizationLabor);
+            Check(w.Characters.Count==count&&OrganizationCapacity.LaborCount(w,"sect")==1,"Abstract labor created character");
+            Check(w.Time!.EventDecisions!.Ready.Keys.All(id=>id==w.ControlledCharacterId)&&!w.Time.EventDecisions.Ready.Values.Any(r=>r.Reasons.Contains(DecisionTrigger.Startup)),"Abstract labor created startup wake");
+            WorldIntegrity.Validate(w);
+        }),
         ("Population investment consumes one batch, awards influence and deterministic growth with save continuation",()=>{
             var w=Fixture();w.PopulationInvestmentRules=w.PopulationInvestmentRules! with{SuccessProbability=1};
             var e=new SimulationEngine(w);long food=Inventory.Balance(w,"sect","food");int before=w.Settlements.Single().Population;
@@ -98,4 +121,13 @@ internal static class OrganizationLaborTests
             Check(w.MemberRecruitments.All(r=>w.Events.Any(ev=>ev.ActionId.Contains(r.MemberId,StringComparison.Ordinal)||w.Plans.Any(p=>p.ActorId==r.MemberId))||w.Memories.Any(m=>m.ActorId==r.MemberId)),"New member did not enter autonomous scheduling");
         })
     };
+    private static WorldState EventFixture()
+    {
+        var w=Fixture();var config=GameConfiguration.Find();
+        var driven=config.Read<ActionDrivenRules>("time/action-driven.json");
+        w.Time!.ActionDriven=driven;
+        w.Time.Rules=w.Time.Rules with {TicksPerDay=driven.MinutesPerDay!.Value/driven.MinutesPerActionPoint!.Value};
+        DiscreteTime.EnableFresh(w);ActionLifecycle.EnableFresh(w);EventDecisions.EnableFresh(w);
+        return w;
+    }
 }

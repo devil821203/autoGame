@@ -58,7 +58,7 @@ public partial class LifeSkillPanel : VBoxContainer
         Bind(recipes,recipeIds,life.Recipes.Select(d=>(d.Id,$"{w.Items.Single(i=>i.Id==d.Output).Name}／{GameTimeDisplay.Duration(w,d.Ticks)}／{string.Join("、",d.Inputs.Select(p=>$"{p.Key}×{p.Value}"))}")));
         Bind(equipment,gearIds,life.Equipment.Where(g=>Inventory.Balance(w,a.Id,g.Id)==1).Select(g=>(g.Id,$"{w.Items.Single(i=>i.Id==g.Id).Name} 攻+{g.Attack}防+{g.Defense}｜{EquipmentCondition.Description(w,g.Id)}")));
         foreach(var c in controls){string? error=ActionValidator.Validate(w,Intent(w,c.Kind));c.Button.Disabled=error is not null;c.Button.TooltipText=error??"可提交，材料與AP於開始時驗證";}
-        status.Text="工作："+string.Join("；",life.Work.Where(t=>t.Intent.ActorId==a.Id).Select(t=>$"{t.Intent.Kind} 剩{GameTimeDisplay.Duration(w,t.DueTick-w.Clock.Tick)}"))+"\n藥效："+
-            string.Join("；",life.Effects.Where(e=>e.ActorId==a.Id).Select(e=>$"每次{e.Healing}，剩{e.Remaining}次（{(e.BattleId is null?GameTimeDisplay.Duration(w,1):"戰鬥輪末")}）"));
+        status.Text="工作："+string.Join("；",life.Work.Where(t=>t.Intent.ActorId==a.Id).Select(t=>$"{t.Intent.Kind} 剩"+(t.DueAtSeconds is {} due?$"{Math.Max(0,due-w.Time!.DiscreteEvents!.WorldTime)}秒":GameTimeDisplay.Duration(w,t.DueTick-w.Clock.Tick))))+"\n藥效："+
+            string.Join("；",life.Effects.Where(e=>e.ActorId==a.Id).Select(e=>$"每次{e.Healing}，剩{e.Remaining}次（{(e.NextAtSeconds is {} next?$"下次還有{Math.Max(0,next-w.Time!.DiscreteEvents!.WorldTime)}秒":e.BattleId is null?GameTimeDisplay.Duration(w,1):"戰鬥輪末")}）"));
     }
 }

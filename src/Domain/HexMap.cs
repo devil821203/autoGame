@@ -18,6 +18,7 @@ public sealed record HexTile(HexCoord Coord, HexTerrain Terrain = HexTerrain.Pla
 public sealed record HexMovementRules(int PlainsTicks = 1, int ForestTicks = 2, int DesertTicks = 3);
 public sealed class HexMapState
 {
+    public RegionalWorldState? Regional { get; set; }
     public List<SceneSite> Sites { get; set; } = [];
     public int Version { get; set; } = 1;
     public HexMovementRules Movement { get; set; } = new();
@@ -67,7 +68,7 @@ public static class HexNavigation
             }
             foreach (var next in at.Neighbors())
             {
-                if (!tiles.TryGetValue(next, out var tile) || !Passable(tile)) continue;
+                if (!tiles.TryGetValue(next, out var tile) || !Passable(tile)||!RegionGeometry.Allows(map,at,next)) continue;
                 long cost = checked(costs[at] + Cost(map, tile));
                 if (costs.TryGetValue(next, out long old) && old <= cost) continue;
                 costs[next] = cost; previous[next] = at; frontier.Enqueue(next, (cost, next.Q, next.R));
@@ -78,7 +79,7 @@ public static class HexNavigation
     public static long Duration(WorldState world, CharacterState actor, string target)
     {
         if (world.HexMap is not { } map) return DemoMap.TravelTicks(actor.DemoLocationId, target, world.MapRules);
-        if (Resolve(map, target) is not { } to || Path(map, Position(map, actor), to) is not { } path) return long.MaxValue;
+        if (RegionGeometry.Resolve(map,actor,target) is not { } to || Path(map, Position(map, actor), to) is not { } path) return long.MaxValue;
         return path.Sum(c => (long)Cost(map, map.Tiles.Single(t => t.Coord == c)));
     }
 }

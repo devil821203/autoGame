@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Local build selects the expanded sync copies; all source versions are retained. -->
+  <ItemGroup><Compile Remove="**/*(1).cs" /></ItemGroup>
+  <!-- Canonical source files are active; retained sync copies are excluded to avoid duplicate types. -->
   <ItemGroup>
-    <Compile Remove="Models.cs;CharacterProgression.cs;EconomyModels.cs" />
+    <Compile Remove="Models-DESKTOP-K1FV25D.cs;CharacterProgression-DESKTOP-K1FV25D.cs;EconomyModels-DESKTOP-K1FV25D.cs" />
   </ItemGroup>
 </Project>

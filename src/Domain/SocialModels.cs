@@ -18,5 +18,5 @@ public sealed record RelationshipState(string FromId, string ToId, int Affinity 
 public enum SocialOfferKind { Cooperation, Apprenticeship, Recruitment, Succession }
 public enum SocialOfferStatus { Pending, Accepted, Declined, Expired }
 public sealed record SocialOffer(string Id, string FromId, string ToId, SocialOfferKind Kind,
-    long ExpiresTick, string? OrganizationId = null, SocialOfferStatus Status = SocialOfferStatus.Pending);
+    long ExpiresTick, string? OrganizationId = null, SocialOfferStatus Status = SocialOfferStatus.Pending, long? ExpiresAtSeconds = null);
 

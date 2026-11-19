@@ -34,9 +34,12 @@ internal static class TravelActions
     }
     internal static void Complete(WorldState w, ActionIntent i)
     {
+        ActionLifecycle.RequireRunning(w,i.Id);
         int index = w.Characters.FindIndex(c => c.Id == i.ActorId);
         w.Characters[index] = w.Characters[index] with { DemoLocationId = i.TargetId };
         ActionExecutor.Emit(w, i.Id, "TravelCompleted", $"{i.ActorId}:{i.TargetId}");
+        ActionLifecycle.Checkpoint(w,i.Id);
+        ActionLifecycle.Finish(w,i.Id,ActionPhase.Completed,"旅行抵達");
     }
     internal static void ValidateWorld(WorldState w)
     {

@@ -30,7 +30,7 @@ public static class PaidLifeServices
         "ointment" or "bleeding-powder" => Inventory.Balance(w, a.Id, service) < w.SpecialistRules!.MedicineStockTarget,
         "iron-sword" => a.EquippedWeaponId is null && a.CraftedWeaponId is null && !w.LifeSystem!.Equipment.Any(g => g.Slot == "weapon" && Inventory.Balance(w, a.Id, g.Id) > 0),
         "leather-armor" => a.EquippedArmorId is null && !w.LifeSystem!.Equipment.Any(g => g.Slot == "armor" && Inventory.Balance(w, a.Id, g.Id) > 0), _ => false };
-    internal static bool Busy(WorldState w, string id) => w.Scheduled.Any(t => t.Intent.ActorId == id) ||
+    internal static bool Busy(WorldState w, string id) => EquipmentRepairActions.Busy(w,id)||w.Scheduled.Any(t => t.Intent.ActorId == id) ||
         w.MortalTrainingWork.Any(t => t.Intent.ActorId == id) || w.LifeSystem?.Work.Any(t => t.Intent.ActorId == id || t.Service?.ClientId == id) == true ||
         w.Time is not null && (TimeActions.Budget(w, id).BusyThroughTick > w.Clock.Tick || w.Time.Deferred.Any(t => t.Intent.ActorId == id));
     internal static string? Validate(WorldState w, ActionIntent i)
@@ -58,7 +58,9 @@ public static class PaidLifeServices
     internal static void Start(WorldState w, ActionIntent i)
     {
         var source = i.ServiceMaterials!.Value; var job = ProviderIntent(i); long price = Quote(w, i.ResourceId, source);
-        ActionExecutor.Transfer(w, i with { ResourceId = "spirit-stone", Quantity = price }, i.ActorId, Account(i.Id), "ServiceFeeReserved");
+        var feeIntent=i with { ResourceId = "spirit-stone", Quantity = price };
+        if(w.Time?.ActionRuntime is not null)ReservationService.Reserve(w,feeIntent,"fee:"+i.Id,i.ActorId,Account(i.Id),"ServiceFeeReserved");
+        else ActionExecutor.Transfer(w, feeIntent, i.ActorId, Account(i.Id), "ServiceFeeReserved");
         if (source == ServiceMaterialSource.Client)
             foreach (var p in LifeActions.Inputs(w, job)) ActionExecutor.Transfer(w, i with { ResourceId = p.Key, Quantity = p.Value }, i.ActorId, i.TargetId, "ServiceMaterialsSupplied");
         if (w.Time is not null) TimeActions.Spend(w, "service-work:" + i.Id, i.TargetId, LifeActions.Cost(w, job));
@@ -86,7 +88,8 @@ public static class PaidLifeServices
         }
         if (!success && c.MaterialSource == ServiceMaterialSource.Client)
             foreach (var p in task.Inputs) ActionExecutor.Transfer(w, task.Intent with { ResourceId = p.Key, Quantity = p.Value }, c.ProviderId, c.ClientId, "ServiceMaterialsRefunded");
-        ActionExecutor.Transfer(w, task.Intent with { ResourceId = "spirit-stone", Quantity = c.Fee }, Account(task.Intent.Id), success ? c.ProviderId : c.ClientId, success ? "PaidServicePayment" : "ServiceFeeRefunded");
+        if(w.Time?.ActionRuntime is not null)ReservationService.Settle(w,"fee:"+task.Intent.Id,c.Fee,success,success?c.ProviderId:c.ClientId,success?"PaidServicePayment":"ServiceFeeRefunded");
+        else ActionExecutor.Transfer(w, task.Intent with { ResourceId = "spirit-stone", Quantity = c.Fee }, Account(task.Intent.Id), success ? c.ProviderId : c.ClientId, success ? "PaidServicePayment" : "ServiceFeeRefunded");
         w.PaidServiceReceipts.Add(new(task.Intent.Id, c, success, w.Clock.Tick, output));
         ActionExecutor.Emit(w, task.Intent.Id, success ? "PaidServiceCompleted" : "PaidServiceRefunded", $"{c.ClientId}:{c.ProviderId}:{c.ServiceId}:{c.Fee}錢財");
     }

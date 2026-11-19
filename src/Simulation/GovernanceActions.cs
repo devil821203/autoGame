@@ -33,8 +33,14 @@ internal static class GovernanceActions
     {
         if (i.Kind == ActionKind.SetOrganizationPolicy)
         {
+            var previous=w.OrganizationPolicies.SingleOrDefault(p=>p.OrganizationId==i.TargetId);
             w.OrganizationPolicies.RemoveAll(p => p.OrganizationId == i.TargetId);
             w.OrganizationPolicies.Add(i.Policy!);
+            if(previous!=i.Policy&&w.Time?.EventDecisions is not null){
+                string region=w.Organizations.Single(o=>o.Id==i.TargetId).RegionId;
+                foreach(var observer in w.Characters.Where(a=>a.MonsterKind==MonsterKind.None&&a.Health>0&&a.RegionId==region).OrderBy(a=>a.Id,StringComparer.Ordinal))
+                    EventDecisions.Request(w,observer.Id,DecisionTrigger.KnownNotification);
+            }
         }
         else if (i.Kind == ActionKind.RewardMember)
         {
@@ -55,6 +61,9 @@ internal static class GovernanceActions
             };
             if (i.Kind == ActionKind.ExpelMember) SocialActions.Adjust(w, i.TargetId, i.ActorId, -5, -5, 5);
             if (i.Kind is ActionKind.LeaveOrganization or ActionKind.ExpelMember) SectFacilityActions.ClearMembership(w, a.Id, i.Id);
+            EventDecisions.Request(w,a.Id,DecisionTrigger.StateChanged);
+            if(self&&w.Organizations.Single(o=>o.Id==i.TargetId).LeaderId is {} leader)
+                EventDecisions.Request(w,leader,DecisionTrigger.KnownNotification);
         }
         ActionExecutor.Emit(w, i.Id, "Governance", $"{i.Kind}:{i.ActorId}:{i.TargetId}");
     }

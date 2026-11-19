@@ -26,9 +26,9 @@ public static class CharacterProgression
         var condition = actor.Health == 0 ? CharacterCondition.Incapacitated : actor.Health < 100 ? CharacterCondition.Injured : CharacterCondition.Healthy;
         if (rules is null) return new(actor.BaseAttack, actor.BaseDefense, 0, 0, 0, condition);
         int level = MethodLevel(actor, rules);
-        bool equipped = actor.EquippedWeaponId == rules.WeaponId;
-        return new(checked(actor.BaseAttack + actor.Realm * rules.AttackPerRealm + level * rules.AttackPerMethodLevel + (equipped ? rules.WeaponAttack : 0)),
-            checked(actor.BaseDefense + actor.Realm * rules.DefensePerRealm + (equipped ? rules.WeaponDefense : 0)),
+        bool equipped = !actor.LegacyWeaponBroken&&(actor.EquippedWeaponId==rules.WeaponId||actor.EquippedWeaponId?.StartsWith("legacy-gear:",StringComparison.Ordinal)==true);
+        return new(checked(actor.BaseAttack + actor.EquipmentAttackBonus + actor.Realm * rules.AttackPerRealm + level * rules.AttackPerMethodLevel + (equipped ? rules.WeaponAttack : 0)),
+            checked(actor.BaseDefense + actor.EquipmentDefenseBonus + actor.Realm * rules.DefensePerRealm + (equipped ? rules.WeaponDefense : 0)),
             level, actor.AlchemyExperience / rules.SkillExperiencePerLevel, actor.GatheringExperience / rules.SkillExperiencePerLevel, condition);
     }
 }

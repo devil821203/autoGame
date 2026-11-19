@@ -1,0 +1,92 @@
+﻿[
+    {
+        "Case":  "scenario-catalog",
+        "Iteration":  1,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "scenario-catalog",
+        "Iteration":  2,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "scenario-catalog",
+        "Iteration":  3,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "character-follow",
+        "Iteration":  1,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "character-follow",
+        "Iteration":  2,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "character-follow",
+        "Iteration":  3,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "action-driven",
+        "Iteration":  1,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "action-driven",
+        "Iteration":  2,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "action-driven",
+        "Iteration":  3,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "board-battle",
+        "Iteration":  1,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "board-battle",
+        "Iteration":  2,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "board-battle",
+        "Iteration":  3,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "character-attributes",
+        "Iteration":  1,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "character-attributes",
+        "Iteration":  2,
+        "ExitCode":  0,
+        "Passed":  true
+    },
+    {
+        "Case":  "character-attributes",
+        "Iteration":  3,
+        "ExitCode":  0,
+        "Passed":  true
+    }
+]

@@ -1,0 +1,26 @@
+﻿[
+    {
+        "Run":  1,
+        "ExitCode":  -1073741819
+    },
+    {
+        "Run":  2,
+        "ExitCode":  -1073741819
+    },
+    {
+        "Run":  3,
+        "ExitCode":  0
+    },
+    {
+        "Run":  4,
+        "ExitCode":  -1073741819
+    },
+    {
+        "Run":  5,
+        "ExitCode":  0
+    },
+    {
+        "Run":  "normal-quit-after-20",
+        "ExitCode":  0
+    }
+]

@@ -1,0 +1,30 @@
+{
+  "Rules": {
+    "NpcCounts": [
+      100,
+      1000,
+      5000
+    ],
+    "TemplateActorId": "npc:03",
+    "MinimumSteps": 5,
+    "MaximumSteps": 2000,
+    "MaximumWallSeconds": 30,
+    "MaximumWorkingSetMiB": 1024,
+    "DecisionCoverage": 1,
+    "ImportantStopSeconds": 1020,
+    "SoakNpcCount": 100,
+    "SoakYears": 3,
+    "SoakMaximumWallSeconds": 30
+  },
+  "OnlyCount": 100,
+  "Scenario": "R6b-based synthetic population; actual seconds scheduler and systems",
+  "Runtime": ".NET 8.0.32",
+  "OS": "Microsoft Windows 10.0.26300",
+  "Architecture": "X64",
+  "LogicalCores": 20,
+  "Processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "AvailableGcMemoryBytes": 34124984320,
+  "Build": "Release",
+  "CapturedUtc": "2026-10-31T09:41:55.2833814+00:00",
+  "RenderingFps": null
+}

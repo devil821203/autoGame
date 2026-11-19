@@ -35,6 +35,17 @@ public sealed partial class SimulationEngine
     {
         lock (gate)
         {
+            if(StopForControlSelection())return [];
+            if (state.Time?.DiscreteEvents is { } events)
+            {
+                if (state.BoardBattle is { Phase: BoardBattlePhase.Active } battle && battle.Fighters.Any(f => f.ActorId == state.ControlledCharacterId))
+                {
+                    var result=StepTimed(autonomous,drainCatchup:false);StopForControlSelection();return result;
+                }
+                var actions = new List<ActionResult>();
+                AdvanceDiscrete(checked((state.Clock.Tick + 1) * DiscreteTime.SecondsPerStep(state)), autonomous, actions);
+                return actions;
+            }
             if (state.Time is not null) return StepTimed(autonomous);
             // A failed tick never leaves partial live mutations.
             var timer = Stopwatch.StartNew(); long allocationStart = GC.GetAllocatedBytesForCurrentThread();
@@ -131,6 +142,7 @@ public sealed partial class SimulationEngine
     }
     private static void CompletePlan(WorldState w, ActionIntent intent)
     {
+        EventDecisions.Request(w,intent.ActorId,DecisionTrigger.ActionCompleted);
         StaminaActions.Complete(w, intent);
         var plan = w.Plans.SingleOrDefault(p => p.ActorId == intent.ActorId);
         if (plan is null) return;

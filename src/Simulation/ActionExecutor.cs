@@ -11,6 +11,14 @@ internal static class ActionExecutor
     {
         world.Ledger.Add(new(world.NextSequence++, world.Clock.Tick, intent.Id,
             from, to, intent.ResourceId, intent.Quantity, reason));
+        // A recipient knows its own credited inventory. Escrow and organization accounts
+        // are not actors; never broadcast another character's private balance change.
+        if(world.Time?.EventDecisions is not null&&world.Characters.Any(a=>a.Id==to))
+            EventDecisions.Request(world,to,DecisionTrigger.StateChanged);
+        if(intent.Quantity>0&&from!=to){
+            EventDecisions.OrganizationChanged(world,from);
+            EventDecisions.OrganizationChanged(world,to);
+        }
     }
 
     internal static void Execute(WorldState world, ActionIntent intent)
@@ -45,9 +53,21 @@ internal static class ActionExecutor
             Emit(world, intent.Id, "Completed", "Resource transfer completed");
             return;
         }
-        Transfer(world, intent, intent.ActorId, Escrow(intent.Id), "Reserved");
+        if(world.Time?.ActionRuntime?.Actions.ContainsKey(intent.Id)==true) ReservationService.Reserve(world,intent,intent.Id+":transfer-resource",intent.ActorId,Escrow(intent.Id),"Reserved"); else Transfer(world,intent,intent.ActorId,Escrow(intent.Id),"Reserved");
         world.Scheduled.Add(new(world.NextSequence++, checked(world.Clock.Tick + intent.DurationTicks), intent));
         Emit(world, intent.Id, "Scheduled", "Resources reserved until completion");
+    }
+
+    internal static void CompleteScheduledTransfer(WorldState world, ActionIntent intent)
+    {
+        if (world.Time?.ActionRuntime?.Actions.ContainsKey(intent.Id) == true)
+        {
+            ActionLifecycle.RequireRunning(world, intent.Id);
+            ReservationService.Settle(world, intent.Id + ":transfer-resource", intent.Quantity, true, intent.TargetId, "Completed");
+            ActionLifecycle.Checkpoint(world, intent.Id);
+            ActionLifecycle.Finish(world, intent.Id, ActionPhase.Completed, "預定資源轉移完成");
+        }
+        else Transfer(world, intent, Escrow(intent.Id), intent.TargetId, "Completed");
     }
 
     internal static void Emit(WorldState world, string id, string kind, string detail) =>

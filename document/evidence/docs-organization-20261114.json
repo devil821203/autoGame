@@ -1,0 +1,877 @@
+{
+    "Moved":  144,
+    "UpdatedMarkdown":  79,
+    "EvidenceUnchanged":  1008,
+    "NewBrokenLinks":  [
+
+                       ],
+    "PreExistingBrokenLinks":  [
+
+                               ],
+    "Files":  [
+                  {
+                      "Old":  "docs/Domain來源版本差異.md",
+                      "New":  "docs/分析/Domain來源版本差異.md",
+                      "OriginalSHA256":  "ED36FC12B649825B01AE63A32E4DA7FD2817285B7A081186E2ABBD4C31493D55",
+                      "FinalSHA256":  "826A47DFED0D8DD0CACE68CBE2CBA65C06905C3166122444A8F905BC760A7BCE"
+                  },
+                  {
+                      "Old":  "docs/Domain來源歸位_驗收.md",
+                      "New":  "docs/驗收/來源管理/Domain來源歸位_驗收.md",
+                      "OriginalSHA256":  "4402B4A0DB6BE0F884CCADED1CA86B6ECAB64533EC3CDA7E4D97A0F2836C8430",
+                      "FinalSHA256":  "1DCA924DA25AB6C43623FE94F8A6EE1A78D2847CD8B0C8F5EDD63820DDA18A3B"
+                  },
+                  {
+                      "Old":  "docs/Git版本管理.md",
+                      "New":  "docs/維護/Git版本管理.md",
+                      "OriginalSHA256":  "872093DA4D1E4CFE8FECCE1F68A3455D79B00D012E5B3847BA75283E5C2880EE",
+                      "FinalSHA256":  "E0DA84F64F0DC7E11654DD824B65DC8C042744084274FE7EFF85EEEA5CC6D8B2"
+                  },
+                  {
+                      "Old":  "docs/R0_Godot退出崩潰_修正與驗收.md",
+                      "New":  "docs/驗收/R0/R0_Godot退出崩潰_修正與驗收.md",
+                      "OriginalSHA256":  "6E353F21A61CBFFBF8A63330A84ADA99D202A1F23CE33C4CEFDF2D525A3E058A",
+                      "FinalSHA256":  "E3482380064E134518B5271DF108133FB87E078E3C3B3F96A2279A995EFF92AE"
+                  },
+                  {
+                      "Old":  "docs/R0_R1_R2_重構功能整合測試_20261107.md",
+                      "New":  "docs/驗收/R0/R0_R1_R2_重構功能整合測試_20261107.md",
+                      "OriginalSHA256":  "F2D6B603011817FE4C199C99080DAE44EB441CBD47C1F8063D35AC937B133133",
+                      "FinalSHA256":  "0E594DF7F205F59DBEA010FA71B10298D466A23DEA1B09CF2B8F0BF76456EC3C"
+                  },
+                  {
+                      "Old":  "docs/R0_R1_R2_落差與恢復_20261107.md",
+                      "New":  "docs/分析/R0_R1_R2_落差與恢復_20261107.md",
+                      "OriginalSHA256":  "E08F7E2BA245F362CD62C4E455C4B3771164E44AEFFFDB8A6952BC06C71EDD03",
+                      "FinalSHA256":  "E08F7E2BA245F362CD62C4E455C4B3771164E44AEFFFDB8A6952BC06C71EDD03"
+                  },
+                  {
+                      "Old":  "docs/R0_重構前基線紀錄.md",
+                      "New":  "docs/驗收/R0/R0_重構前基線紀錄.md",
+                      "OriginalSHA256":  "A0754EC0BE07F24BB156684B85E2A4584084F21B453D864B2F8BB496E4AA5316",
+                      "FinalSHA256":  "C71EE66CCFBD2FE1BC180813B08A249099C799BD8764C99C06708D87A6853294"
+                  },
+                  {
+                      "Old":  "docs/R1_生活工作秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_生活工作秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "E91737BB491B97A1B4CA6CCDE70286FF33774645ED374BDBF1A53FCD3487BD28",
+                      "FinalSHA256":  "E91737BB491B97A1B4CA6CCDE70286FF33774645ED374BDBF1A53FCD3487BD28"
+                  },
+                  {
+                      "Old":  "docs/R1_休息與藥效秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_休息與藥效秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "48447E71B598B07248CC5FC440BAC8D75FE5C5211F35B67269B5790051073C08",
+                      "FinalSHA256":  "48447E71B598B07248CC5FC440BAC8D75FE5C5211F35B67269B5790051073C08"
+                  },
+                  {
+                      "Old":  "docs/R1_宗門發薪秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_宗門發薪秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "65DECA3578C66C4CBB1AE61007CCC5F367553158469CC5A7991A04C4D52D2C99",
+                      "FinalSHA256":  "65DECA3578C66C4CBB1AE61007CCC5F367553158469CC5A7991A04C4D52D2C99"
+                  },
+                  {
+                      "Old":  "docs/R1_社交邀約到期秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_社交邀約到期秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "37DEA376504F3B53CCA427ACC95C05010940FB5A7EAD890D85077924CD67AA84",
+                      "FinalSHA256":  "37DEA376504F3B53CCA427ACC95C05010940FB5A7EAD890D85077924CD67AA84"
+                  },
+                  {
+                      "Old":  "docs/R1_秒制事件核心與修練接線.md",
+                      "New":  "docs/驗收/R1/R1_秒制事件核心與修練接線.md",
+                      "OriginalSHA256":  "8AA98CBF1406BDB11B06DEE2079796378EBC985752AA79247C6B95A7C470074B",
+                      "FinalSHA256":  "D859A6A3331A4D51490F5737EA19DC089588083F8976344F8E9A4ADD44B199BB"
+                  },
+                  {
+                      "Old":  "docs/R1_旅行與一般排程秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_旅行與一般排程秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "51F95733E86BB4939FCE75717868A4DFB5A9F0671544DD4FBEE91CC88A518F1A",
+                      "FinalSHA256":  "51F95733E86BB4939FCE75717868A4DFB5A9F0671544DD4FBEE91CC88A518F1A"
+                  },
+                  {
+                      "Old":  "docs/R1_剩餘週期_測試紀錄.md",
+                      "New":  "docs/驗收/R1/R1_剩餘週期_測試紀錄.md",
+                      "OriginalSHA256":  "55200F61856D2356A7BF1825C33A539A23596772F59DA46B4F1491358ADF3B40",
+                      "FinalSHA256":  "A4B880D19D0E87AF095F424E2FD2609391B82DD175E17205241F28F5F042FA09"
+                  },
+                  {
+                      "Old":  "docs/R1_剩餘週期與事件排序_修改紀錄.md",
+                      "New":  "docs/驗收/R1/R1_剩餘週期與事件排序_修改紀錄.md",
+                      "OriginalSHA256":  "25728C96C10A2B5B58BB36CEFB44DC0A39FEC3DA39FBDF030173D66037032A6A",
+                      "FinalSHA256":  "25728C96C10A2B5B58BB36CEFB44DC0A39FEC3DA39FBDF030173D66037032A6A"
+                  },
+                  {
+                      "Old":  "docs/R1_資源再生秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_資源再生秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "FF05B8F9622B8754CB558D9EFF17D3217B32A696677F86FE43C56803F11E564E",
+                      "FinalSHA256":  "FF05B8F9622B8754CB558D9EFF17D3217B32A696677F86FE43C56803F11E564E"
+                  },
+                  {
+                      "Old":  "docs/R1_徵集任務到期秒事件_補完與驗收.md",
+                      "New":  "docs/驗收/R1/R1_徵集任務到期秒事件_補完與驗收.md",
+                      "OriginalSHA256":  "D544BB03FF94EBBCDAC8FC632A74D1A9B60D140EE3D821435CCD7A3CA00D3B9B",
+                      "FinalSHA256":  "D544BB03FF94EBBCDAC8FC632A74D1A9B60D140EE3D821435CCD7A3CA00D3B9B"
+                  },
+                  {
+                      "Old":  "docs/R2_一般採集生命週期與預留.md",
+                      "New":  "docs/驗收/R2/R2_一般採集生命週期與預留.md",
+                      "OriginalSHA256":  "4D2A5E2347345CE72A66B807036552E88468D75A85C49CFC9402B9900542830B",
+                      "FinalSHA256":  "4D2A5E2347345CE72A66B807036552E88468D75A85C49CFC9402B9900542830B"
+                  },
+                  {
+                      "Old":  "docs/R2_六角建造生命週期與預留.md",
+                      "New":  "docs/驗收/R2/R2_六角建造生命週期與預留.md",
+                      "OriginalSHA256":  "70ED99BA5F6A3CB4867C15E77EE5FD20A6C779445F41460E46B2F4C11A9ED147",
+                      "FinalSHA256":  "70ED99BA5F6A3CB4867C15E77EE5FD20A6C779445F41460E46B2F4C11A9ED147"
+                  },
+                  {
+                      "Old":  "docs/R2_功法學習生命週期_20261107.md",
+                      "New":  "docs/驗收/R2/R2_功法學習生命週期_20261107.md",
+                      "OriginalSHA256":  "D483E4CD1DB708D99D37EF6FF302F2B9ABF6B3812F997C885107DC00A1DB548A",
+                      "FinalSHA256":  "D483E4CD1DB708D99D37EF6FF302F2B9ABF6B3812F997C885107DC00A1DB548A"
+                  },
+                  {
+                      "Old":  "docs/R2_任務交付生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_任務交付生命週期_20261108.md",
+                      "OriginalSHA256":  "820AFB4B50F359F88AD6CDB89A55E11D13C1FEDEADB1D205BBF33548C36AF7DE",
+                      "FinalSHA256":  "820AFB4B50F359F88AD6CDB89A55E11D13C1FEDEADB1D205BBF33548C36AF7DE"
+                  },
+                  {
+                      "Old":  "docs/R2_任務發布接取取消生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_任務發布接取取消生命週期_20261108.md",
+                      "OriginalSHA256":  "AAE804AAF5AB56E7D362588AA4B940C25A9D72E8009E6E333E6A4452C01107FC",
+                      "FinalSHA256":  "AAE804AAF5AB56E7D362588AA4B940C25A9D72E8009E6E333E6A4452C01107FC"
+                  },
+                  {
+                      "Old":  "docs/R2_共用行動生命週期與資源預留.md",
+                      "New":  "docs/驗收/R2/R2_共用行動生命週期與資源預留.md",
+                      "OriginalSHA256":  "5F3D5515226F3E0F436D4FF92F5C454068A72466838FC297BBCEE9C2C7051DE2",
+                      "FinalSHA256":  "C22B0C92D1896423251308662D367330DD2BD83F7BCE889230F01FF2315025ED"
+                  },
+                  {
+                      "Old":  "docs/R2_有工期資源轉移生命週期與預留.md",
+                      "New":  "docs/驗收/R2/R2_有工期資源轉移生命週期與預留.md",
+                      "OriginalSHA256":  "981826E60F6B931A39939921D744C64538BC311C3B2BF0C837E1878B6AD2391F",
+                      "FinalSHA256":  "981826E60F6B931A39939921D744C64538BC311C3B2BF0C837E1878B6AD2391F"
+                  },
+                  {
+                      "Old":  "docs/R2_批次整合驗收_20261109.md",
+                      "New":  "docs/驗收/R2/R2_批次整合驗收_20261109.md",
+                      "OriginalSHA256":  "B7C40FD071B5519ABE5C230373E3D23AB096F2D6DD155C6C9D03F01087467420",
+                      "FinalSHA256":  "2C789D8017FAD115B382B03DAB982DA642D3A0183BFCCE0E5A41E8908531FEFC"
+                  },
+                  {
+                      "Old":  "docs/R2_宗門採藥生命週期與預留.md",
+                      "New":  "docs/驗收/R2/R2_宗門採藥生命週期與預留.md",
+                      "OriginalSHA256":  "D5110193ED52A8E8BBE2A2D88680ADF8BE4E6DADF07021C950446CDA939C45F1",
+                      "FinalSHA256":  "D5110193ED52A8E8BBE2A2D88680ADF8BE4E6DADF07021C950446CDA939C45F1"
+                  },
+                  {
+                      "Old":  "docs/R2_宗門操作生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_宗門操作生命週期_20261108.md",
+                      "OriginalSHA256":  "4E417C947EE1FD5EACDDAB92D010C74A6136994D6C5303F2C49E85078288C49E",
+                      "FinalSHA256":  "4E417C947EE1FD5EACDDAB92D010C74A6136994D6C5303F2C49E85078288C49E"
+                  },
+                  {
+                      "Old":  "docs/R2_非戰鬥用藥生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_非戰鬥用藥生命週期_20261108.md",
+                      "OriginalSHA256":  "3BDB337FDCF17B5CE863B53FE22AE1C2D6C3EC4AC328A268DF3639B5ED0E70E5",
+                      "FinalSHA256":  "3BDB337FDCF17B5CE863B53FE22AE1C2D6C3EC4AC328A268DF3639B5ED0E70E5"
+                  },
+                  {
+                      "Old":  "docs/R2_既有行動批次整合_未測試_20261108.md",
+                      "New":  "docs/驗收/R2/R2_既有行動批次整合_未測試_20261108.md",
+                      "OriginalSHA256":  "08430C93FE847365DD7921E3FC903066F7886A97D6298410D35D0CBA3A3E5A7A",
+                      "FinalSHA256":  "08430C93FE847365DD7921E3FC903066F7886A97D6298410D35D0CBA3A3E5A7A"
+                  },
+                  {
+                      "Old":  "docs/R2_商店延時交易生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_商店延時交易生命週期_20261108.md",
+                      "OriginalSHA256":  "26994B3EA5510979CE83EB1553B91C1B58F2B9A765F371240F5B270F34D5CCC8",
+                      "FinalSHA256":  "26994B3EA5510979CE83EB1553B91C1B58F2B9A765F371240F5B270F34D5CCC8"
+                  },
+                  {
+                      "Old":  "docs/R2_排程工作反向完整性_20261107.md",
+                      "New":  "docs/驗收/R2/R2_排程工作反向完整性_20261107.md",
+                      "OriginalSHA256":  "76D97A4B2A1B007E76C317591435EF11191BF636754F3FB3DCD805231E45B352",
+                      "FinalSHA256":  "76D97A4B2A1B007E76C317591435EF11191BF636754F3FB3DCD805231E45B352"
+                  },
+                  {
+                      "Old":  "docs/R2_組隊清剿操作生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_組隊清剿操作生命週期_20261108.md",
+                      "OriginalSHA256":  "39B12DD992D62B206ED93637FCBE1613AD798420487D0F0E92E388DF3C0DCF0D",
+                      "FinalSHA256":  "39B12DD992D62B206ED93637FCBE1613AD798420487D0F0E92E388DF3C0DCF0D"
+                  },
+                  {
+                      "Old":  "docs/R2_裝備操作生命週期_20261108.md",
+                      "New":  "docs/驗收/R2/R2_裝備操作生命週期_20261108.md",
+                      "OriginalSHA256":  "15417F8A7280CB701F7CA3EF80B508F521E13446DD35FE42C1C9F423C6C6C3E8",
+                      "FinalSHA256":  "15417F8A7280CB701F7CA3EF80B508F521E13446DD35FE42C1C9F423C6C6C3E8"
+                  },
+                  {
+                      "Old":  "docs/R2_零工期轉移生命週期_20261107.md",
+                      "New":  "docs/驗收/R2/R2_零工期轉移生命週期_20261107.md",
+                      "OriginalSHA256":  "1D4A08B991B4C424E2496FB2B44A1A6EA19F88AE484C94658AA66E1A2B7C774A",
+                      "FinalSHA256":  "1D4A08B991B4C424E2496FB2B44A1A6EA19F88AE484C94658AA66E1A2B7C774A"
+                  },
+                  {
+                      "Old":  "docs/R2_邊界測試續補_20261107.md",
+                      "New":  "docs/驗收/R2/R2_邊界測試續補_20261107.md",
+                      "OriginalSHA256":  "7C02B4EA4BC22AFB6DEF9418F0274D3CE0E29EEB5EB637BB44B5B3717D7CA616",
+                      "FinalSHA256":  "7C02B4EA4BC22AFB6DEF9418F0274D3CE0E29EEB5EB637BB44B5B3717D7CA616"
+                  },
+                  {
+                      "Old":  "docs/R2_驗收原始碼重建_20261107.md",
+                      "New":  "docs/驗收/R2/R2_驗收原始碼重建_20261107.md",
+                      "OriginalSHA256":  "EC6A1FDDBB32971BEAE115A9BBCE03EE2B3772F762F9BB2BEBEBAB5553AB5689",
+                      "FinalSHA256":  "EC6A1FDDBB32971BEAE115A9BBCE03EE2B3772F762F9BB2BEBEBAB5553AB5689"
+                  },
+                  {
+                      "Old":  "docs/R3_佇列順序與同秒去重_20261114.md",
+                      "New":  "docs/驗收/R3/R3_佇列順序與同秒去重_20261114.md",
+                      "OriginalSHA256":  "A40832DD49D1FA81AD6A808B347D3222D499A326B5964B2F1E6A3674D1081AC4",
+                      "FinalSHA256":  "A40832DD49D1FA81AD6A808B347D3222D499A326B5964B2F1E6A3674D1081AC4"
+                  },
+                  {
+                      "Old":  "docs/R3_事件決策與市場知識邊界.md",
+                      "New":  "docs/驗收/R3/R3_事件決策與市場知識邊界.md",
+                      "OriginalSHA256":  "C8F17D6B96DB0EB37301156226AEF1B827E9D8A7FA88C67BE14D38D991A61368",
+                      "FinalSHA256":  "C4BF4FEB290608C35264AF8C9580F9BDDD547FA6EBAFA8BD00BB6AF9CD57AAE2"
+                  },
+                  {
+                      "Old":  "docs/R3_事件決策與知識邊界_執行方案_20261110.md",
+                      "New":  "docs/方案/R3_事件決策與知識邊界_執行方案_20261110.md",
+                      "OriginalSHA256":  "6C279445A6FC7104E0718DEE1383BAA0DD36825DFA30F03229DBDCDC277136D9",
+                      "FinalSHA256":  "A0869F5694653BD7180E985E1BEAA8CC6375986591E4074AE1F3039AD5CC96E6"
+                  },
+                  {
+                      "Old":  "docs/R3_社交觸發補接_20261114.md",
+                      "New":  "docs/驗收/R3/R3_社交觸發補接_20261114.md",
+                      "OriginalSHA256":  "D912D4B7812D2A839CFA3DEA868B9122B6B684961B9F8D703949B9862BB17A71",
+                      "FinalSHA256":  "D912D4B7812D2A839CFA3DEA868B9122B6B684961B9F8D703949B9862BB17A71"
+                  },
+                  {
+                      "Old":  "docs/R3_動態招募觸發_20261114.md",
+                      "New":  "docs/驗收/R3/R3_動態招募觸發_20261114.md",
+                      "OriginalSHA256":  "0899C034E7F1CD8EE41ABB9F957B564410EE374A60A38BECF592B156E81B2118",
+                      "FinalSHA256":  "0899C034E7F1CD8EE41ABB9F957B564410EE374A60A38BECF592B156E81B2118"
+                  },
+                  {
+                      "Old":  "docs/R4_內容版本與SQLite快照.md",
+                      "New":  "docs/驗收/R4/R4_內容版本與SQLite快照.md",
+                      "OriginalSHA256":  "89C8DED28A497648286CE8C0B3C70355FE1CA5D4D9C3866407AEC37246C43517",
+                      "FinalSHA256":  "89C8DED28A497648286CE8C0B3C70355FE1CA5D4D9C3866407AEC37246C43517"
+                  },
+                  {
+                      "Old":  "docs/R5_區域訂單簿_實作範圍與待確認.md",
+                      "New":  "docs/方案/R5_區域訂單簿_實作範圍與待確認.md",
+                      "OriginalSHA256":  "25DB666A1859F987E4A0D6698120EEF2D942CAC77B8C723B74346AD4B57BD1D8",
+                      "FinalSHA256":  "25DB666A1859F987E4A0D6698120EEF2D942CAC77B8C723B74346AD4B57BD1D8"
+                  },
+                  {
+                      "Old":  "docs/R6_多地區與控制資格_實作範圍.md",
+                      "New":  "docs/方案/R6_多地區與控制資格_實作範圍.md",
+                      "OriginalSHA256":  "452C1A5D260D7C1608E8E12F03D64E41EA78993193D224AC6504A627DAF0FE60",
+                      "FinalSHA256":  "0FEDA7E792D34ABD562297451DA035CF3A4E2D26474790487C0500EBF424097D"
+                  },
+                  {
+                      "Old":  "docs/R6a_多地區生成與跨區旅行.md",
+                      "New":  "docs/驗收/R6/R6a_多地區生成與跨區旅行.md",
+                      "OriginalSHA256":  "529EBD00250D83802C52FCD59161573BA7C6FC933F35ABB42BB55D81840C8C77",
+                      "FinalSHA256":  "529EBD00250D83802C52FCD59161573BA7C6FC933F35ABB42BB55D81840C8C77"
+                  },
+                  {
+                      "Old":  "docs/R6b_控制資格與角色切換.md",
+                      "New":  "docs/驗收/R6/R6b_控制資格與角色切換.md",
+                      "OriginalSHA256":  "69BB7FCEDBCBE5EC8A70E0037F20BE8A44BB9098FE2DBCFE5B0A68DD4912FD69",
+                      "FinalSHA256":  "69BB7FCEDBCBE5EC8A70E0037F20BE8A44BB9098FE2DBCFE5B0A68DD4912FD69"
+                  },
+                  {
+                      "Old":  "docs/R7_秒制引擎容量與長期量測.md",
+                      "New":  "docs/驗收/R7/R7_秒制引擎容量與長期量測.md",
+                      "OriginalSHA256":  "E481F2994181005ECD1BCE635366DE7833822D3AE024F274F4568210B9EC6FA1",
+                      "FinalSHA256":  "AB9F119B262F9592E489CDAFAA0C7514914B088C104AB8E9D3BE03678155F990"
+                  },
+                  {
+                      "Old":  "docs/R8_裝備修理_實作範圍與待確認.md",
+                      "New":  "docs/方案/R8_裝備修理_實作範圍與待確認.md",
+                      "OriginalSHA256":  "01CC221B411203BAEF1CAF5B6870ABC54FFF20EE0CA706C7430FC4921ED696FA",
+                      "FinalSHA256":  "01CC221B411203BAEF1CAF5B6870ABC54FFF20EE0CA706C7430FC4921ED696FA"
+                  },
+                  {
+                      "Old":  "docs/README.md",
+                      "New":  "docs/維護/文件入口_整理前_20261114.md",
+                      "OriginalSHA256":  "4272EAE1A414B3123D872340DEA6B5A179A6C7473987289B1E412207FAD6667D",
+                      "FinalSHA256":  "E3FBCC080E9897B126439419D80E228CE873689D99E0AA5E88B987C57A14A87B"
+                  },
+                  {
+                      "Old":  "docs/既有專案_重構計畫.md",
+                      "New":  "docs/方案/既有專案_重構計畫.md",
+                      "OriginalSHA256":  "203B659ACEF79318BEE87F8F0D16957E20D1E0438AC84F498847F6E6BDCD8B1D",
+                      "FinalSHA256":  "08745EC36EA1199240D950745FF7B2ED0AD5EEB53C2C7875A6A25BFAB2B9BAB3"
+                  },
+                  {
+                      "Old":  "docs/專案完整性檢查_20261110.md",
+                      "New":  "docs/分析/專案完整性檢查_20261110.md",
+                      "OriginalSHA256":  "B01E3DA06C3A23B0051BEBD2A814E0B9D9C61D00102F3BA621AD6DE1417EBB74",
+                      "FinalSHA256":  "754CE41A23664AAAF009A21BC497AA6B4B49C4C35985B60F6EAC2B6C3BE3648C"
+                  },
+                  {
+                      "Old":  "docs/現有專案_規格差異分析.md",
+                      "New":  "docs/分析/現有專案_規格差異分析.md",
+                      "OriginalSHA256":  "12B7A9408292F3D463C562F734700265E79CD458C6AF512FF3667657853A800F",
+                      "FinalSHA256":  "B841CA70EE742DC808BF497413CDDDDB85B0D5E741105425EE209F0D81A3E203"
+                  },
+                  {
+                      "Old":  "document/2D場景_待確認問題.md",
+                      "New":  "document/待確認/2D場景_待確認問題.md",
+                      "OriginalSHA256":  "F0039E04EFDF0289BEFC3331CAE8155EC9EAB73DCFB981A83C64DE9F742878D7",
+                      "FinalSHA256":  "54A1561AD459003E69F580335ED16AD6839B817AE8F91B96EE8C8A8F81ECF9A5"
+                  },
+                  {
+                      "Old":  "document/2D場景製作方案.md",
+                      "New":  "document/方案/2D場景製作方案.md",
+                      "OriginalSHA256":  "982EED0F96CFCC0A9123876FEB919148E2C3D5F2A101024493FF5A805A5B5DCD",
+                      "FinalSHA256":  "4F892B8AF5466E7543C35228D875CF46E2ADA0DB8A3257E764F4BB1EAED58ABD"
+                  },
+                  {
+                      "Old":  "document/三方經濟_一年實測報告(1).md",
+                      "New":  "document/歷史/副本/三方經濟_一年實測報告(1).md",
+                      "OriginalSHA256":  "70939147DDEED248BE7D9873162C44CE0BA7BF735B6CD0DDED4AA76C4E986B34",
+                      "FinalSHA256":  "98A54D1A2E723077809CC1770D1C994384EDA5D220A474D92F2F1449D09E7389"
+                  },
+                  {
+                      "Old":  "document/三方經濟_一年實測報告.md",
+                      "New":  "document/實測/三方經濟_一年實測報告.md",
+                      "OriginalSHA256":  "70939147DDEED248BE7D9873162C44CE0BA7BF735B6CD0DDED4AA76C4E986B34",
+                      "FinalSHA256":  "BCE251791C531275D89398C7C363903070832B89284334EB1C6542DC1DA94672"
+                  },
+                  {
+                      "Old":  "document/六角地圖_待確認問題.md",
+                      "New":  "document/待確認/六角地圖_待確認問題.md",
+                      "OriginalSHA256":  "918B1146168DE38C46E092C134A273BECC97E61709508DC034A39CD610DD35EB",
+                      "FinalSHA256":  "CEF0B87C07D52808D8CA44A802375F949700D6B2E11CF65CB7873FFC335B28AE"
+                  },
+                  {
+                      "Old":  "document/六角地圖_首版實作與驗收.md",
+                      "New":  "document/驗收/系統/六角地圖_首版實作與驗收.md",
+                      "OriginalSHA256":  "7A0B32FD5FDA2462150AEDB97394CBCFA2A476FFB68254BE40F7DFB2D87FB1C6",
+                      "FinalSHA256":  "9DEDD21465C5C7D5FBC6A2D241C1AA223F561DAC0B1503B2B9AC1625195BAACB"
+                  },
+                  {
+                      "Old":  "document/六角地圖_組織領地與建築方案.md",
+                      "New":  "document/方案/六角地圖_組織領地與建築方案.md",
+                      "OriginalSHA256":  "B779B7A2A2C54A9DFA990292B5DCF738C6C863D45497AAD63664A6487C4F56B9",
+                      "FinalSHA256":  "644A0A941228B194D4B81F85924208FB9ADE9240DD9069D8E3E0615025B42F6D"
+                  },
+                  {
+                      "Old":  "document/六種專職與有償服務_實作與驗收(1).md",
+                      "New":  "document/歷史/副本/六種專職與有償服務_實作與驗收(1).md",
+                      "OriginalSHA256":  "60F34491D8AC0FF1D66FA3EB3B4B15368A26CEB4326D812ADA757D61CAAE8E10",
+                      "FinalSHA256":  "60F34491D8AC0FF1D66FA3EB3B4B15368A26CEB4326D812ADA757D61CAAE8E10"
+                  },
+                  {
+                      "Old":  "document/六種專職與有償服務_實作與驗收.md",
+                      "New":  "document/驗收/系統/六種專職與有償服務_實作與驗收.md",
+                      "OriginalSHA256":  "60F34491D8AC0FF1D66FA3EB3B4B15368A26CEB4326D812ADA757D61CAAE8E10",
+                      "FinalSHA256":  "60F34491D8AC0FF1D66FA3EB3B4B15368A26CEB4326D812ADA757D61CAAE8E10"
+                  },
+                  {
+                      "Old":  "document/主角自主修練_分鐘制4日實測.md",
+                      "New":  "document/實測/主角自主修練_分鐘制4日實測.md",
+                      "OriginalSHA256":  "BF1C42E72A08AE15380B9D776A3F111ED330C6EC332A6E7417CEE04DD6D2AC56",
+                      "FinalSHA256":  "E55D7BB42E4B2A941E3DDDA5169C75C032E8B9002A79D4D383E677EB44EA4558"
+                  },
+                  {
+                      "Old":  "document/主角色跟隨與紀錄視窗_實作與驗收(1).md",
+                      "New":  "document/歷史/副本/主角色跟隨與紀錄視窗_實作與驗收(1).md",
+                      "OriginalSHA256":  "40CBA9CE7D43A11ADAA5E0F48B47FFE98486B00018D68F8F697632A02B7C1D01",
+                      "FinalSHA256":  "40CBA9CE7D43A11ADAA5E0F48B47FFE98486B00018D68F8F697632A02B7C1D01"
+                  },
+                  {
+                      "Old":  "document/主角色跟隨與紀錄視窗_實作與驗收.md",
+                      "New":  "document/驗收/系統/主角色跟隨與紀錄視窗_實作與驗收.md",
+                      "OriginalSHA256":  "40CBA9CE7D43A11ADAA5E0F48B47FFE98486B00018D68F8F697632A02B7C1D01",
+                      "FinalSHA256":  "40CBA9CE7D43A11ADAA5E0F48B47FFE98486B00018D68F8F697632A02B7C1D01"
+                  },
+                  {
+                      "Old":  "document/功法目標NPC_30日測試.md",
+                      "New":  "document/實測/功法目標NPC_30日測試.md",
+                      "OriginalSHA256":  "1CB24DEA3CC41D3024CA7E96DEEB7F057E5BC84BE818432BAD759B0D26134074",
+                      "FinalSHA256":  "AC7358BA949D68B17D566BA23EAA8CFEFEE7E3F9F9F9F26278E85AF13F66EC3C"
+                  },
+                  {
+                      "Old":  "document/功法系統_技能標籤與熟練方案.md",
+                      "New":  "document/方案/功法系統_技能標籤與熟練方案.md",
+                      "OriginalSHA256":  "53CEEE253AB5C8122A1E04491FA1F897F8490F1EF73FB2B3CE7E61199A2F140A",
+                      "FinalSHA256":  "486762EB284CF23A11208F16C6974B4634AE3E2543B4A2B53CE3A49CF20D1D7B"
+                  },
+                  {
+                      "Old":  "document/功法系統_實作與驗收.md",
+                      "New":  "document/驗收/系統/功法系統_實作與驗收.md",
+                      "OriginalSHA256":  "EFF4F1566F5A8A35D39D2BB7E0E93C82808B915CC5A793E50E783CCA909A941E",
+                      "FinalSHA256":  "5400CB73D7F77F4C85AC258EB850C593BDA05BD098F4715270FFD86980348270"
+                  },
+                  {
+                      "Old":  "document/生活技能首版_實作與驗收.md",
+                      "New":  "document/驗收/系統/生活技能首版_實作與驗收.md",
+                      "OriginalSHA256":  "AE7AC621E5EEF7A2F9C1D6ABA42C978FD0F359F7DCF0F927FADB42B0BA8F1115",
+                      "FinalSHA256":  "AE7AC621E5EEF7A2F9C1D6ABA42C978FD0F359F7DCF0F927FADB42B0BA8F1115"
+                  },
+                  {
+                      "Old":  "document/生活系統_醫術製藥與鍛造方案.md",
+                      "New":  "document/方案/生活系統_醫術製藥與鍛造方案.md",
+                      "OriginalSHA256":  "2616B6E557D7A9148CFC928121EEFB05B6C0DD2C094A6FB364A409210013D74B",
+                      "FinalSHA256":  "21FADDB7F678584D62BCF722741AC5532DA8BFD72AC8B681797E20D47442F959"
+                  },
+                  {
+                      "Old":  "document/目前功能總覽與測試情境.md",
+                      "New":  "document/操作/目前功能總覽與測試情境.md",
+                      "OriginalSHA256":  "56E63436535537CC749EB041B77A9DEF2F907927C14FC2F82C487CD8F85285D0",
+                      "FinalSHA256":  "43D8AD7CDA0605531239D8648CE504374AF601A650A4EF9F3F58531F167ED72D"
+                  },
+                  {
+                      "Old":  "document/休息回血_實作與驗收.md",
+                      "New":  "document/驗收/系統/休息回血_實作與驗收.md",
+                      "OriginalSHA256":  "1FA8DA9A12032A6277F2C009E6E4A988CCCE66C17DE9FF2CFDD91DFBE9606BA8",
+                      "FinalSHA256":  "1FA8DA9A12032A6277F2C009E6E4A988CCCE66C17DE9FF2CFDD91DFBE9606BA8"
+                  },
+                  {
+                      "Old":  "document/批次修練_操作與驗收(1).md",
+                      "New":  "document/歷史/副本/批次修練_操作與驗收(1).md",
+                      "OriginalSHA256":  "A3A96B39ADD6DBFB00E6F2CB866B85F388AB12E0F32C3DDAD7DB53C2219712E8",
+                      "FinalSHA256":  "A3A96B39ADD6DBFB00E6F2CB866B85F388AB12E0F32C3DDAD7DB53C2219712E8"
+                  },
+                  {
+                      "Old":  "document/批次修練_操作與驗收.md",
+                      "New":  "document/驗收/系統/批次修練_操作與驗收.md",
+                      "OriginalSHA256":  "A3A96B39ADD6DBFB00E6F2CB866B85F388AB12E0F32C3DDAD7DB53C2219712E8",
+                      "FinalSHA256":  "A3A96B39ADD6DBFB00E6F2CB866B85F388AB12E0F32C3DDAD7DB53C2219712E8"
+                  },
+                  {
+                      "Old":  "document/村內組織與聚落成長_實作與一年測試.md",
+                      "New":  "document/驗收/系統/村內組織與聚落成長_實作與一年測試.md",
+                      "OriginalSHA256":  "BA694745098315F89D989C5FCFF93B4C8660F551D24D46B93DF3194143579EBD",
+                      "FinalSHA256":  "BA694745098315F89D989C5FCFF93B4C8660F551D24D46B93DF3194143579EBD"
+                  },
+                  {
+                      "Old":  "document/角色完整屬性視窗_實作與驗收.md",
+                      "New":  "document/驗收/系統/角色完整屬性視窗_實作與驗收.md",
+                      "OriginalSHA256":  "4BC081DD01A5FD7B32B10E560ED88CD410625DFDF429C228E68BB0DD8D25DD22",
+                      "FinalSHA256":  "4BC081DD01A5FD7B32B10E560ED88CD410625DFDF429C228E68BB0DD8D25DD22"
+                  },
+                  {
+                      "Old":  "document/角色養成系統_待確認問題.md",
+                      "New":  "document/待確認/角色養成系統_待確認問題.md",
+                      "OriginalSHA256":  "F64CFABC2E58CB93750CCA84B5022E1D0F51375F50CC3C4083606832092D0351",
+                      "FinalSHA256":  "2D1A3C3C7E3FCAFA8E0DF062BBE58082821C57D6B93F4DF5F517DE3DE847D19D"
+                  },
+                  {
+                      "Old":  "document/角色養成系統_屬性技藝與技能方案(1).md",
+                      "New":  "document/歷史/副本/角色養成系統_屬性技藝與技能方案(1).md",
+                      "OriginalSHA256":  "CA7167E8D6AB89D09062989337F2C48DA5F5346DFCA4CC028A1B0307912FCB9E",
+                      "FinalSHA256":  "146670049B43202150419A2D10CA0782E636DAE4A0951451CDF874175D809600"
+                  },
+                  {
+                      "Old":  "document/角色養成系統_屬性技藝與技能方案.md",
+                      "New":  "document/方案/角色養成系統_屬性技藝與技能方案.md",
+                      "OriginalSHA256":  "CA7167E8D6AB89D09062989337F2C48DA5F5346DFCA4CC028A1B0307912FCB9E",
+                      "FinalSHA256":  "4BEAFD244CBFD0F3BCC11D03CA47E15CF67A19425C053042B32C4EC9E418895E"
+                  },
+                  {
+                      "Old":  "document/宗門清剿_組隊與經濟運轉驗收.md",
+                      "New":  "document/驗收/系統/宗門清剿_組隊與經濟運轉驗收.md",
+                      "OriginalSHA256":  "02CBA5B149DE22820C53D65F7AAA284D31124B48D252AC67F6C489AD052580EB",
+                      "FinalSHA256":  "D847D0A8474CEE37B0C2B9A2BAFE93BF6A5ABA8072E213756281EDAC3DE88725"
+                  },
+                  {
+                      "Old":  "document/宗門設施_貢獻點與兌換驗收.md",
+                      "New":  "document/驗收/系統/宗門設施_貢獻點與兌換驗收.md",
+                      "OriginalSHA256":  "30656C84A4BADB5195F66EDE526F5AB216A6A2E37D99842A2D707FE70DC3D975",
+                      "FinalSHA256":  "30656C84A4BADB5195F66EDE526F5AB216A6A2E37D99842A2D707FE70DC3D975"
+                  },
+                  {
+                      "Old":  "document/怪物掉落參數化與獸皮_實作與驗收(1).md",
+                      "New":  "document/歷史/副本/怪物掉落參數化與獸皮_實作與驗收(1).md",
+                      "OriginalSHA256":  "110CAD21D499F3FD3435332204FEE9B1C09734C5BDA0E9EC6F8020A07F33D6C1",
+                      "FinalSHA256":  "110CAD21D499F3FD3435332204FEE9B1C09734C5BDA0E9EC6F8020A07F33D6C1"
+                  },
+                  {
+                      "Old":  "document/怪物掉落參數化與獸皮_實作與驗收.md",
+                      "New":  "document/驗收/系統/怪物掉落參數化與獸皮_實作與驗收.md",
+                      "OriginalSHA256":  "110CAD21D499F3FD3435332204FEE9B1C09734C5BDA0E9EC6F8020A07F33D6C1",
+                      "FinalSHA256":  "110CAD21D499F3FD3435332204FEE9B1C09734C5BDA0E9EC6F8020A07F33D6C1"
+                  },
+                  {
+                      "Old":  "document/玩家自動排程Demo_實作與驗收.md",
+                      "New":  "document/驗收/系統/玩家自動排程Demo_實作與驗收.md",
+                      "OriginalSHA256":  "BF3E3958B1ABE929FFD234EF87F5ACB20A888ED2B4A9345D1DE8D9F4E1B6EA3E",
+                      "FinalSHA256":  "A8CE0CB55FC421800B192EE1C239D25401E7E9D8362827107A0E6C6F1CCCDAF1"
+                  },
+                  {
+                      "Old":  "document/玩家自動戰鬥_實作與驗收.md",
+                      "New":  "document/驗收/系統/玩家自動戰鬥_實作與驗收.md",
+                      "OriginalSHA256":  "6D6F581EF76AF0991A05DD4EBA66635B6C40C11B6D0BB9D52CA2C9486F9E272A",
+                      "FinalSHA256":  "6D6F581EF76AF0991A05DD4EBA66635B6C40C11B6D0BB9D52CA2C9486F9E272A"
+                  },
+                  {
+                      "Old":  "document/玩家行動驅動時間與NPC決策_實作與驗收.md",
+                      "New":  "document/驗收/系統/玩家行動驅動時間與NPC決策_實作與驗收.md",
+                      "OriginalSHA256":  "6F318E96A7C59B88B8528A6519D76C99C98AB7C3134225E01854006671F47B64",
+                      "FinalSHA256":  "6F318E96A7C59B88B8528A6519D76C99C98AB7C3134225E01854006671F47B64"
+                  },
+                  {
+                      "Old":  "document/青雲宗功法自主修練_30日實測報告(1).md",
+                      "New":  "document/歷史/副本/青雲宗功法自主修練_30日實測報告(1).md",
+                      "OriginalSHA256":  "C5139F7BBCCCCCE7EC283A8C345F8488F46FC0DE7F527FB53811F70394DA7D2F",
+                      "FinalSHA256":  "DECE93413DC1D0B3C044E5FBBA5C20E6D6E0222F339ABC7B1196502E25F06BC7"
+                  },
+                  {
+                      "Old":  "document/青雲宗功法自主修練_30日實測報告.md",
+                      "New":  "document/實測/青雲宗功法自主修練_30日實測報告.md",
+                      "OriginalSHA256":  "C5139F7BBCCCCCE7EC283A8C345F8488F46FC0DE7F527FB53811F70394DA7D2F",
+                      "FinalSHA256":  "04258FD7EDBBF4B5B025C401203E0AE7C3F4CE37C002F311F7764BDCB5C7A514"
+                  },
+                  {
+                      "Old":  "document/青雲宗成員自主修練_30日實測報告.md",
+                      "New":  "document/實測/青雲宗成員自主修練_30日實測報告.md",
+                      "OriginalSHA256":  "F66C39F9D62F85D62FF4CA90962D27673BD2DE3E74453D00030AF499262DF52B",
+                      "FinalSHA256":  "6BE4840B9AA4040471AD727295DDF6B43E46EF798DF37DF83F018990E659A325"
+                  },
+                  {
+                      "Old":  "document/青雲宗場景_實作與驗收.md",
+                      "New":  "document/驗收/系統/青雲宗場景_實作與驗收.md",
+                      "OriginalSHA256":  "793E4B093FD80A1FACB87B998889DCA5D24621FF7888A28EA2D1973D62A1F6C2",
+                      "FinalSHA256":  "793E4B093FD80A1FACB87B998889DCA5D24621FF7888A28EA2D1973D62A1F6C2"
+                  },
+                  {
+                      "Old":  "document/既有專案_重構計畫.md",
+                      "New":  "document/歷史/舊版方案/既有專案_重構計畫.md",
+                      "OriginalSHA256":  "79D663B9B4D779E45C3473420565C095C3B65D59A6D674251A3BB63E5C7C9678",
+                      "FinalSHA256":  "9482B2ACFF73BB96B7D5DD59BF0B5C505AEBE8DBB0F1626E022FCE25CC4C0942"
+                  },
+                  {
+                      "Old":  "document/修仙遊戲_開發需求規格.md",
+                      "New":  "document/規格/修仙遊戲_開發需求規格.md",
+                      "OriginalSHA256":  "0FCA91262617B155EA3ADD42BEDC71871F6838C5E006B980F4E8C626808ED946",
+                      "FinalSHA256":  "49C3F5FA6110A3E149811CA34FEF31C145948D2D0F036E41FE838768F740224D"
+                  },
+                  {
+                      "Old":  "document/修為系統_凡人三功與得炁方案.md",
+                      "New":  "document/方案/修為系統_凡人三功與得炁方案.md",
+                      "OriginalSHA256":  "9B6227821372C1AEEDEFE1648837359B30A3159D6C330D7D446075D0553DD2CB",
+                      "FinalSHA256":  "6ECEFF9BACC997AF6CB79480D5CBE0F10F5F0AC583239AD1958F10715019C400"
+                  },
+                  {
+                      "Old":  "document/時間系統_年度行動點與戰鬥時間方案(1).md",
+                      "New":  "document/歷史/副本/時間系統_年度行動點與戰鬥時間方案(1).md",
+                      "OriginalSHA256":  "0ED0B6F28C0667DB3384E263BAD9A2BA52465CC399BE68D15ADC1B28F66E75BD",
+                      "FinalSHA256":  "B40D60A65ADBBCB2BB89861E95919CC65A33C6875ADAFF7F5EE0606D18FA67AC"
+                  },
+                  {
+                      "Old":  "document/時間系統_年度行動點與戰鬥時間方案.md",
+                      "New":  "document/方案/時間系統_年度行動點與戰鬥時間方案.md",
+                      "OriginalSHA256":  "0ED0B6F28C0667DB3384E263BAD9A2BA52465CC399BE68D15ADC1B28F66E75BD",
+                      "FinalSHA256":  "59130DB76C02A61ADE78808F9160E5E2F61F86CCB66EE50D0DD9C57D106EDCBF"
+                  },
+                  {
+                      "Old":  "document/時間與AP系統_實作與驗收(1).md",
+                      "New":  "document/歷史/副本/時間與AP系統_實作與驗收(1).md",
+                      "OriginalSHA256":  "E8BB7F04B71261CD2E5E9429960688E6835B27A8749D744D6B91B6FABA80AF43",
+                      "FinalSHA256":  "E8BB7F04B71261CD2E5E9429960688E6835B27A8749D744D6B91B6FABA80AF43"
+                  },
+                  {
+                      "Old":  "document/時間與AP系統_實作與驗收.md",
+                      "New":  "document/驗收/系統/時間與AP系統_實作與驗收.md",
+                      "OriginalSHA256":  "E8BB7F04B71261CD2E5E9429960688E6835B27A8749D744D6B91B6FABA80AF43",
+                      "FinalSHA256":  "E8BB7F04B71261CD2E5E9429960688E6835B27A8749D744D6B91B6FABA80AF43"
+                  },
+                  {
+                      "Old":  "document/狼皮產業鏈_診斷紀錄.md",
+                      "New":  "document/實測/狼皮產業鏈_診斷紀錄.md",
+                      "OriginalSHA256":  "D0E1AD0F6EBDFA25E66016E12F8FE04F834BBE4F8B3B11D806E17FEB2FC3476B",
+                      "FinalSHA256":  "867A48E56C75AE22FD829379319407C83AC95EF6218867E58F6611DC4BAEEF71"
+                  },
+                  {
+                      "Old":  "document/參數設定分類與戰鬥志向驗收.md",
+                      "New":  "document/驗收/系統/參數設定分類與戰鬥志向驗收.md",
+                      "OriginalSHA256":  "36BA3C8360EDDEFC36B125959E7217E7242721FE386BF0ED05C248DE9A745DA8",
+                      "FinalSHA256":  "F00FEAC2BD2C841FBB6520F3E0E07CA178FFFE8C3460ACF3D8BCA20AF5F11FD7"
+                  },
+                  {
+                      "Old":  "document/國家功能移除_實作與驗收.md",
+                      "New":  "document/驗收/系統/國家功能移除_實作與驗收.md",
+                      "OriginalSHA256":  "C80966B84E3EC2992B8ED39B49628F70B925FABD6CE49E9D23C470128DF0869B",
+                      "FinalSHA256":  "C80966B84E3EC2992B8ED39B49628F70B925FABD6CE49E9D23C470128DF0869B"
+                  },
+                  {
+                      "Old":  "document/常駐額外市場_實作與驗收.md",
+                      "New":  "document/驗收/系統/常駐額外市場_實作與驗收.md",
+                      "OriginalSHA256":  "DE358E5A14297593C73F5A39F56D78DE882C6646F98E224EDABC4224933025D2",
+                      "FinalSHA256":  "5F5C1C070311E40FE28B1F1D9890B6CFD7D1EAB82AB6D4ACF6609F12EE6D588A"
+                  },
+                  {
+                      "Old":  "document/現有專案_規格差異分析.md",
+                      "New":  "document/歷史/舊版方案/現有專案_規格差異分析.md",
+                      "OriginalSHA256":  "291B4B77608A8E0CBD9961817518400798444151CA6FF1879AC5DC7CA429251C",
+                      "FinalSHA256":  "63D1BB967D4F43ACB31B673201E9ECF814591BDA19A171C8A08B7D32CFC1E16C"
+                  },
+                  {
+                      "Old":  "document/組織自動擴建與升級_實作與驗收.md",
+                      "New":  "document/驗收/系統/組織自動擴建與升級_實作與驗收.md",
+                      "OriginalSHA256":  "E98C38516EA6A31463C9E65F70E238F9BE88D9D48605294689707FE752010AF7",
+                      "FinalSHA256":  "C2BD08FC3CA5DA3F1CE2BE70F8AFC13CE5DD6C31407F5BA42797A615EDB2865F"
+                  },
+                  {
+                      "Old":  "document/貨幣分類_實作與驗收.md",
+                      "New":  "document/驗收/系統/貨幣分類_實作與驗收.md",
+                      "OriginalSHA256":  "3A55383B87284FBCF7EDFD1944000E8988CB551BB003CE2E3F67A7BFE25E4AA4",
+                      "FinalSHA256":  "3A55383B87284FBCF7EDFD1944000E8988CB551BB003CE2E3F67A7BFE25E4AA4"
+                  },
+                  {
+                      "Old":  "document/測試收購_副本與宗門運作驗收.md",
+                      "New":  "document/驗收/系統/測試收購_副本與宗門運作驗收.md",
+                      "OriginalSHA256":  "2179E215C0A9B732851CF926A773A95AD253730AAE39096096028FB7A82757DB",
+                      "FinalSHA256":  "2179E215C0A9B732851CF926A773A95AD253730AAE39096096028FB7A82757DB"
+                  },
+                  {
+                      "Old":  "document/開發者介面.md",
+                      "New":  "document/操作/開發者介面.md",
+                      "OriginalSHA256":  "7FDF4EDF122BC4BCD43C2C32B28C298C557B0421C9A6AA05C6B3DD1D11C63BA2",
+                      "FinalSHA256":  "7DB38D264E431EDDF197E544D8CB6856F56B4A5B1AD3C664E065EE9EB7CA52C1"
+                  },
+                  {
+                      "Old":  "document/階段0_架構與驗收.md",
+                      "New":  "document/驗收/階段0/階段0_架構與驗收.md",
+                      "OriginalSHA256":  "4D4F3644E2F04D68582D9BBC5CBB6910AA8C236E1949E634FDB02502064DE5B4",
+                      "FinalSHA256":  "4D4F3644E2F04D68582D9BBC5CBB6910AA8C236E1949E634FDB02502064DE5B4"
+                  },
+                  {
+                      "Old":  "document/階段1_自主循環與驗收.md",
+                      "New":  "document/驗收/階段1/階段1_自主循環與驗收.md",
+                      "OriginalSHA256":  "636C711877BF66DCA1220D2A6047F04D85EC135937665AA3E987C42BF0960CF5",
+                      "FinalSHA256":  "636C711877BF66DCA1220D2A6047F04D85EC135937665AA3E987C42BF0960CF5"
+                  },
+                  {
+                      "Old":  "document/階段2_市場與宗門任務驗收.md",
+                      "New":  "document/驗收/階段2/階段2_市場與宗門任務驗收.md",
+                      "OriginalSHA256":  "84FCB7B838C02B8FC26036DAFEF896FC9025A3134FC707C915DCA943D4BA20CD",
+                      "FinalSHA256":  "84FCB7B838C02B8FC26036DAFEF896FC9025A3134FC707C915DCA943D4BA20CD"
+                  },
+                  {
+                      "Old":  "document/階段3_MVP結案驗收(1).md",
+                      "New":  "document/歷史/副本/階段3_MVP結案驗收(1).md",
+                      "OriginalSHA256":  "B076DCAB4F408E5D23C39972D16379BDDBB708EAE2B1979070D7AC0752684920",
+                      "FinalSHA256":  "B076DCAB4F408E5D23C39972D16379BDDBB708EAE2B1979070D7AC0752684920"
+                  },
+                  {
+                      "Old":  "document/階段3_MVP結案驗收.md",
+                      "New":  "document/驗收/階段3/階段3_MVP結案驗收.md",
+                      "OriginalSHA256":  "B076DCAB4F408E5D23C39972D16379BDDBB708EAE2B1979070D7AC0752684920",
+                      "FinalSHA256":  "B076DCAB4F408E5D23C39972D16379BDDBB708EAE2B1979070D7AC0752684920"
+                  },
+                  {
+                      "Old":  "document/階段3_角色養成與驗收.md",
+                      "New":  "document/驗收/階段3/階段3_角色養成與驗收.md",
+                      "OriginalSHA256":  "D20D8D4B163511147D4803AA41843E7C6A9F55E96D394851981F15A10A8583FF",
+                      "FinalSHA256":  "D20D8D4B163511147D4803AA41843E7C6A9F55E96D394851981F15A10A8583FF"
+                  },
+                  {
+                      "Old":  "document/階段3_社交與招募驗收(1).md",
+                      "New":  "document/歷史/副本/階段3_社交與招募驗收(1).md",
+                      "OriginalSHA256":  "5EB51F7561D59C56C7F3718E7DD63099E547F702C542F91A3032DF91D2DAF8E5",
+                      "FinalSHA256":  "AB1B455A87988C9404B7009E74B7FFEA9A1F733AAA29F95705AE43E9B078FEF1"
+                  },
+                  {
+                      "Old":  "document/階段3_社交與招募驗收.md",
+                      "New":  "document/驗收/階段3/階段3_社交與招募驗收.md",
+                      "OriginalSHA256":  "5EB51F7561D59C56C7F3718E7DD63099E547F702C542F91A3032DF91D2DAF8E5",
+                      "FinalSHA256":  "5EB51F7561D59C56C7F3718E7DD63099E547F702C542F91A3032DF91D2DAF8E5"
+                  },
+                  {
+                      "Old":  "document/階段3_組織治理與驗收.md",
+                      "New":  "document/驗收/階段3/階段3_組織治理與驗收.md",
+                      "OriginalSHA256":  "AB160E29C7F178DBA81AA7D3DA98B5128F8EE3B1F3DE341BE29C0C730799E3EF",
+                      "FinalSHA256":  "AB160E29C7F178DBA81AA7D3DA98B5128F8EE3B1F3DE341BE29C0C730799E3EF"
+                  },
+                  {
+                      "Old":  "document/階段3_戰鬥與驗收.md",
+                      "New":  "document/驗收/階段3/階段3_戰鬥與驗收.md",
+                      "OriginalSHA256":  "ABFF1C8812A8B2ECB240B2897519ED17D46287ADEC8297999ADB27D1EAFEEAF2",
+                      "FinalSHA256":  "ABFF1C8812A8B2ECB240B2897519ED17D46287ADEC8297999ADB27D1EAFEEAF2"
+                  },
+                  {
+                      "Old":  "document/階段4_Demo結案驗收.md",
+                      "New":  "document/驗收/階段4/階段4_Demo結案驗收.md",
+                      "OriginalSHA256":  "FC0EF7FFA78A87695457E61BFE8D93D1050D3D7C3CA92F7080B45A7DB0884ED0",
+                      "FinalSHA256":  "FC0EF7FFA78A87695457E61BFE8D93D1050D3D7C3CA92F7080B45A7DB0884ED0"
+                  },
+                  {
+                      "Old":  "document/階段4_地圖Demo與驗收.md",
+                      "New":  "document/驗收/階段4/階段4_地圖Demo與驗收.md",
+                      "OriginalSHA256":  "0743467BE67CF98C1622C118EFDA328802CCC485E87E3845A3A6BCE22E47CBC0",
+                      "FinalSHA256":  "0743467BE67CF98C1622C118EFDA328802CCC485E87E3845A3A6BCE22E47CBC0"
+                  },
+                  {
+                      "Old":  "document/階段4_存讀介面與驗收.md",
+                      "New":  "document/驗收/階段4/階段4_存讀介面與驗收.md",
+                      "OriginalSHA256":  "7781C2EB52DCF7F0EA024ED65339B7326B78CB46734BC7F803CEFB2B5E267230",
+                      "FinalSHA256":  "7781C2EB52DCF7F0EA024ED65339B7326B78CB46734BC7F803CEFB2B5E267230"
+                  },
+                  {
+                      "Old":  "document/階段4_玩家角色流程與驗收.md",
+                      "New":  "document/驗收/階段4/階段4_玩家角色流程與驗收.md",
+                      "OriginalSHA256":  "4254B2826F9249C122DD9B04021962763153B35836D2633EA6590A3FE65DA0AA",
+                      "FinalSHA256":  "4254B2826F9249C122DD9B04021962763153B35836D2633EA6590A3FE65DA0AA"
+                  },
+                  {
+                      "Old":  "document/階段4_時間操作與驗收.md",
+                      "New":  "document/驗收/階段4/階段4_時間操作與驗收.md",
+                      "OriginalSHA256":  "81396AF017FF52054FC8DA58866CA361E1F3B38B4BC4A54D5248EEBC0200BD62",
+                      "FinalSHA256":  "81396AF017FF52054FC8DA58866CA361E1F3B38B4BC4A54D5248EEBC0200BD62"
+                  },
+                  {
+                      "Old":  "document/階段4_資源再生與事件查詢.md",
+                      "New":  "document/驗收/階段4/階段4_資源再生與事件查詢.md",
+                      "OriginalSHA256":  "710E93734AF80867F4CE6A86086E1E066465C8851E0AF306F20190EEDC402BDC",
+                      "FinalSHA256":  "710E93734AF80867F4CE6A86086E1E066465C8851E0AF306F20190EEDC402BDC"
+                  },
+                  {
+                      "Old":  "document/階段4_遊玩介面與驗收.md",
+                      "New":  "document/驗收/階段4/階段4_遊玩介面與驗收.md",
+                      "OriginalSHA256":  "FA8C724BDBF1B0ED5A17A2D5095508DF78F755F7B0DE41AFD12F8C0BA3D57AF7",
+                      "FinalSHA256":  "FA8C724BDBF1B0ED5A17A2D5095508DF78F755F7B0DE41AFD12F8C0BA3D57AF7"
+                  },
+                  {
+                      "Old":  "document/階段5_效能LOD與長期驗收.md",
+                      "New":  "document/驗收/階段5/階段5_效能LOD與長期驗收.md",
+                      "OriginalSHA256":  "9AC9AA8DA5D1A985724D89581F6588D69E4A93BBD20BEF5C8E1A868A5A569CD9",
+                      "FinalSHA256":  "C51B67293F6F7755D53E0DA45DF101A82152951FB6254C50296BC66D6669EC2E"
+                  },
+                  {
+                      "Old":  "document/階段6_心境與驗收.md",
+                      "New":  "document/驗收/階段6/階段6_心境與驗收.md",
+                      "OriginalSHA256":  "DB02640D2D24D2CD14CB961DC8A4D17E42AF52AC193CCC8A838AF267FD7A4269",
+                      "FinalSHA256":  "EE6CDFE707351E1BC74DB2DC4E808211A69C8E70DEF66088E44ED7E90FBC0BD1"
+                  },
+                  {
+                      "Old":  "document/階段6_體力與驗收.md",
+                      "New":  "document/驗收/階段6/階段6_體力與驗收.md",
+                      "OriginalSHA256":  "7A29E47224DD579F9BF63671481BCEBD5B061CA77565E2A7EE2751FC5479DD0B",
+                      "FinalSHA256":  "F7E64325A0D9306311DBAE206F8EFF0B618BA4B04160D9AA5603EE3CA2E2C617"
+                  },
+                  {
+                      "Old":  "document/階段7_戰場模型與驗收.md",
+                      "New":  "document/驗收/階段7/階段7_戰場模型與驗收.md",
+                      "OriginalSHA256":  "0BCDC9C7851739B701D2949676100E59BA9578C30ADCA545B745A49D738E91A9",
+                      "FinalSHA256":  "401CA1B7E28507F18DC332219DF2DD8364BD9AF0C2A6993B9E0FA38C52A9FAE3"
+                  },
+                  {
+                      "Old":  "document/階段7_雙陣地首版與驗收.md",
+                      "New":  "document/驗收/階段7/階段7_雙陣地首版與驗收.md",
+                      "OriginalSHA256":  "1ED48A563208126A01189686D8967F487C90D82460621FC3AAD8C84FC9F57374",
+                      "FinalSHA256":  "88B4162DA85F2421CCEB06E2CDE1BE2876FC2F834A10B4EEA49E69F4AF7E0CB5"
+                  },
+                  {
+                      "Old":  "document/階段8_凡人修為開發與驗收計畫.md",
+                      "New":  "document/方案/階段8_凡人修為開發與驗收計畫.md",
+                      "OriginalSHA256":  "59BEBC420F31698E6370651DE2FF60595B10271074F74BDB5F01BA516B631C9C",
+                      "FinalSHA256":  "F483DACB9458AE9C69AF4B47B13B93F8F3AC75AE1352C044F224A7BADFBF2690"
+                  },
+                  {
+                      "Old":  "document/階段8_凡人修為實作與驗收.md",
+                      "New":  "document/驗收/階段8/階段8_凡人修為實作與驗收.md",
+                      "OriginalSHA256":  "FAAEEDC111DC50E55E29AC148AE67F8A1C9F07F41D759767649B9EC6751D9CD6",
+                      "FinalSHA256":  "091849EE8C998A09C97C759CF80A45A057E0D465D228E9920D06E1CAEE943465"
+                  },
+                  {
+                      "Old":  "document/聚落人口投入與組織人力_實作與驗收.md",
+                      "New":  "document/驗收/系統/聚落人口投入與組織人力_實作與驗收.md",
+                      "OriginalSHA256":  "4E2453180B2DD24BDD1D013D65495D7DF0482591C1F5164D61F9F9D6DCC53EE7",
+                      "FinalSHA256":  "4E2453180B2DD24BDD1D013D65495D7DF0482591C1F5164D61F9F9D6DCC53EE7"
+                  },
+                  {
+                      "Old":  "document/聚落人口增長_一年實測報告.md",
+                      "New":  "document/實測/聚落人口增長_一年實測報告.md",
+                      "OriginalSHA256":  "722F0DAEE763937D52AAE96C9510FE8C42CDD369E32F60F5489F8F0A50FEA100",
+                      "FinalSHA256":  "64482AD3C958BF2A6229130D9A6F70BC6B8BC6A16494C85891A9327F1BDDB641"
+                  },
+                  {
+                      "Old":  "document/聚落自然成長與建築等級_測試報告.md",
+                      "New":  "document/實測/聚落自然成長與建築等級_測試報告.md",
+                      "OriginalSHA256":  "EFC061213F96153534D9CF4A41BBB07D0F7C957641F8635B261433BA2A5CF8F1",
+                      "FinalSHA256":  "293D52571BE61BB368BF70667A918B7A2F06D23749064EF7A5009CEAE1D2B8C8"
+                  },
+                  {
+                      "Old":  "document/聚落每日結算與居民消費_實作與驗收.md",
+                      "New":  "document/驗收/系統/聚落每日結算與居民消費_實作與驗收.md",
+                      "OriginalSHA256":  "5F2E6DDFB8CC3C3A5F30526B2776B226A7DED994C92956BBAD62ECBAF924BE3E",
+                      "FinalSHA256":  "5F2E6DDFB8CC3C3A5F30526B2776B226A7DED994C92956BBAD62ECBAF924BE3E"
+                  },
+                  {
+                      "Old":  "document/聚落系統方案.md",
+                      "New":  "document/方案/聚落系統方案.md",
+                      "OriginalSHA256":  "235C4EAE20262065B0D274F7858B9C32E8F40870CCF856597598D7957B92BF92",
+                      "FinalSHA256":  "027B04FE09B76D1DC623ABD6B4AD178996A7F1AE30F3E40723D60B7C9964226C"
+                  },
+                  {
+                      "Old":  "document/聚落消耗區間與人口增長_實作與驗收.md",
+                      "New":  "document/驗收/系統/聚落消耗區間與人口增長_實作與驗收.md",
+                      "OriginalSHA256":  "6985B0B7AB8DBED53ABC70F3C2914B426B9765A36C0533ED3AC1F22333C67996",
+                      "FinalSHA256":  "CB50FA0364E548E90F33CDACDF7C083A604781BF49A9D5CED556BDB99F27C7FB"
+                  },
+                  {
+                      "Old":  "document/聚落組織據點與建築營運_實作與驗收.md",
+                      "New":  "document/驗收/系統/聚落組織據點與建築營運_實作與驗收.md",
+                      "OriginalSHA256":  "F3F55EF1E75AF4CFBE70541FA1658D8EEEC92CFD627DBEEC5804274153C17D8C",
+                      "FinalSHA256":  "221160D10CFDEC5D28ACA39E8DED5D7E17E243E451F3E18D67347869BB239C97"
+                  },
+                  {
+                      "Old":  "document/聚落營運_實作與驗收(1).md",
+                      "New":  "document/歷史/副本/聚落營運_實作與驗收(1).md",
+                      "OriginalSHA256":  "98416010C9B798FB7FCFBC3BBE7AF78269892A7157CD67604726340D720F6B0A",
+                      "FinalSHA256":  "5A1D30EEEBB63C8CA1235A9E90613F0CC48DB74059B3BDFD14796261EF363D32"
+                  },
+                  {
+                      "Old":  "document/聚落營運_實作與驗收.md",
+                      "New":  "document/驗收/系統/聚落營運_實作與驗收.md",
+                      "OriginalSHA256":  "98416010C9B798FB7FCFBC3BBE7AF78269892A7157CD67604726340D720F6B0A",
+                      "FinalSHA256":  "CCEC78AF9230F89F39A7CAC847410421DFFEEF8E971F5AB1B321C6FC92E0CC6F"
+                  },
+                  {
+                      "Old":  "document/戰鬥系統_待確認問題(1).md",
+                      "New":  "document/歷史/副本/戰鬥系統_待確認問題(1).md",
+                      "OriginalSHA256":  "245DE9DE6DDD9994ADFA12E78540731FD4BB10A2598110BF777EC3DB4C2CD6F6",
+                      "FinalSHA256":  "C88DCFDFBF01E9DE4E5CCB24A023C0B9F2D530F9EC451E724FE7219FA92C508C"
+                  },
+                  {
+                      "Old":  "document/戰鬥系統_待確認問題.md",
+                      "New":  "document/待確認/戰鬥系統_待確認問題.md",
+                      "OriginalSHA256":  "245DE9DE6DDD9994ADFA12E78540731FD4BB10A2598110BF777EC3DB4C2CD6F6",
+                      "FinalSHA256":  "38411BAC47B82C8B04B3058CB08B1A70EA0B8E5D6E87992CAA240C5E7A5E276B"
+                  },
+                  {
+                      "Old":  "document/戰鬥系統_雙陣地回合制方案.md",
+                      "New":  "document/方案/戰鬥系統_雙陣地回合制方案.md",
+                      "OriginalSHA256":  "6E29DA7474A233F6AE4767EE57AD97A312ED9AEEE1CE5E65F688EFC1ED904FD0",
+                      "FinalSHA256":  "66480A732F25494E7057C0CD1910BC1599A84200C337A69F6B7354D5E3FAFEC3"
+                  },
+                  {
+                      "Old":  "document/戰鬥者靈石收支_診斷紀錄.md",
+                      "New":  "document/實測/戰鬥者靈石收支_診斷紀錄.md",
+                      "OriginalSHA256":  "6D9D7F495406FC0B059F1B6B7F6FB83B7BFAC4E1BDD3415DB49AB81BA9103FD1",
+                      "FinalSHA256":  "2A52662A911FC7A837178903D1DC76E4BA52B6B21AEF799731D1BEE7C1DEE4CE"
+                  },
+                  {
+                      "Old":  "document/獨立場景_首版實作與驗收.md",
+                      "New":  "document/驗收/系統/獨立場景_首版實作與驗收.md",
+                      "OriginalSHA256":  "5DB81A0A882A3D7F0B703442C7F8EC66919D8874045956D68835C4791F137AF7",
+                      "FinalSHA256":  "5DB81A0A882A3D7F0B703442C7F8EC66919D8874045956D68835C4791F137AF7"
+                  },
+                  {
+                      "Old":  "document/藥草收購與停丹測試_實作與驗收.md",
+                      "New":  "document/驗收/系統/藥草收購與停丹測試_實作與驗收.md",
+                      "OriginalSHA256":  "EB5D4D5EAFF074B5EAE55D60AE0BAD896E63F733596BC321DECE8FDB01387F4A",
+                      "FinalSHA256":  "EB5D4D5EAFF074B5EAE55D60AE0BAD896E63F733596BC321DECE8FDB01387F4A"
+                  }
+              ]
+}

@@ -67,11 +67,12 @@ public partial class Main : Control
         AddButton(buttons, "暫停／繼續", TogglePause);
         waitOneButton = AddButton(buttons, "等待／前進一步", () => StepTicks(1));
         AddButton(buttons, "另存新檔", Save);
+        AddButton(buttons, "另存SQLite新檔", SaveSqlite);
         newSave = new Button { Text = "開新存檔（重設初始值）", TooltipText = "依config重建目前情境並儲存新檔；目前未儲存進度會重設，既有存檔保留。" };
         buttons.AddChild(newSave); newSave.Pressed += () => StartNewSave();
         AddButton(buttons, "讀取本次存檔", Load);
         AddButton(buttons, "選取存檔…", () => { savePicker.CurrentDir = ProjectSettings.GlobalizePath("user://saves"); savePicker.PopupCentered(new Vector2I(800, 500)); });
-        savePicker = new FileDialog { FileMode = FileDialog.FileModeEnum.OpenFile, Access = FileDialog.AccessEnum.Filesystem, Filters = new[] { "*.json ; 世界存檔" }, Title = "選取世界存檔" };
+        savePicker = new FileDialog { FileMode = FileDialog.FileModeEnum.OpenFile, Access = FileDialog.AccessEnum.Filesystem, Filters = new[] { "*.json ; JSON世界存檔", "*.sqlite ; SQLite世界存檔", "*.db ; SQLite世界存檔" }, Title = "選取世界存檔" };
         AddChild(savePicker);
         savePicker.FileSelected += path => { LoadFromPath(path); Render(); };
         waitTenButton = AddButton(buttons, "等待／前進十步", () => StepTicks(10));
@@ -183,6 +184,18 @@ public partial class Main : Control
         if (OS.GetCmdlineUserArgs().Contains("--player-auto-schedule-smoke")) PlayerAutoScheduleSmokeTest();
         if (OS.GetCmdlineUserArgs().Contains("--settlement-smoke")) SettlementSmokeTest();
         if (OS.GetCmdlineUserArgs().Contains("--scenario-catalog-smoke")) ScenarioCatalogSmokeTest();
+        if (OS.GetCmdlineUserArgs().Contains("--discrete-events-smoke")) DiscreteEventSmokeTest();
+        if (OS.GetCmdlineUserArgs().Contains("--action-lifecycle-smoke")) ActionLifecycleSmokeTest();
+        if (OS.GetCmdlineUserArgs().Contains("--event-decisions-smoke")) EventDecisionSmokeTest();
+        if (OS.GetCmdlineUserArgs().Contains("--sqlite-smoke")) SqliteSmokeTest();
+        if(OS.GetCmdlineUserArgs().Contains("--regional-world-smoke"))RegionalWorldSmokeTest();
+        if(OS.GetCmdlineUserArgs().Contains("--player-control-smoke"))PlayerControlSmokeTest();
+        if(OS.GetCmdlineUserArgs().Contains("--equipment-repair-smoke"))RepairSmokeTest();
+        if(OS.GetCmdlineUserArgs().Contains("--life-events-smoke"))LifeEventSmoke();
+        if(OS.GetCmdlineUserArgs().Contains("--scheduled-events-smoke"))ScheduledEventSmoke();
+        if(OS.GetCmdlineUserArgs().Contains("--recovery-events-smoke"))RecoveryEventSmoke();
+        if(OS.GetCmdlineUserArgs().Contains("--mission-expiry-smoke"))MissionExpirySmoke();
+        if(OS.GetCmdlineUserArgs().Contains("--social-expiry-smoke"))SocialExpirySmoke();
         if (OS.GetCmdlineUserArgs().Contains("--action-driven-smoke")) ActionDrivenSmokeTest();
         if (OS.GetCmdlineUserArgs().Contains("--village-organization-smoke")) VillageOrganizationSmokeTest();
         if (OS.GetCmdlineUserArgs().Contains("--external-market-smoke")) ExternalMarketSmokeTest();
@@ -754,21 +767,25 @@ public partial class Main : Control
 
     private void AdvanceSimulation(double delta)
     {
+        if(engine.RequiresControlSelection){paused=true;return;}
         if (engine.WaitsForPlayerAction) { paused = true; return; }
         if (!paused)
         {
             int count = pump.Advance(TimeSpan.FromSeconds(delta * speed), maxSteps: 1);
             if (count > 0) ObserveCharacter();
+              if (count > 0 && PauseOnEventStop()) return;
             for (int n = 1; count > 0 && n < 32; n++)
             {
                 count = pump.Advance(TimeSpan.Zero, maxSteps: 1);
                 if (count > 0) ObserveCharacter();
+                  if (count > 0 && PauseOnEventStop()) return;
             }
         }
     }
-    private void TogglePause() { paused = !paused; Render(); }
+    private void TogglePause() { if(engine.RequiresControlSelection){paused=true;notice.Text="請選擇合格角色；無可控角色時可讀檔或開新局。";}else paused=!paused;Render(); }
     private void StepTicks(int count)
     {
+        if(engine.RequiresControlSelection){paused=true;notice.Text="目前無法控制角色，世界保持暫停。";Render();return;}
         if (!paused) { notice.Text = "請先暫停，再手動前進Tick。"; return; }
         for (int n = 0; n < count; n++) {
             var w = engine.Snapshot();
@@ -909,7 +926,7 @@ public partial class Main : Control
             string path = lastSave ?? throw new InvalidOperationException("New save missing");
             var fresh = engine.Snapshot();
             if (path == oldPath || !System.IO.File.Exists(path) || !paused || speed != 1 || actors.Selected != 0 ||
-                WorldCodec.Digest(fresh) != WorldCodec.Digest(SectEconomyScenario.Create("新檔驗收")))
+                WorldCodec.Digest(fresh) != WorldCodec.Digest(MedicineOnlyProfile.ApplyFresh(SectEconomyScenario.Create("新檔驗收"))))
                 throw new InvalidOperationException("New save did not reset complete world or controls");
             if (System.IO.File.ReadAllText(oldPath) != oldContents) throw new InvalidOperationException("Old save modified");
             if (WorldCodec.Digest(new JsonWorldStore().Load(path)) != WorldCodec.Digest(fresh)) throw new InvalidOperationException("Initial save not persisted");
@@ -966,7 +983,7 @@ public partial class Main : Control
     {
         try
         {
-            var restored = new SimulationEngine(new JsonWorldStore().Load(path));
+            var restored = new SimulationEngine(WorldStores.ForPath(path).Load(path));
             engine = restored;
             pump = new(engine, TimeSpan.FromMilliseconds(250), autonomous: true);
             actors.Clear();
@@ -1030,10 +1047,14 @@ public partial class Main : Control
         demoMap.QueueRedraw();
         journal.Refresh();
         var snapshot = engine.Snapshot();
+        if(engine.RequiresControlSelection)paused=true;
+        RefreshPlayerControlControls(snapshot);
+        RefreshRepair(snapshot);
         autonomousPlayerToggle?.SetPressedNoSignal(snapshot.PlayerAutoSchedule);
         waitOneButton.Text = "等待" + GameTimeDisplay.Duration(snapshot, 1);
         waitTenButton.Text = "等待" + GameTimeDisplay.Duration(snapshot, 10);
-        if (autonomousPlayerToggle is not null) autonomousPlayerToggle.Disabled = !engine.ActionDrivenTimeEnabled;
+        if (autonomousPlayerToggle is not null) autonomousPlayerToggle.Disabled = !engine.ActionDrivenTimeEnabled||engine.RequiresControlSelection;
+        waitOneButton.Disabled=waitTenButton.Disabled=engine.RequiresControlSelection;
         foreach(var button in pillActions) { button.Disabled = snapshot.MedicineOnly; button.TooltipText = snapshot.MedicineOnly ? "移除丹藥期間，原耗丹行動暫停" : ""; }
         lifeSkills.Refresh(snapshot);
         paidServices.Refresh(snapshot);
@@ -1065,14 +1086,24 @@ public partial class Main : Control
             $"NPC {snapshot.Characters.Count - 1}｜交易 {snapshot.Events.Count(e => e.Kind == "Trade")}｜煉丹成功 {snapshot.Events.Count(e => e.Kind == "BrewSucceeded")}｜失敗 {snapshot.Events.Count(e => e.Kind == "BrewFailed")}" +
             $"　青雲宗: {Inventory.Balance(snapshot, "sect", "spirit-stone")}";
         if (snapshot.MedicineOnly) status.Text = "藥物測試：煉丹及原耗丹行動已暫停，丹藥已移除。\n" + status.Text;
+        if (snapshot.Time?.DiscreteEvents is { } eventClock) status.Text = $"R1事件時間 {eventClock.WorldTime}秒｜相容步進 {snapshot.Clock.Tick}｜停止原因 {engine.LastAdvance?.Reason.ToString() ?? "等待指令"}\n" + status.Text;
+        if (snapshot.Time?.ActionRuntime is { } runtime) status.Text = $"R2行動 {runtime.Actions.Count}｜進行中 {runtime.Actions.Values.Count(a=>a.Phase==ActionPhase.Running)}｜有效資產預留 {runtime.Reservations.Values.Count(r=>r.Remaining>0)}\n"+status.Text;
+        if (snapshot.Time?.EventDecisions is { } decisions) status.Text = $"R3待決策 {decisions.Ready.Count}｜評估 {decisions.Evaluations}｜Planner {decisions.PlannerCalls}\n"+status.Text;
+        if(snapshot.Time?.PlayerControl is not null)status.Text=(engine.RequiresControlSelection?"R6b等待有效控制角色":"R6b目前控制 "+snapshot.Characters.Single(a=>a.Id==snapshot.ControlledCharacterId).Name)+"\n"+status.Text;
         var actor = snapshot.Characters[Math.Clamp(actors.Selected, 0, snapshot.Characters.Count - 1)];
         if (snapshot.Time is { } time)
         {
             var date = CalendarCalculator.Date(snapshot.Clock.Tick, time.Rules);
-            var ap = time.Budgets.Single(b => b.ActorId == actor.Id);
+            // New scenario NPCs may not yet have a stored budget; use the same rule-derived initial AP as the engine.
+            var ap = time.Budgets.SingleOrDefault(b => b.ActorId == actor.Id)??new ActionPointBudget(actor.Id,snapshot.Clock.Tick/time.Rules.TicksPerDay,time.Rules.DailyActionPoints);
             bool battlePaused = snapshot.BoardBattle is { Phase: BoardBattlePhase.Active } battle && battle.Fighters.Any(f => f.ActorId == snapshot.ControlledCharacterId);
             string clock = time.ActionDriven?.MinutesPerActionPoint is { } minutes ?
                 $"{date.TickOfDay * minutes / 60:00}:{date.TickOfDay * minutes % 60:00}" : $"日內 {date.TickOfDay}/{time.Rules.TicksPerDay}Tick";
+            if (time.DiscreteEvents is { } precise)
+            {
+                long seconds = precise.WorldTime % (time.ActionDriven!.MinutesPerDay!.Value * 60L);
+                clock = $"{seconds / 3600:00}:{seconds / 60 % 60:00}:{seconds % 60:00}";
+            }
             status.Text = $"第{date.Year}年 {date.Season}季{date.Day}日 {clock}｜{actor.Name} AP {ap.Remaining}/{time.Rules.DailyActionPoints}｜忙碌剩餘 {GameTimeDisplay.Duration(snapshot, Math.Max(0, ap.BusyThroughTick - snapshot.Clock.Tick))}\n" +
                 (battlePaused ? $"玩家戰鬥：世界時間凍結，戰後補{GameTimeDisplay.Duration(snapshot, time.Rules.BattleActionPoints)}\n" : "") + status.Text;
         }

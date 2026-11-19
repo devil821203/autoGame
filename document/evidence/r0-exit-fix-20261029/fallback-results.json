@@ -1,0 +1,22 @@
+﻿[
+    {
+        "Run":  1,
+        "ExitCode":  0
+    },
+    {
+        "Run":  2,
+        "ExitCode":  0
+    },
+    {
+        "Run":  3,
+        "ExitCode":  -1073741819
+    },
+    {
+        "Run":  4,
+        "ExitCode":  0
+    },
+    {
+        "Run":  5,
+        "ExitCode":  -1073741819
+    }
+]

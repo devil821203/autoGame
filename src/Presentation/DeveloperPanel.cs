@@ -91,7 +91,7 @@ public partial class DeveloperPanel : VBoxContainer
         world.Text = $"Tick {w.Clock.Tick}｜種子狀態 {w.RandomState}｜待提交 {w.Pending.Count}｜排程 {w.Scheduled.Count}\n" +
             $"藥材報價 買 {MarketPricing.Quote(w, "herb").BuyPrice}／賣 {MarketPricing.Quote(w, "herb").SellPrice}｜丹藥報價 買 {MarketPricing.Quote(w, "pill").BuyPrice}／賣 {MarketPricing.Quote(w, "pill").SellPrice}｜決策預算 {w.Rules.DecisionBudget}\n\n" +
             string.Join("\n", w.Organizations.Select(o => $"{o.Name}: 錢財 {Inventory.Balance(w, o.Id, "spirit-stone")} / 藥材 {Inventory.Balance(w, o.Id, "herb")} / 丹藥 {Inventory.Balance(w, o.Id, "pill")}")) +
-            "\n\n排程\n" + string.Join("\n", w.Scheduled.OrderBy(t => t.DueTick).Take(60).Select(t => $"{t.Intent.ActorId} {t.Intent.Kind}: 到期 {t.DueTick}（剩 {t.DueTick - w.Clock.Tick}）"));
+            "\n\n排程\n" + string.Join("\n", w.Scheduled.OrderBy(t => t.DueAtSeconds??t.DueTick).Take(60).Select(t => $"{t.Intent.ActorId} {t.Intent.Kind}: "+(t.DueAtSeconds is {} due?$"到期{due}秒（剩{Math.Max(0,due-w.Time!.DiscreteEvents!.WorldTime)}秒）":$"到期 {t.DueTick}（剩 {t.DueTick - w.Clock.Tick}）")));
         var decision = w.Events.LastOrDefault(e => e.Kind == "Decision" && e.ActionId.StartsWith("ai:" + actorId + ":", StringComparison.Ordinal));
         reasoning.Text = $"{selected.Name}｜煉丹成功率 {CharacterDevelopment.SuccessChance(selected, w.Rules):P1}\n" +
             $"性格：財富 {selected.WealthWeight:F2} / 成長 {selected.GrowthWeight:F2} / 謹慎 {selected.Caution:F2} / 社交 {selected.SocialWeight:F2}\n\n" +

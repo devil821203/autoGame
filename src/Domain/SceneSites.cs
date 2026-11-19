@@ -13,7 +13,7 @@ public static class SceneSites
     {
         if (w.HexMap is not { } map || map.Sites.SingleOrDefault(s => s.Id == site.Id) is not { } actual) return false;
         var player = w.Characters.Single(c => c.Id == w.ControlledCharacterId);
-        return player.RegionId == "valley" && HexNavigation.Position(map, player) == actual.Anchor &&
+        return (map.Regional is null?player.RegionId == "valley":RegionGeometry.At(map,actual.Anchor)?.Id==player.RegionId) && HexNavigation.Position(map, player) == actual.Anchor &&
             !w.Scheduled.Any(t => t.Intent.ActorId == player.Id && t.Intent.Kind == ActionKind.Travel);
     }
 }

@@ -1,0 +1,32 @@
+[
+    {
+        "File":  "Models.cs",
+        "SHA256":  "B197329E5C27EA5ECEE82C63B696AC006D141398426DB7C8538DC5C3AEDFE7F2",
+        "Bytes":  6610
+    },
+    {
+        "File":  "Models-DESKTOP-K1FV25D.cs",
+        "SHA256":  "9739E0FFBF3CD7D9C92050BC6C57E78301B4F5DB97CE7753E51E13B4DF183619",
+        "Bytes":  14463
+    },
+    {
+        "File":  "CharacterProgression.cs",
+        "SHA256":  "1688D49D199983A7BF7240F9538D18A3F5DF75D8C7E79D017A949BE3C02DAC83",
+        "Bytes":  2485
+    },
+    {
+        "File":  "CharacterProgression-DESKTOP-K1FV25D.cs",
+        "SHA256":  "B14BC782F8ABD9966C9A9D0C064E6759CE4810B2C84BD23B8DF8D0A644FC8016",
+        "Bytes":  2654
+    },
+    {
+        "File":  "EconomyModels.cs",
+        "SHA256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+        "Bytes":  0
+    },
+    {
+        "File":  "EconomyModels-DESKTOP-K1FV25D.cs",
+        "SHA256":  "FF7D4AC39AB27C994AC98963B3D14ADCE788886D6B2EB70EC8F3D6793E42098D",
+        "Bytes":  2553
+    }
+]

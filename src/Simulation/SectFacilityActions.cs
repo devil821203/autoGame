@@ -54,7 +54,9 @@ internal static class SectFacilityActions
         {
             bool brew = i.Kind == ActionKind.SectBrew;
             var reserved = i with { Quantity = brew ? w.Rules.HerbsPerPill : 1 };
-            ActionExecutor.Transfer(w, reserved, brew ? r.OrganizationId : "grove", ActionExecutor.Escrow(i.Id), "Reserved");
+            if (!brew && w.Time?.ActionRuntime is not null && WorldPeriodEvents.Enabled(w))
+                ReservationService.Reserve(w, reserved, i.Id + ":sect-gather-resource", "grove", ActionExecutor.Escrow(i.Id), "Reserved");
+            else ActionExecutor.Transfer(w, reserved, brew ? r.OrganizationId : "grove", ActionExecutor.Escrow(i.Id), "Reserved");
             w.Scheduled.Add(new(w.NextSequence++, w.Clock.Tick + (brew ? w.Rules.BrewTicks : w.Rules.GatherTicks), reserved));
             ActionExecutor.Emit(w, i.Id, "SectWorkScheduled", $"{i.ActorId}:{i.Kind}"); return;
         }
@@ -89,7 +91,12 @@ internal static class SectFacilityActions
         }
         else
         {
-            ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), r.OrganizationId, "SectHerbsGathered");
+            if (w.Time?.ActionRuntime is not null && WorldPeriodEvents.Enabled(w))
+            {
+                ActionLifecycle.RequireRunning(w, i.Id);
+                ReservationService.Settle(w, i.Id + ":sect-gather-resource", i.Quantity, true, r.OrganizationId, "SectHerbsGathered");
+            }
+            else ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), r.OrganizationId, "SectHerbsGathered");
             w.Characters[index] = actor with { GatheringExperience = CharacterDevelopment.GainExperience(actor.GatheringExperience, StaminaCalculator.Growth(w, actor, w.Rules.ExperiencePerAction)) };
         }
         long points = success && actor.OrganizationId == r.OrganizationId ? brew ? r.BrewContribution : r.GatherContribution : 0;
@@ -97,6 +104,7 @@ internal static class SectFacilityActions
         w.SectWorkReceipts.Add(new(i.Id, w.Clock.Tick, actor.Id, r.OrganizationId, i.Kind, success, success ? 1 : 0, points));
         if (points > 0) ActionExecutor.Transfer(w, i with { ResourceId = "contribution", Quantity = points }, "$contribution", actor.Id, "ContributionWorkReward");
         ActionExecutor.Emit(w, i.Id, success ? "SectWorkCompleted" : "SectWorkFailed", $"{actor.Id}:{i.Kind}:contribution={points}");
+        if (!brew && w.Time?.ActionRuntime is not null && WorldPeriodEvents.Enabled(w)) { ActionLifecycle.Checkpoint(w,i.Id); ActionLifecycle.Finish(w,i.Id,ActionPhase.Completed,"宗門採藥完成"); }
     }
 
     internal static void ClearMembership(WorldState w, string actorId, string actionId)

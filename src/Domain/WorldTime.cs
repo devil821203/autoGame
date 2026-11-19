@@ -5,7 +5,7 @@ public sealed record TimeRules(int TicksPerDay = 30, int DaysPerSeason = 30, int
     int BattleActionPoints = 5, int MaximumBattleRounds = 100);
 public sealed record ActionPointBudget(string ActorId, long Day, int Remaining, long BusyThroughTick = -1);
 public sealed record ActionPointCharge(string ActionId, string ActorId, long Tick, long Day, int Cost);
-public sealed record DeferredWorldAction(ActionIntent Intent, long DueTick);
+public sealed record DeferredWorldAction(ActionIntent Intent, long DueTick,long? DueAtSeconds=null,long Sequence=0);
 public sealed record BattleTimeReceipt(string BattleId, int RemainingTicks);
 public sealed record ActionDrivenRules(int IdleRetryTicks, int MaximumAdvanceSteps)
 {
@@ -19,6 +19,23 @@ public sealed record ActionDrivenRules(int IdleRetryTicks, int MaximumAdvanceSte
 public sealed record IdleDecisionWait(long LastTick, long RetryTick, int Health, string LocationId);
 public sealed class WorldTimeState
 {
+    public ContentManifest? Content { get; set; }
+    public MarketOrderState? MarketOrders { get; set; }
+    public PlayerControlState? PlayerControl { get; set; }
+    public EquipmentRepairState? EquipmentRepair { get; set; }
+    public bool IndependentLifeEvents { get; set; }
+    public bool IndependentScheduledEvents { get; set; }
+    public bool IndependentRecoveryEvents { get; set; }
+    public bool IndependentResourceEvents { get; set; }
+    public long? ResourceRegenerationDueSeconds { get; set; }
+    public bool IndependentPayrollEvents { get; set; }
+    public bool IndependentMissionExpiryEvents { get; set; }
+    public bool IndependentSocialExpiryEvents { get; set; }
+    public long? SectPayrollDueSeconds { get; set; }
+    public Dictionary<string,long> RestDueSeconds { get; set; }=[];
+    public DiscreteEventState? DiscreteEvents { get; set; }
+    public ActionRuntimeState? ActionRuntime { get; set; }
+    public EventDecisionState? EventDecisions { get; set; }
     public ActionDrivenRules? ActionDriven { get; set; }
     public Dictionary<string, IdleDecisionWait> IdleDecisions { get; set; } = [];
     public HashSet<string> ApRestingActors { get; set; } = [];

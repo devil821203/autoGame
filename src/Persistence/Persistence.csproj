@@ -1,3 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup><Compile Remove="**/*(1).cs" /></ItemGroup>
   <ItemGroup><ProjectReference Include="../Simulation/Simulation.csproj" /></ItemGroup>
 </Project>

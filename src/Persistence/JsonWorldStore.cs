@@ -23,7 +23,7 @@ public sealed class JsonWorldStore : IWorldStore
             using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))
             using (var writer = new StreamWriter(stream))
             {
-                writer.Write(WorldCodec.Serialize(snapshot));
+                writer.Write(SaveMigration.Write(snapshot));
                 writer.Flush();
                 stream.Flush(flushToDisk: true);
             }

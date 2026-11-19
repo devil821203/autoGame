@@ -11,6 +11,7 @@ public sealed partial class SimulationEngine
         lock (gate)
         {
             if (state.Time is null || throughTick < state.Clock.Tick || maximumSteps <= 0) throw new ArgumentException("Invalid timed batch boundary");
+            if (state.Time.DiscreteEvents is not null) throw new InvalidOperationException("Use AdvanceTo for a discrete-event world; legacy measurement batching is not a migration API");
             var original = state; var previousDiagnostics = LastDiagnostics;
             state = WorldCodec.Clone(state);
             try

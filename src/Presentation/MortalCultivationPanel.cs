@@ -64,6 +64,11 @@ public partial class MortalCultivationPanel : VBoxContainer
         var task = w.MortalTrainingWork.SingleOrDefault(t => t.Intent.ActorId == a.Id);
         long unitDuration = task is not null && MethodTraining.IsMethod(task.Intent) ? w.Methods!.Catalog.TrainingRules.DurationTicks : w.MortalActionRules!.DurationTicks;
         lines.Add(task is null ? "目前未修練" : $"修練中：{task.Intent.ResourceId}，剩{task.RemainingIterations}次／{GameTimeDisplay.Duration(w, task.DueTick - w.Clock.Tick + (task.RemainingIterations - 1) * unitDuration)}");
+        if (task?.DueAtSeconds is { } due && w.Time?.DiscreteEvents is { } seconds)
+            lines.Add($"秒制下一次結算尚餘 {Math.Max(0, due - seconds.WorldTime)}秒");
+        if(w.Time?.ActionRuntime is { } runtime)
+            foreach(var action in runtime.Actions.Values.Where(x=>x.ActorId==a.Id||x.WorkerId==a.Id).OrderBy(x=>x.StartedAt).ThenBy(x=>x.Id,StringComparer.Ordinal))
+                lines.Add($"R2 {action.Id}／{action.ResourceId}：{action.Phase}，段落{action.CompletedSegments}/{action.TotalSegments}，相關角色AP合計已付{action.ActionPointsPaid}，工作者體力已耗{action.StaminaConsumed}，版本{action.Version}");
         if (w.Methods is { } methods && methods.Learners.TryGetValue(a.Id, out var learned))
             foreach (var method in methods.Catalog.Methods)
             foreach (var skill in method.Skills.Where(s => learned.ContainsKey(s.Id)))

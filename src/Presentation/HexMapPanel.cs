@@ -13,6 +13,9 @@ public partial class HexMapPanel : VBoxContainer
     private OptionButton siteChoices = null!;
     private Button siteEnter = null!;
     private List<string> siteIds = [];
+    private OptionButton regions=null!;
+    private List<string> regionIds=[];
+    private CheckBox followBox=null!;
     public HexCoord? Selection { get; private set; }
     private HexMapCanvas canvas = null!;
     private Label details = null!;
@@ -28,8 +31,9 @@ public partial class HexMapPanel : VBoxContainer
     {
         AddChild(new Label { Text = "六角世界｜左鍵選地塊、滾輪縮放、中鍵拖曳｜青／橙／紅：宗門／幫派／山寨" });
         var row = new HFlowContainer(); AddChild(row);
-        var follow = new CheckBox { Text = "視角跟隨主角色（關閉後可中鍵拖曳）", ButtonPressed = true }; row.AddChild(follow);
+        var follow = new CheckBox { Text = "視角跟隨主角色（關閉後可中鍵拖曳）", ButtonPressed = true }; followBox=follow;row.AddChild(follow);
         follow.Toggled += enabled => { canvas.FollowPlayer = enabled; Refresh(ReadWorld()); };
+        regions=new OptionButton();row.AddChild(regions);regions.ItemSelected+=index=>ChooseRegion(regionIds[(int)index]);
         travel = Add(row, "旅行至選取地塊", Travel);
         enter = Add(row, "舊版青雲宗操作場景", () => EnterSect?.Invoke());
         siteChoices = new OptionButton(); row.AddChild(siteChoices);
@@ -44,6 +48,11 @@ public partial class HexMapPanel : VBoxContainer
     private static Button Add(Container row, string text, Action action)
     { var button = new Button { Text = text }; row.AddChild(button); button.Pressed += action; return button; }
     public void Select(HexCoord coord) { Selection = coord; Refresh(ReadWorld()); }
+    public void ChooseRegion(string id)
+    {
+        var world=ReadWorld();var region=world.HexMap?.Regional?.Regions.SingleOrDefault(r=>r.Id==id);if(region is null)return;
+        followBox.ButtonPressed=false;Select(region.Town);regions.Select(regionIds.IndexOf(id));canvas.CenterOn(region.Town);
+    }
     public void EnterSelectedSite()
     {
         var world = ReadWorld();
@@ -64,7 +73,7 @@ public partial class HexMapPanel : VBoxContainer
         return new("ui-hex:" + w.NextSequence, actor.Id, target, kind == ActionKind.Travel ? "travel" : "spirit-stone", quantity, 0,
             DecisionSource.Player, kind, MissionId: definition, OrganizationId: kind == ActionKind.Travel ? null : actor.OrganizationId);
     }
-    private string Target(WorldState w) => w.HexMap!.Tiles.Single(t => t.Coord == Selection).PlaceId ?? Selection!.Value.ToString();
+    private string Target(WorldState w) => w.HexMap!.Regional is not null?Selection!.Value.ToString():w.HexMap.Tiles.Single(t => t.Coord == Selection).PlaceId ?? Selection!.Value.ToString();
     public void Travel() { if (Selection is not null && ReadWorld().HexMap is not null) Requested?.Invoke(Intent(ActionKind.Travel, Target(ReadWorld()))); }
     public void Build()
     {
@@ -80,6 +89,9 @@ public partial class HexMapPanel : VBoxContainer
     public void Refresh(WorldState w)
     {
         var map = w.HexMap;
+        var areaList=map?.Regional?.Regions??[];
+        if(!regionIds.SequenceEqual(areaList.Select(r=>r.Id))){regions.Clear();regionIds=areaList.Select(r=>r.Id).ToList();foreach(var area in areaList)regions.AddItem(area.Name);}
+        regions.Visible=areaList.Count>0;
         if (map is null)
         {
             details.Text = "請按上方「六角世界／領地測試」建立新世界（請先保存目前進度）。";
@@ -112,6 +124,7 @@ public partial class HexMapPanel : VBoxContainer
             $"組織領地：{Org(tile.LocalOrganizationId)}｜玩家位置 {HexNavigation.Position(map, actor)}" +
             (trip is null ? "" : $"｜旅行剩餘 {trip.Remaining.Count} 格") + "\n建築：" +
             string.Join("、", buildings.Select(b => map.BuildingDefinitions.Single(d => d.Id == b.DefinitionId).Name + " " + StatusName(b.Status)));
+        if(map.Regional is {} topology)details.Text=$"地區 {RegionGeometry.At(map,tile.Coord)?.Name}｜玩家 {actor.RegionId}｜Seed {topology.Seed}｜連線 {topology.Routes.Count}\n"+details.Text;
         string? travelError = ActionValidator.Validate(w, Intent(ActionKind.Travel, Target(w)));
         travel.Disabled = travelError is not null;
         enter.Disabled = actor.DemoLocationId != "sect" || trip is not null || tile.PlaceId != "sect";

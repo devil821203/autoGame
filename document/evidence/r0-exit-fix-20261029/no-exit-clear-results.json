@@ -1,0 +1,18 @@
+﻿[
+    {
+        "Test":  "character-follow",
+        "ExitCode":  0
+    },
+    {
+        "Test":  "scenario-catalog",
+        "ExitCode":  0
+    },
+    {
+        "Test":  "action-driven",
+        "ExitCode":  0
+    },
+    {
+        "Test":  "board-battle",
+        "ExitCode":  0
+    }
+]

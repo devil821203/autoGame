@@ -87,7 +87,8 @@ public partial class CharacterAttributesWindow : Window
         lines.Add($"實際煉丹成功率：{CharacterDevelopment.SuccessChance(a,w.Rules):P1}");
         lines.Add($"心境倍率：{growth.MindsetMultiplier:0.###}｜疲勞倍率：{growth.FatigueMultiplier:0.###}｜合計養成倍率：{growth.CombinedMultiplier:0.###}");
         if(StaminaCalculator.Status(w,a) is {} stamina)
-            lines.Add($"疲勞：{Value(stamina.Fatigued)}｜休息環境：{stamina.Environment switch {RestEnvironment.HomeBed=>"住處有床",RestEnvironment.Ordinary=>"一般",_=>"露宿"}}｜體力回復／Tick：{stamina.RecoveryPerTick}");
+            lines.Add($"疲勞：{Value(stamina.Fatigued)}｜休息環境：{stamina.Environment switch {RestEnvironment.HomeBed=>"住處有床",RestEnvironment.Ordinary=>"一般",_=>"露宿"}}｜體力回復／{(w.Time?.IndependentRecoveryEvents==true?GameTimeDisplay.Duration(w,1):"Tick")}：{stamina.RecoveryPerTick}");
+        if(w.Time?.IndependentRecoveryEvents==true&&w.Time.RestDueSeconds.TryGetValue(a.Id,out long restDue))lines.Add($"下次休息恢復：{Math.Max(0,restDue-w.Time.DiscreteEvents!.WorldTime)}秒後");
         lines.Add("\n【時間、行動與計畫】");
         if(w.Time is {} time)
         {

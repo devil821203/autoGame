@@ -1,7 +1,7 @@
 namespace Cultivation.Domain;
 
 public sealed record DurabilityRules(int Maximum,int LossPerBattle);
-public sealed record EquipmentWear(string BattleId,string EquipmentId,string ActorId,long Tick,int Before,int After,string Trigger);
+public sealed record EquipmentWear(string BattleId,string EquipmentId,string ActorId,long Tick,int Before,int After,string Trigger,long Sequence=0);
 public sealed record LegacyWeaponInstance(string Id,string DefinitionId,string CreationId,string OwnerId,long Tick,string? BattleId);
 public sealed class EquipmentDurabilityState
 {

@@ -1,0 +1,11 @@
+{
+  "Priority": "PriceTime",
+  "ExecutionPrice": "RestingOrder",
+  "AllowSelfTrade": false,
+  "ReferenceTradeWindow": 20,
+  "TransactionFeeRate": 0,
+  "OperationMinutes": 10,
+  "OperationActionPoints": 1,
+  "DefaultExpiryDays": 1,
+  "Venues": [{ "Id": "market", "RegionId": "valley", "LocationId": "town" }]
+}

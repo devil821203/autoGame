@@ -35,6 +35,8 @@ internal static class PopulationInvestmentActions
             w.SettlementInfluence.Add(new(i.Id,s.Id,owner,"population-investment",1,points));
         }
         ActionExecutor.Emit(w,i.Id,"PopulationInvestmentCompleted",$"{s.Id}:success={success}:population+={added}:influence={points}");
+        EventDecisions.OrganizationChanged(w,owner);
+        if(added>0)EventDecisions.SettlementPlanningChanged(w,s);
     }
     internal static void ValidateWorld(WorldState w)
     {

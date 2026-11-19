@@ -1,0 +1,14 @@
+﻿[
+    {
+        "Test":  "discrete-events",
+        "ExitCode":  0
+    },
+    {
+        "Test":  "action-driven",
+        "ExitCode":  0
+    },
+    {
+        "Test":  "scenario-catalog",
+        "ExitCode":  0
+    }
+]

@@ -19,9 +19,29 @@ public partial class Main
         void Describe() => description.Text = settings.Scenarios[choice.Selected].Description;
         choice.ItemSelected += _ => Describe(); Describe();
         var autoPlayer = new CheckButton { Text = "主角自主排程（持續推進）" }; autonomousPlayerToggle = autoPlayer; row.AddChild(autoPlayer);
-        autoPlayer.Toggled += enabled => { engine.SetPlayerAutonomy(enabled); paused = !enabled; };
+        autoPlayer.Toggled += enabled => { try{engine.SetPlayerAutonomy(enabled);paused=!enabled;}catch(Exception e){paused=true;autoPlayer.SetPressedNoSignal(false);notice.Text=e.Message;} };
         AddButton(row, "重新建立選定情境", () => RebuildCurrentScenario(settings.Scenarios[choice.Selected].Id));
         AddButton(row, "聚落管理／查詢", OpenSettlementManagement);
+        AddButton(row, "R1秒制事件測試（重建）", CreateDiscreteEventWorld);
+        AddButton(row,"R1工作／旅行／恢復秒事件（重建）",CreateLifeEventWorld);
+        AddButton(row, "R2行動／預留測試（重建）", CreateActionLifecycleWorld);
+        AddButton(row, "R3事件決策測試（重建）", CreateEventDecisionWorld);
+        AddButton(row, "R4內容／SQLite測試（重建）", CreateContentWorld);
+        regionalSeed=new LineEdit {Text=GameConfiguration.Find().Read<Cultivation.Domain.RegionalGenerationRules>("world/regions-demo.json").Seed.ToString(System.Globalization.CultureInfo.InvariantCulture),PlaceholderText="R6a Seed"};row.AddChild(regionalSeed);
+        AddButton(row,"R6a多地區測試（重建）",CreateRegionalWorld);
+        AddButton(row,"R6b控制資格測試（重建）",CreatePlayerControlWorld);
+        CreatePlayerControlControls(panel);
+        AddButton(row,"R8裝備修理測試（重建）",CreateRepairWorld);
+        CreateRepairControls(panel);
+    }
+    private void CreateDiscreteEventWorld()
+    {
+        RebuildCurrentScenario("methods");
+        var fresh = engine.Snapshot();
+        DiscreteTime.EnableFresh(fresh);
+        engine = new(fresh); pump = new(engine, TimeSpan.FromMilliseconds(250), autonomous: true);
+        paused = true; Render();
+        notice.Text = "R1秒制事件測試：修練直接排事件，其餘系統暫由600秒相容事件轉接；舊檔不轉換。";
     }
     private void RebuildCurrentScenario(string id)
     {

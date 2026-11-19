@@ -15,6 +15,7 @@ public sealed class GameConfiguration
     };
     public string DirectoryPath { get; }
     public GameConfiguration(string directoryPath) => DirectoryPath = Path.GetFullPath(directoryPath);
+    public ContentManifest CaptureContent() => ContentProfile.Capture(this);
     public static GameConfiguration Find()
     {
         foreach (string start in new[] { Directory.GetCurrentDirectory(), AppContext.BaseDirectory })

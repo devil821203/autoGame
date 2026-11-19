@@ -9,6 +9,8 @@ internal static class TimeActions
     {
         var time = w.Time!;
         if (IsBattleCommand(i.Kind)) return 0;
+        if(i.Kind==ActionKind.RepairEquipment)return w.Time!.EquipmentRepair?.Rules.ActionPoints??0;
+        if(MarketOrders.Handles(i.Kind))return w.Time!.MarketOrders?.Settings.Rules.OperationActionPoints??0;
         if (i.Kind == ActionKind.Wait && time.ActionDriven?.WaitActionPoints is { } waitCost) return waitCost;
         if (i.Kind == ActionKind.Rest && time.ActionDriven?.RestActionPointsPerStep is > 0) return 0;
         if(i.Kind==ActionKind.InvestSettlementPopulation)return w.PopulationInvestmentRules?.ActionPoints??0;
@@ -34,9 +36,9 @@ internal static class TimeActions
             if (actor.Health <= 0 || BoardBattleActions.Participant(w, id) || CombatActions.Active(w, id) is not null) continue;
             var budget = Budget(w, id); int amount = w.Time.ActionDriven.RestActionPointsPerStep.Value;
             int value = (int)Math.Min(w.Time.Rules.DailyActionPoints, (long)budget.Remaining + amount);
-            int n = w.Time.Budgets.FindIndex(b => b.ActorId == id); w.Time.Budgets[n] = budget with { Remaining = value };
+            int n = w.Time.Budgets.FindIndex(b => b.ActorId == id); if(n<0)w.Time.Budgets.Add(budget with{Remaining=value});else w.Time.Budgets[n] = budget with { Remaining = value };
             if (value != budget.Remaining) ActionExecutor.Emit(w, "rest-ap:" + id + ":" + w.Clock.Tick, "RestActionPointsRecovered", $"{id}:{budget.Remaining}->{value}");
-            if (value == w.Time.Rules.DailyActionPoints) w.Time.ApRestingActors.Remove(id);
+            if (value == w.Time.Rules.DailyActionPoints && w.Time.ApRestingActors.Remove(id))EventDecisions.Request(w,id,DecisionTrigger.RestCompleted);
         }
     }
     internal static void Refresh(WorldState w)
@@ -59,7 +61,7 @@ internal static class TimeActions
         int remaining = b.Day == Day(w) ? b.Remaining : w.Time.Rules.DailyActionPoints;
         if (cost < 0 || cost == 0 && !(i.Kind == ActionKind.Wait && w.Time.ActionDriven?.WaitActionPoints == 0 ||
             i.Kind == ActionKind.Rest && w.Time.ActionDriven?.RestActionPointsPerStep is > 0) || cost > remaining) return "Insufficient daily AP";
-        if (i.Kind == ActionKind.Engage && (Budget(w, i.TargetId).BusyThroughTick > w.Clock.Tick && !w.MortalTrainingWork.Any(t => t.Intent.ActorId == i.TargetId) &&
+        if (i.Kind == ActionKind.Engage && (Budget(w, i.TargetId).BusyThroughTick > w.Clock.Tick && !EquipmentRepairActions.Busy(w,i.TargetId)&&!w.MortalTrainingWork.Any(t => t.Intent.ActorId == i.TargetId) &&
             w.LifeSystem?.Work.Any(t => t.Service is { } c && (c.ProviderId == i.TargetId || c.ClientId == i.TargetId)) != true ||
             w.Time.Deferred.Any(d => d.Intent.ActorId == i.TargetId) || BoardBattleActions.Participant(w, i.TargetId))) return "Defender busy";
         if (i.Kind == ActionKind.ExploreDungeon && remaining - cost < w.Time.Rules.BattleActionPoints) return "Reserve battle AP before dungeon exploration";
@@ -104,7 +106,7 @@ internal static class TimeActions
             t.Charges.Select(c => (c.ActionId, c.ActorId)).Distinct().Count() != t.Charges.Count ||
             t.Charges.Any(c => !w.Characters.Any(a => a.Id == c.ActorId) || c.Tick < 0 || c.Tick > w.Clock.Tick || c.Day != c.Tick / r.TicksPerDay || c.Cost is < 1 or > 30) ||
             t.Deferred.Select(d => d.Intent.Id).Distinct().Count() != t.Deferred.Count ||
-            t.Deferred.Any(d => d.DueTick <= w.Clock.Tick || !w.ProcessedIntentIds.Contains(d.Intent.Id) || !w.Characters.Any(c => c.Id == d.Intent.ActorId)) ||
+            t.Deferred.Any(d => (d.DueAtSeconds is {} preciseDue?preciseDue<t.DiscreteEvents!.WorldTime:d.DueTick<=w.Clock.Tick) || !w.ProcessedIntentIds.Contains(d.Intent.Id) || !w.Characters.Any(c => c.Id == d.Intent.ActorId)) ||
             t.BattleTime.Select(b => b.BattleId).Distinct().Count() != t.BattleTime.Count || t.BattleTime.Any(b => b.RemainingTicks < 0 || b.RemainingTicks > r.BattleActionPoints))
             throw new InvalidDataException("Invalid calendar or AP state");
     }

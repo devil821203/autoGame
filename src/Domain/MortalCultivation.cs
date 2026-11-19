@@ -20,7 +20,7 @@ public sealed record MortalActionRules(int DurationTicks, int ActionPoints, int 
     int InitialAspectLevel, decimal InitiationExperienceRequired, Dictionary<MortalAttribute, decimal> QiAttributeWeights,
     bool ApplyGrowthModifiers, bool BlockSevereInjury, bool AllowCancellation,
     bool RefundActionPointsOnInterruption, double AiTrainingUtility);
-public sealed record MortalTrainingWork(ActionIntent Intent, long DueTick, int RemainingIterations = 1);
+public sealed record MortalTrainingWork(ActionIntent Intent, long DueTick, int RemainingIterations = 1, long? DueAtSeconds = null);
 
 // These are earned growth only; starting attributes and temporary equipment are separate.
 public sealed record MortalCultivationState

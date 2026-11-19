@@ -1,0 +1,5 @@
+﻿Godot Engine v4.3.stable.mono.official.77dcf97d8
+STAMINA_UI_SMOKE_PASS: scenario, travel cost, player rest while observing NPC, mindset and modifier display, save/load
+Additional assertions passed: full-stamina HP75 can rest; no start-tick heal; next tick HP85; final HP100 and Resting=false; UI displays health 10/Tick.
+Build: 0 warnings / 0 errors.
+Executed 2026-10-18: --headless --path src/Presentation -- --stamina-smoke

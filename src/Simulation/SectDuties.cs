@@ -4,7 +4,8 @@ namespace Cultivation.Simulation;
 
 internal static class SectDuties
 {
-    internal static void Advance(WorldState w)
+    internal static void Advance(WorldState w) => Advance(w, true, true, null);
+    internal static void Advance(WorldState w, bool review = true, bool publish = true, string? actorId = null)
     {
         if (w.SectDuty is not { } r) return;
         var org = w.Organizations.Single(o => o.Id == r.OrganizationId);
@@ -14,11 +15,23 @@ internal static class SectDuties
         foreach (var member in members)
         {
             var duty = w.MemberDuties.SingleOrDefault(d => d.ActorId == member.Id && d.OrganizationId == org.Id);
-            if (duty is null) { w.MemberDuties.Add(new(org.Id, member.Id, w.Clock.Tick, w.Clock.Tick)); continue; }
-            if (w.Clock.Tick - duty.LastReviewTick < r.ReviewIntervalTicks) continue;
+            if (duty is null) { w.MemberDuties.Add(new(org.Id, member.Id, w.Clock.Tick, w.Clock.Tick, 0, w.NextSequence - 1)); continue; }
+            if (!review || actorId is not null && actorId != member.Id || w.Clock.Tick - duty.LastReviewTick < r.ReviewIntervalTicks) continue;
             bool fulfilled = w.Deliveries.Any(d => d.ActorId == member.Id && d.Tick > duty.LastReviewTick && d.Tick <= w.Clock.Tick && d.Quantity > 0 && w.Missions.Any(m => m.Id == d.MissionId && m.OrganizationId == org.Id));
             fulfilled |= w.SectWorkReceipts.Any(d => d.ActorId == member.Id && d.OrganizationId == org.Id && d.Success && d.Quantity > 0 && d.Tick > duty.LastReviewTick && d.Tick <= w.Clock.Tick);
             fulfilled |= w.HuntReceipts.Any(d => d.ActorId == member.Id && d.Contribution > 0 && d.Tick > duty.LastReviewTick && d.Tick <= w.Clock.Tick && w.Hunts.Any(h => h.Id == d.MissionId && h.OrganizationId == org.Id));
+            // Seconds-based worlds can complete and review work within the same projected tick.
+            if (WorldPeriodEvents.Enabled(w))
+            {
+                var successes = w.Ledger.Where(e => e.Sequence > duty.LastReviewSequence && e.To == member.Id &&
+                    e.Reason is "MissionPayment" or "ContributionWorkReward" or "ContributionHuntReward")
+                    .Select(e => e.ActionId).ToHashSet(StringComparer.Ordinal);
+                fulfilled = w.Deliveries.Any(d => d.ActorId == member.Id && successes.Contains(d.ActionId) &&
+                    w.Missions.Any(m => m.Id == d.MissionId && m.OrganizationId == org.Id)) ||
+                    w.SectWorkReceipts.Any(d => d.ActorId == member.Id && d.OrganizationId == org.Id && d.Success && d.Quantity > 0 && successes.Contains(d.Id)) ||
+                    w.HuntReceipts.Any(d => d.ActorId == member.Id && successes.Contains(d.Id) &&
+                    w.Hunts.Any(h => h.Id == d.MissionId && h.OrganizationId == org.Id));
+            }
             int misses = fulfilled ? 0 : duty.Misses + 1;
             w.MemberDuties.Remove(duty);
             if (misses >= r.MissLimit)
@@ -29,10 +42,10 @@ internal static class SectDuties
                 w.Plans.RemoveAll(p => p.ActorId == member.Id);
                 ActionExecutor.Emit(w, member.Id, "DutyExpelled", $"{org.Id}:{misses} consecutive missed reviews");
             }
-            else w.MemberDuties.Add(duty with { LastReviewTick = w.Clock.Tick, Misses = misses });
+            else w.MemberDuties.Add(duty with { LastReviewTick = w.Clock.Tick, Misses = misses, LastReviewSequence = w.NextSequence - 1 });
             ActionExecutor.Emit(w, member.Id, "DutyReviewed", $"{org.Id}:fulfilled={fulfilled},misses={misses}");
         }
-        if (w.Clock.Tick % r.MissionIntervalTicks != 0 || org.LeaderId is null) return;
+        if (!publish || w.Clock.Tick % r.MissionIntervalTicks != 0 || org.LeaderId is null) return;
         Publish(w.MedicineOnly ? "herb" : "pill", r.PillQuantity, r.PillReward); Publish("beast-hide", r.HideQuantity, r.HideReward);
         void Publish(string item, long quantity, long reward)
         {

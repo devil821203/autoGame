@@ -51,6 +51,8 @@ internal static class SettlementConstruction
         w.SettlementConstruction.Add(new(i.Id,s.Id,buildingId,i.OrganizationId!,w.Clock.Tick,kind,
             i.SettlementBuildPosition.Value,cost.Stones,cost.Wood,points));
         w.SettlementInfluence.Add(new(i.Id,s.Id,i.OrganizationId!,"building:"+buildingId,1,points));
+        EventDecisions.OrganizationChanged(w,i.OrganizationId!);
+        if(kind==SettlementBuildingKind.Housing)EventDecisions.SettlementPlanningChanged(w,s);
     }
 }
 

@@ -5,6 +5,7 @@ namespace Cultivation.Presentation;
 
 public partial class SiteCourtyard : Node2D
 {
+    private readonly Font drawFont = PresentationFonts.Create();
     private SceneSite? site;
     private readonly List<Node> controls = [];
     public event Action<string>? Selected;
@@ -44,7 +45,7 @@ public partial class SiteCourtyard : Node2D
         DrawRect(new(25, 40, 800, 600), ground);
         DrawRect(new(400, 145, 50, 485), new Color("aaa087"));
         DrawRect(new(50, 150, 750, 18), new Color("aaa087"));
-        DrawString(ThemeDB.FallbackFont, new(25, 29), site.Name + "｜" + KindName(site.Kind), fontSize: 21, modulate: Colors.White);
+        DrawString(drawFont, new(25, 29), site.Name + "｜" + KindName(site.Kind), fontSize: 21, modulate: Colors.White);
         for (int i = 0; i < 5; i++)
         {
             float x = 65 + i * 175;

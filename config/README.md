@@ -1,4 +1,40 @@
+2026-11-04：R2有工期資源轉移接入共用帳本預留及裝備在途驗證，沒有新增或調整遊戲數值；沿用既有時間、AP與資產規則。最新秒制情境存檔格式23，見[R2轉移驗收](../docs/驗收/R2/R2_有工期資源轉移生命週期與預留.md)。
+
+2026-11-04：R2宗門採藥接入共用藥園資源預留，未新增或調整任何遊戲數值；沿用既有採集工期、AP、體力、貢獻及任務資格。最新秒制情境存檔格式22，見[R2宗門採藥驗收](../docs/驗收/R2/R2_宗門採藥生命週期與預留.md)。
+
+2026-11-04：R2六角建造接入共用資金預留，未新增或調整任何遊戲數值；繼續使用既有建造配置、工期及AP規則。最新秒制情境存檔格式21，見[R2建造驗收](../docs/驗收/R2/R2_六角建造生命週期與預留.md)。
+
+2026-11-03：R2一般採集接入共用預留，沒有變更任何遊戲設定數值；最新秒制情境存檔格式20，原採集參數、載入與時間規則不變。見[R2採集驗收](../docs/驗收/R2/R2_一般採集生命週期與預留.md)。
+
+2026-11-02：R1格式19世界週期設定讀取已驗證，剩餘週期專項9/9、完整回歸501/501；歷史情境仍用原模式。設定範圍與換算見下列2026-11-01說明及[R1測試紀錄](../docs/驗收/R1/R1_剩餘週期_測試紀錄.md)。
+
+2026-11-01 R1格式19：剩餘週期改由秒事件讀取既有新局設定快照，沒有新增平衡數值。宗門採organizations/duty.json、payroll.json、hunts.json；邀請採combat/party.json；收購採economy/procurement.json及life/procurement.json原覆寫；聚落採settlements原設定。沿time/action-driven.json與calendar.json現有換算，正整數週期轉秒，不重複換算日數；購買頻率保持原一個時間步，價格檢查另循既有IntervalTicks。此批已接程式但未編譯、未測試；設定合法範圍沿原載入驗證。詳見[修改紀錄](../docs/驗收/R1/R1_剩餘週期與事件排序_修改紀錄.md)。
+
 # 遊戲參數設定
+
+2026-11-01最新R1格式18接社交邀約到期：沿`organizations/social.json`正整數OfferLifetimeTicks（30，新情境既有日制換算為30日）與共用時間倍率，從實際發出秒數起算完整有效期；冷卻、資格與費率未改。專項5/5，見[社交期限驗收](../docs/驗收/R1/R1_社交邀約到期秒事件_補完與驗收.md)。以下格式17及以前為歷史批次。
+
+2026-11-01最新R1格式17接徵集任務到期事件：不新增數值。`organizations/duty.json` 的MissionLifetimeTicks沿既有日制載入換算；既有MissionOffer.DeadlineTick為絕對期限，乘共用秒倍率後排程。到期退款仍扣除已支付報酬；專項7/7已驗證。詳見[任務到期驗收](../docs/驗收/R1/R1_徵集任務到期秒事件_補完與驗收.md)。下列格式16及以前保留為歷史批次紀錄。
+
+2026-11-01最新R1格式16接宗門發薪事件：`organizations/payroll.json` 的IntervalTicks沿新情境日制換算（10日=864000秒）、StonesPerMember為每位合格成員的錢財（10），須正值，OrganizationId須存在。正式數值與原整批支付規則未改；專項6/6已驗證。發薪暫依賴同秒相容步先完成考核，見[發薪驗收](../docs/驗收/R1/R1_宗門發薪秒事件_補完與驗收.md)。以下格式15為上一批紀錄，不再作最新格式。
+
+2026-11-01最新R1格式15續接藥園再生秒事件：`world/regeneration.json` 的正整數IntervalTicks在此新情境沿既有日制載入流程換成相容步，再乘`SecondsPerStep`轉秒；預設10日=864000秒。Amount與Capacity均為正整數份數，仍為2／10000；滿庫不產出但下一週期仍排程。參數已接入程式且專項6/6通過，沒有新增或覆寫數值，舊存檔不遷移。見[驗收](../docs/驗收/R1/R1_資源再生秒事件_補完與驗收.md)。
+
+## R2生命週期與預留（2026-10-31）
+
+僅按「R2行動／預留測試」明確啟用的新局生效，舊情境不自動轉換；另存格式5保留狀態與原規則快照。此批不新增成本／倍率／機率／設施容量。AP、修練、生活服務與旅行仍引用原分類設定，詳見[R2實作](../docs/驗收/R2/R2_共用行動生命週期與資源預留.md)。正式設施槽位與進度損失未定，不寫入生效設定；容量1僅在測試fixture驗證互斥，不是正式設施規則。
+
+## R1明確啟用的秒制事件模式（2026-10-30）
+
+`time/discrete-events.json`僅供新建R1測試世界使用，不自動套用三個主要情境或舊存檔。
+
+| 欄位 | 單位／範圍 | 狀態與生效方式 |
+| --- | --- | --- |
+| TimeUnit | 必須為Seconds | 使用者已確認整數秒；事件DueAt與WorldTime均為long秒，不接受Minutes混用 |
+| MaximumEventsPerAdvance | 正整數，工程預設10000 | 每次推進最多處理的事件（含失效事件）；達限停在目前時間、不跳過剩餘事件；工程保護上限，不是AP／收益設定 |
+| MaximumEventsAtSameTime | 正整數，工程預設1000 | 同一次推進在單一時間戳最多處理事件數，阻止零耗時連鎖；工程保護上限 |
+
+由既有GameConfiguration讀取並驗證，保存在Time.DiscreteEvents.Rules快照。改設定後須重新按「R1秒制事件測試」建立；已存在的世界／存檔保留快照，未動態讀檔。實際活動仍由既有分鐘設定換算，1分鐘=60秒是單位轉換，不另複製AP或修練成本。600秒相容事件目前仍轉接其他舊系統；不宣稱這份設定已將全世界改為純DES。
 
 這裡是新建世界使用的分類JSON。修改數值並儲存後，重新建立對應情境即可生效；正在運作的世界與舊存檔沿用建立時保存的設定。程式執行中不逐Tick讀檔，也不自動重套設定。
 
@@ -81,7 +117,7 @@
 - 存檔保存設定快照；改JSON後需建立新世界才會採用。沒有加入熱更新、存檔改值工具或新玩法。
 - C#的類別／列舉、行動演算法、未資料化的內部判斷常數仍在程式中；類別中的建構預設保留給舊存檔及直接建立模型使用。
 
-驗收與實作紀錄：[參數設定分類與戰鬥志向驗收](../document/參數設定分類與戰鬥志向驗收.md)。
+驗收與實作紀錄：[參數設定分類與戰鬥志向驗收](../document/驗收/系統/參數設定分類與戰鬥志向驗收.md)。
 
 新增操作：儲存JSON後，在遊戲按「開新存檔（重設初始值）」會重新讀設定，重建目前類型的情境並自動新增初始存檔；舊存檔保留，未儲存進度會重設。
 
@@ -116,20 +152,20 @@ NPC命名已依志向統一：戰鬥者01～03、丹道者01～03、修煉者01�
 | organizations/payroll.json | 本輪每10Tick發10錢財，替代原30 |
 | organizations/duty.json | 每20Tick檢查物品任務、各5份、期限120；考核120Tick，連續3期未成功逐出 |
 
-前文原批次數值為歷史值，以目前JSON及此節為準。舊存檔不變，按「開新存檔（重設初始值）」套用。完整實測見[清剿組隊經濟驗收](../document/宗門清剿_組隊與經濟運轉驗收.md)。134/134及三種子各400Tick通過，不代表長期封閉經濟平衡。
+前文原批次數值為歷史值，以目前JSON及此節為準。舊存檔不變，按「開新存檔（重設初始值）」套用。完整實測見[清剿組隊經濟驗收](../document/驗收/系統/宗門清剿_組隊與經濟運轉驗收.md)。134/134及三種子各400Tick通過，不代表長期封閉經濟平衡。
 ## 階段5效能設定
 
-world/performance.json：附近／同區／遠方AI更新間隔1／4／16Tick、遠方單人戰鬥批次16Tick、診斷保留120Tick與候選詳列開關。只在階段5情境或明確啟用LOD的長測套用，設定與每角色更新游標可存讀。原有遊玩情境的更新頻率不強制改動；量測與UTF8複製／稽核索引改善共用。新效能情境額外NPC皆均衡，四類特殊志向仍各3。使用方式見[階段5驗收](../document/階段5_效能LOD與長期驗收.md)。
+world/performance.json：附近／同區／遠方AI更新間隔1／4／16Tick、遠方單人戰鬥批次16Tick、診斷保留120Tick與候選詳列開關。只在階段5情境或明確啟用LOD的長測套用，設定與每角色更新游標可存讀。原有遊玩情境的更新頻率不強制改動；量測與UTF8複製／稽核索引改善共用。新效能情境額外NPC皆均衡，四類特殊志向仍各3。使用方式見[階段5驗收](../document/驗收/階段5/階段5_效能LOD與長期驗收.md)。
 
 
 
 
 
-時間測試設定：time/calendar.json 與 time/action-costs.json。新建「時間與AP測試」才啟用，30Tick／日、30AP／角色；行動成本即工期，戰鬥預設5。原組織等週期設定數字於此新情境按天×30；舊情境及存檔保持原規則。詳見[時間驗收](../document/時間與AP系統_實作與驗收.md)。
+時間測試設定：time/calendar.json 與 time/action-costs.json。新建「時間與AP測試」才啟用，30Tick／日、30AP／角色；行動成本即工期，戰鬥預設5。原組織等週期設定數字於此新情境按天×30；舊情境及存檔保持原規則。詳見[時間驗收](../document/驗收/系統/時間與AP系統_實作與驗收.md)。
 
-生活技能測試：life/skills.json（確認的等級與療效）、options.json（醫療工期／重傷／品質／熟練）、recipes.json（配方／工期／裝備加成）、test-stock.json（有限初始測試物資）。只有新建生活情境載入並保存快照，舊檔不強制套用。製作體力沿characters/stamina.json的ActivityCost；其餘測試值及限制見[驗收](../document/生活技能首版_實作與驗收.md)。
+生活技能測試：life/skills.json（確認的等級與療效）、options.json（醫療工期／重傷／品質／熟練）、recipes.json（配方／工期／裝備加成）、test-stock.json（有限初始測試物資）。只有新建生活情境載入並保存快照，舊檔不強制套用。製作體力沿characters/stamina.json的ActivityCost；其餘測試值及限制見[驗收](../document/驗收/系統/生活技能首版_實作與驗收.md)。
 
-新建停丹測試：life/procurement.json 指定藥草收購初價4；life/medicine-only.json 指定藥膏市場基準12、範圍8～24及草任務價4；life/availability.json 停用生活情境煉丹。所有實際新測試入口套MedicineOnlyProfile，原economy/procurement.json等丹藥欄位只保留舊規則樣本／存檔相容，不是新模式生效品項。詳見[驗收](../document/藥草收購與停丹測試_實作與驗收.md)。
+新建停丹測試：life/procurement.json 指定藥草收購初價4；life/medicine-only.json 指定藥膏市場基準12、範圍8～24及草任務價4；life/availability.json 停用生活情境煉丹。所有實際新測試入口套MedicineOnlyProfile，原economy/procurement.json等丹藥欄位只保留舊規則樣本／存檔相容，不是新模式生效品項。詳見[驗收](../document/驗收/系統/藥草收購與停丹測試_實作與驗收.md)。
 
 ## 凡人修為參數（2026-10-18）
 
@@ -168,14 +204,14 @@ world/performance.json：附近／同區／遠方AI更新間隔1／4／16Tick、
 | RefundActionPointsOnInterruption | false | 受襲中斷不退AP；未完成不扣體力、不給經驗 |
 | AiTrainingUtility | 20 | 正有限效用基值，乘既有角色GrowthWeight並依已獲成長遞減，經共用可行性過濾；非保證NPC一定修練 |
 
-規則旗標目前限定上述已確認玩法，變更會拒絕載入，不能藉改設定啟用尚未實作功能。詳見[階段8驗收](../document/階段8_凡人修為實作與驗收.md)。
+規則旗標目前限定上述已確認玩法，變更會拒絕載入，不能藉改設定啟用尚未實作功能。詳見[階段8驗收](../document/驗收/階段8/階段8_凡人修為實作與驗收.md)。
 ## 六種專職與有償生活服務（2026-10-18）
 
 `characters/specialists.json` 是新建藥物測試的最後角色覆寫，取代上方歷史「丹道各3」的現行適用性。六個ActorId不可重複，對應醫師／藥師／鍛造師／性功／命功／炁功各1；Name與LocationId為名稱及位置，InitialStock是正整數有限創世物資，不會定期補貨。WorkUtility=50（工作與專職訓練效用）、SupplyUtility=60（非醫療委託效用）皆為正有限數。無該ID的小型舊Demo不增加人口；新模式清除丹道志向與煉丹師身分，原始角色JSON保留歷史核心情境用途。
 
 `life/service-prices.json`：RequestActionPoints=1為委託提交AP（正整數），MedicalUtility=200為就醫效用（正有限數）；LaborFees為medical5、severe-injury15、ointment3、bleeding-powder5、iron-sword10、leather-armor10（錢財／次或件，正整數）；MaterialPrices為herb4、ointment12、iron-material5、beast-hide4（錢財／份，正整數）。師傅供料總價＝手工費＋配方用量×基準材料價；客供料不加材料費。缺材料價、無效服務、非法數字或上溢拒絕載入。
 
-兩份已接新建情境、AI與世界快照；修改後新建世界生效。預設啟動為階段8凡人專職情境；其他舊式新建測試沿自身世界規則，不強加時間／三功。舊存檔不新增職業或服務。詳見[操作與驗收](../document/六種專職與有償服務_實作與驗收.md)。
+兩份已接新建情境、AI與世界快照；修改後新建世界生效。預設啟動為階段8凡人專職情境；其他舊式新建測試沿自身世界規則，不強加時間／三功。舊存檔不新增職業或服務。詳見[操作與驗收](../document/驗收/系統/六種專職與有償服務_實作與驗收.md)。
 
 ## 六職十年量測工具
 
@@ -198,7 +234,7 @@ settlements/buildings.json：八類建築的Kind、Terrain（Land／Plains／For
 - `settlements/demo.json`保存SiteId及Forest／Mountain測試位置，須不同且存在、不覆蓋其他據點入口；只覆寫聚落新情境的地形，不更改既有六角情境。
 - `settlements/items.json`保存糧食／木材／礦物品項，加入共用Items目錄，初始未發放免費物資。
 
-生效方式：建立「聚落營運測試」或在該模式開新存檔時讀入，驗證後存入世界快照；讀舊檔不重讀、不遷移。初始員工均未僱用、員工可用數暫等於抽象居民人口；幸福變化、人口成長、維護費、製造與影響力用途均未接入。詳細操作與驗收見 `document/聚落營運_實作與驗收.md`。
+生效方式：建立「聚落營運測試」或在該模式開新存檔時讀入，驗證後存入世界快照；讀舊檔不重讀、不遷移。初始員工均未僱用、員工可用數暫等於抽象居民人口；幸福變化、人口成長、維護費、製造與影響力用途均未接入。詳細操作與驗收見 `document/驗收/系統/聚落營運_實作與驗收.md`。
 ### 聚落組織出資建造（2026-10-22確認並接入）
 
 `settlements/construction.json`：Kind必須完整且不重複地列出Housing／Farm／Forestry／Mine／Shop；Stones（錢財／棟）、Wood（木材份／棟）均正整數，目前各20／10。立即完成不另設工期，沿用共用世界行動AP。每棟影響力取runtime.json的BuildingInfluence，不在建造檔複製點數；民居增加容量取HousingCapacity。
@@ -213,7 +249,7 @@ settlements/buildings.json：八類建築的Kind、Terrain（Land／Plains／For
 - `settlements/taxes.json`：ProductionRate為0～1的小數稅率，2026-10-23依使用者更新為0.3（30%）；僅新建情境載入，已保存世界保留原稅率快照。僅組織資源生產課實物稅；公有不向自己課稅。每棟小數餘額保留到下期並存檔，無交易稅設定。不存在用未定稅率當生效值的情況。
 - 生產基準及工資仍只取runtime.json的DailyOutputPerEmployee／DailyWage；有效人數為公有建築上限或組織建築實際僱員，產量不再乘等級。公有工資為0、不占實際居民僱員，組織由其帳戶付薪。建築定義RequiresEmployees在新模式表示營業設施，公有自動營運不另僱人，組織仍實際僱人。
 
-新建「聚落營運測試」載入並驗證以上規則，再存入WorldState設定快照；缺少規則的舊檔不自動啟用、不重新指派所有權。升級／建造／產出與稅額皆有收據及帳本驗證。錯誤拒絕會指出operations.json、taxes.json或organization-sites.json與欄位類別。詳見`document/聚落組織據點與建築營運_實作與驗收.md`。
+新建「聚落營運測試」載入並驗證以上規則，再存入WorldState設定快照；缺少規則的舊檔不自動啟用、不重新指派所有權。升級／建造／產出與稅額皆有收據及帳本驗證。錯誤拒絕會指出operations.json、taxes.json或organization-sites.json與欄位類別。詳見`document/驗收/系統/聚落組織據點與建築營運_實作與驗收.md`。
 ## 貨幣分類（2026-10-23）
 
 `items/currencies.json` 保存兩種分類：Money＝錢財，Enabled=true、ResourceId=spirit-stone；SpiritStone＝新版靈石，Enabled=false、ResourceId=null，僅保存待確認分類，尚未生效。Kind須完整且唯一、Name不可空白；Money須對應items/catalog.json的既有貨幣項目，名稱必須一致；新版靈石目前禁止設為啟用或分配資源ID。沒有新增價值、匯率或數量設定。
@@ -358,11 +394,11 @@ UI情境按鈕為「村內組織測試」，命令列入口--village-organizatio
 
 **後續接入更新（取代下文較早的僅保存狀態）**：`cultivation/methods-proposal.json`現由新建「功法修練測試」情境載入並保存在World.Methods快照；TrainingRules的Tick／AP／體力／技能熟練／三功經驗已生效，資格採永久基礎屬性＋永久成長、累計門檻與自動層級查詢已接入。心境／疲勞沿用共用設定。`cultivation/method-scenario.json`保存初始熟練（非負decimal）、玩家及各組織功法ID分配（必須存在於目錄）。只影響該新情境，原凡人情境／舊檔不自動啟用。Status為TrainingEnabled_EffectsPending：被動屬性、主動招式傷害／戰鬥熟練尚未接入，對應效果欄位仍僅保存規格，修改不會改變戰鬥。現有AI成長權重沿用mortal-actions.json，不新增隱藏功法偏好倍率。
 
-`cultivation/methods-proposal.json`：**僅保存已確認規格，尚未生效**，已提供CultivationMethodConfiguration.Read明確讀取／驗證入口，尚未由情境呼叫，未接世界快照。層數／熟練需求為正整數，屬性加值與傷害加值非負，體力使用成本為非負整數；傷害倍率採倍率（1.2即120%），屬性係數為非負數。已確認技能獨立熟練、累計門檻100／200／300；青雲入門10／10，升2／3層20／20。柳溪劍法倍率1.1。TrainingRules保存每次1Tick／1AP／1體力／1基礎技能熟練及1基礎三功經驗，均為正值；倍率沿用既有共用設定。力大飛磚獨立修練。以上仍僅保存，尚未接入程式。詳見[功法方案](../document/功法系統_技能標籤與熟練方案.md)。
+`cultivation/methods-proposal.json`：**僅保存已確認規格，尚未生效**，已提供CultivationMethodConfiguration.Read明確讀取／驗證入口，尚未由情境呼叫，未接世界快照。層數／熟練需求為正整數，屬性加值與傷害加值非負，體力使用成本為非負整數；傷害倍率採倍率（1.2即120%），屬性係數為非負數。已確認技能獨立熟練、累計門檻100／200／300；青雲入門10／10，升2／3層20／20。柳溪劍法倍率1.1。TrainingRules保存每次1Tick／1AP／1體力／1基礎技能熟練及1基礎三功經驗，均為正值；倍率沿用既有共用設定。力大飛磚獨立修練。以上仍僅保存，尚未接入程式。詳見[功法方案](../document/方案/功法系統_技能標籤與熟練方案.md)。
 
 # 目前主要測試情境（2026-10-25）
 
-`testing/scenarios.json`已接入TestScenarioCatalog與Godot主要情境選單：DefaultId必須對應Scenarios中的ID；每筆Id只能為methods／settlement／battle且唯一，Name／Description不可空。這是情境選擇與顯示設定，不新增平衡參數或覆寫其他系統數值。啟動及重新建立時讀取，世界規則仍由既有各工廠載入並保存快照；歷史情境保留，新局不覆蓋存檔。詳見[功能總覽與情境](../document/目前功能總覽與測試情境.md)。
+`testing/scenarios.json`已接入TestScenarioCatalog與Godot主要情境選單：DefaultId必須對應Scenarios中的ID；每筆Id只能為methods／settlement／battle且唯一，Name／Description不可空。這是情境選擇與顯示設定，不新增平衡參數或覆寫其他系統數值。啟動及重新建立時讀取，世界規則仍由既有各工廠載入並保存快照；歷史情境保留，新局不覆蓋存檔。詳見[功能總覽與情境](../document/操作/目前功能總覽與測試情境.md)。
 
 # 獸皮資源ID（2026-10-27）
 
@@ -370,7 +406,7 @@ UI情境按鈕為「村內組織測試」，命令列入口--village-organizatio
 
 # 玩家行動驅動時間（2026-10-29）
 
-`time/action-driven.json`已接目前兩個主要世界時間情境與新局重建，保存到World.Time.ActionDriven：IdleRetryTicks（正整數Tick，預設5）是無可行行動NPC的重試間隔；受傷／移動／新可見通知可提前喚醒。MaximumAdvanceSteps（正整數步數，預設10000）是單次玩家活動執行安全上限，超限還原活動前狀態。`time/action-costs.json.Wait`為等待AP／Tick成本（預設1、合法1～30），其餘行動仍讀原成本。新模式預設主角自主排程關閉，GUI可選開啟；非法指令不推時、查詢免費、合法活動完成後停下。舊檔缺少ActionDriven保留原模式，不自動遷移。詳見[操作與驗收](../document/玩家行動驅動時間與NPC決策_實作與驗收.md)。
+`time/action-driven.json`已接目前兩個主要世界時間情境與新局重建，保存到World.Time.ActionDriven：IdleRetryTicks（正整數Tick，預設5）是無可行行動NPC的重試間隔；受傷／移動／新可見通知可提前喚醒。MaximumAdvanceSteps（正整數步數，預設10000）是單次玩家活動執行安全上限，超限還原活動前狀態。`time/action-costs.json.Wait`為等待AP／Tick成本（預設1、合法1～30），其餘行動仍讀原成本。新模式預設主角自主排程關閉，GUI可選開啟；非法指令不推時、查詢免費、合法活動完成後停下。舊檔缺少ActionDriven保留原模式，不自動遷移。詳見[操作與驗收](../document/驗收/系統/玩家行動驅動時間與NPC決策_實作與驗收.md)。
 
 # 分鐘制AP（2026-10-29最新確認）
 
@@ -378,5 +414,72 @@ UI情境按鈕為「村內組織測試」，命令列入口--village-organizatio
 
 # 批次修練（2026-10-29）
 
-`time/action-driven.json.TrainingBatchLimit=30`（正整數次數）已接入新模式屬性修練／打坐／功法修練，UI可選次數並預覽總時間與AP。開始扣總AP、每段套用當下疲勞／心境並結算體力與經驗；受襲或體力不足停止剩餘段數，AP不退。缺少設定的歷史快照維持單次。原單段成本仍各由cultivation設定供應，沒有另建批次收益值。詳見[操作與驗收](../document/批次修練_操作與驗收.md)。
+`time/action-driven.json.TrainingBatchLimit=30`（正整數次數）已接入新模式屬性修練／打坐／功法修練，UI可選次數並預覽總時間與AP。開始扣總AP、每段套用當下疲勞／心境並結算體力與經驗；受襲或體力不足停止剩餘段數，AP不退。缺少設定的歷史快照維持單次。原單段成本仍各由cultivation設定供應，沒有另建批次收益值。詳見[操作與驗收](../document/驗收/系統/批次修練_操作與驗收.md)。
 
+# R3事件決策（2026-10-31）
+
+僅明確新建的R3測試模式接入。沒有新增玩法數值：閒置重試沿用`time/action-driven.json.IdleRetryTicks`（正整數相容步數，按世界分鐘步長換算秒），LOD模式沿用原區域間隔作重試下限；決策預算沿用世界Rules.DecisionBudget（正整數，每相容步長窗口），公開市場觀察有效期沿用Rules.MemoryTicks（正整數步數，按世界步長換算秒）。均從已載入設定快照讀取，不載入最新config覆寫舊檔。可信度1為直接觀察的來源分類，未新增可信度評分玩法。知識邊界目前只轉接本地公開市場，不代表所有AI來源已完成；見[實作範圍](../docs/驗收/R3/R3_事件決策與市場知識邊界.md)。
+
+# R4內容識別（2026-10-31）
+
+`content/manifest.json`已接明確新建的R4情境：SchemaVersion僅支援整數1，ContentVersion僅支援字串`r4-1`，無時間／貨幣單位，屬工程相容性標記而非玩法平衡值。非法／未知值拒絕，不作自動遷移。新局保存版本及全部config JSON原始位元組SHA-256，版本與雜湊合併才是完整內容識別；修改config須重建才生效，讀舊世界不載入目前config。沒有複製第二套遊戲設定或改任何已確認成本。格式7的JSON與SQLite保留同一快照；SQLite僅本機Windows系統provider已驗證。詳見[R4紀錄](../docs/驗收/R4/R4_內容版本與SQLite快照.md)。
+
+# R5訂單簿核心檢查點（2026-10-31）
+
+`economy/order-book.json`三組規則已由使用者確認，已接純C#的MarketOrders.EnableFresh，只有明確建立的R5新世界生效；目前尚無R5玩家介面／完整NPC驗收，未預設啟用於原情境。Priority僅支援PriceTime、ExecutionPrice僅支援RestingOrder、AllowSelfTrade僅支援false；ReferenceTradeWindow為正整數成交筆數（20），TransactionFeeRate目前僅支援0（尚無非零收費實作，不可填任意費率）。OperationMinutes為正整數分鐘（10），須整除世界AP時間單位；OperationActionPoints為正整數AP（1），須對應上述分鐘且不超過每日上限；DefaultExpiryDays為正整數日（1），從掛單生效時計算。Venues保存市場Id／RegionId／LocationId，首批為market／valley／town。
+
+參考價的無成交基準共用原有服務材料價、聚落原料價及配方材料＋手工費來源，沒有第二份商品價格。世界保存規則快照，重建才載入變更；訂單資產使用權威帳本，不連接無限測試市場發行資產。R5外部格式8防止舊讀取器丟失訂單。內容標記現升為`r5-1`，讀取仍接受舊`r4-1`，前段R4的版本文字是當時紀錄；不改舊世界或自動遷移。
+
+R5核心8/8專項通過，整階段仍測試中；R6候選地區數／尺寸未確認，尚未新增生效生成設定。
+
+# R6a多地區Demo（2026-10-31最新確認）
+
+`world/regions-demo.json`已接「R6a多地區測試」新局：Seed為UInt64非負整數（預設12345，可由UI指定）；Width／Height為每區格數（7／7），Regions有序列表目前3區（valley、greenland、sunset），ID唯一／無冒號，第一區須為valley以保留既有據點；HomeSiteOverrides為首區內座標，讓新7×7場景容納既有城鎮場景。數量由列表決定、不另存第二個Count。生成值已確認，不再待定。工程限制沿用六角驗證的高度／總寬128與總格數16384，並檢查據點容納與可達性。
+
+地形種類／數量沿用`map/layout.json`範本，旅行沿用`map/movement.json`及世界AP快照；新區初始資產沿用原grove／market的設定範本，保存來源並記Genesis，沒有另寫隱藏產量或無限補貨。改config須重建；讀檔不讀目前config。`content/manifest.json`目前r6a-1，讀取仍接受r4-1／r5-1，低版區域存檔會明確拒絕。R6a已通過9/9專項、418/418回歸與6次UI退出；R6b未啟用。詳見[R6a紀錄](../docs/驗收/R6/R6a_多地區生成與跨區旅行.md)。
+
+## R1生活秒事件補完（2026-10-31，已接入）
+
+2026-11-01最新：`LifeEventScenario` 加入IndependentRecoveryEvents，入口「R1工作／旅行／恢復秒事件（重建）」、格式14，不處理舊格式相容／遷移。RestDueSeconds及MedicineEffect.NextAtSeconds為整數世界秒；每次恢復間隔由既有MinutesPerActionPoint換算SecondsPerStep，無新增平衡數值。體力／環境／生命回復沿 `characters/stamina.json`，AP沿 `time/action-driven.json`，藥效量／次數沿 `life/skills.json`，各合法範圍與世界設定快照不變。戰鬥輪末效果不改，戰後剩餘次數才改世界秒事件。已接入且驗收10/10、完整469/469、Godot exit0；下文格式12／13為歷史紀錄。
+
+最新續作：`LifeEventScenario` 已同時啟用IndependentScheduledEvents，旅行、Scheduled與Deferred採用DueAtSeconds及既有config工期，不新增遊戲數值。入口「R1工作／旅行秒事件（重建）」、最新外部格式13；使用者指定不處理舊存檔相容／遷移，格式12不做轉換。專項9/9、完整459/459、Godot旅行退出0。下段格式12為前批歷史，當前請開新局。
+
+新建 `LifeEventScenario` 明確啟用世界快照的 `Time.IndependentLifeEvents`，外部格式12。不是新增平衡設定；工期／AP仍沿用 `life/recipes.json`、`life/options.json` 及既有分鐘設定，材料試用庫存沿用 `life/test-stock.json`，各值的合法範圍不變。世界秒為整數，DueAtSeconds為唯一完成期限，DueTick為相容向上投影。只新情境啟用，舊檔不重讀config或自動轉換；專項7/7、Godot退出0，完整回歸450/450通過。見docs/驗收/R1/R1_生活工作秒事件_補完與驗收.md。
+
+## R8 裝備修理（2026-10-31，已接入）
+
+`items/repair.json` 僅由新建 `EquipmentRepairScenario` 啟用並保存設定快照；舊存檔不重新讀取本檔。玩家與NPC、自修與委託使用同一規則物件。使用者已確認30分鐘／3AP、恢復20、武器1鐵料、防具1獸皮、委託手工費5錢財、100%成功、中斷退材料費用且AP不退。格式11保存工作、鎖、事件及修理收據；內容版本r8-1，舊版本仍保留原模式。
+
+| 參數 | 單位／合法值／用途 |
+| --- | --- |
+| DurationMinutes | 正整數分鐘，首版須10分鐘倍數；修理完成時間 |
+| ActionPoints | 1～30整數，開始由發起者一次支付；不隨存讀重扣 |
+| RestoredDurability | 正整數點；完成上限由既有 `items/durability.json` 的Maximum控制 |
+| SuccessChance | 機率0～1，首版只接受已確認的1，不啟用失敗玩法 |
+| ServiceFee | 正整數錢財，同地鍛造師完成才取得；自修不收 |
+| WeaponMaterial／ArmorMaterial | 首版對應iron-material／beast-hide |
+| MaterialQuantity | 正整數份，材料由物主提供並預留，完成才消耗 |
+| DemoActors | 不重複且必須存在的角色ID；僅新建測試世界供有限材料與一件武器 |
+| DemoMaterialQuantity | 正整數份，開局有限材料；不自動補貨 |
+| DemoWearBattles | 非負整數次；測試歷史磨損fixture，非實際完成戰鬥數。示範值80是工程情境配置，非遊戲平衡定案 |
+
+代修者全程忙碌；修理裝備以共用容量租約保留，不能穿戴／轉移／重複修理。遊戲參數不在UI另寫一份。非法值拒絕並指出檔名與欄位類別。專項10/10、完整443/443及Godot實際按鈕操作退出0；已完成本輪確認範圍。
+
+## R6b 控制資格與R7量測（2026-10-31）
+
+`characters/player-control.json` 僅套用新建R6b情境，初始角色ID須存在且不可重複。ScenarioOnly／PauseAndSelect、切換AP與分鐘均0、RequirePaused=true、AllowDuringCombat=false、ResetAutonomyOnSwitch=true 為本次已確認首版規則；非法組合拒絕載入。設定快照、資格及變更歷史隨格式10存檔保存，舊檔不覆寫。已接入核心及UI，聚焦驗收13/13，整體回歸待驗證；正式資格來源未實作。
+
+`testing/r7-benchmark.json` 為工程量測設定，已接入Headless的 `--r7-benchmark 輸出資料夾 [NPC數]`，不改遊戲玩法或驗收門檻：
+
+| 欄位 | 單位、合法值與用途 |
+| --- | --- |
+| NpcCounts | 不重複正整數陣列，最多20000；實際不得低於保留的情境NPC數；預設100／1000／5000 |
+| TemplateActorId | 必須為情境中存在的角色；深複製角色資料及有限初始庫存，非無限補資金 |
+| MinimumSteps／MaximumSteps | 正整數步數，最大不得小於最小；至少取樣與安全上限 |
+| MaximumWallSeconds／SoakMaximumWallSeconds | 有限正數秒；各級及多年探針的牆鐘預算，步與步之間檢查，單步可能超出預算 |
+| MaximumWorkingSetMiB | 正整數MiB，程序工作集安全限制，不代表容量門檻 |
+| DecisionCoverage | (0,1]，至少做過決策的NPC比例；不是效能達標率 |
+| ImportantStopSeconds | 正整數世界秒，插入一次重要事件驗證精確停止 |
+| SoakNpcCount／SoakYears | 正整數，NPC至多20000；年長沿世界年曆，不硬編天數 |
+
+每次輸出保存完整測試設定、種子、內容版本、硬體及實際推進範圍。工程預算為可調量測細節，未作遊戲平衡值。部分覆蓋、限時結束與不足多年必須明示未通過；Headless不產生畫面FPS證據。

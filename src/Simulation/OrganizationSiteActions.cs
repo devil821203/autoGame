@@ -48,6 +48,7 @@ internal static class OrganizationSiteActions
                 if(map.Sites[n].OrganizationId==site.OrganizationId&&map.Sites[n].Anchor==anchor)
                     map.Sites[n]=map.Sites[n] with{MainLevel=site.Level};
         }
+        EventDecisions.OrganizationChanged(w,site.OrganizationId);
     }
 }
 

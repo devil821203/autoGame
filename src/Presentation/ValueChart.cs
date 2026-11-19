@@ -5,6 +5,7 @@ namespace Cultivation.Presentation;
 // Presentation-only history: never feeds values back into the simulation.
 public partial class ValueChart : Control
 {
+    private readonly Font drawFont = PresentationFonts.Create();
     private (long Tick, double Value)[] samples = [];
     public void SetSamples(IEnumerable<(long Tick, double Value)> values)
     {
@@ -19,7 +20,7 @@ public partial class ValueChart : Control
         if (samples.Length == 0) return;
         double min = samples.Min(s => s.Value), max = samples.Max(s => s.Value);
         if (max == min) { min -= 1; max += 1; }
-        var font = ThemeDB.FallbackFont;
+        var font = drawFont;
         DrawString(font, new Vector2(2, 24), max.ToString("0.#"), fontSize: 12);
         DrawString(font, new Vector2(2, area.End.Y), min.ToString("0.#"), fontSize: 12);
         DrawString(font, new Vector2(48, Size.Y - 5), $"Tick {samples[0].Tick} → {samples[^1].Tick}", fontSize: 12);

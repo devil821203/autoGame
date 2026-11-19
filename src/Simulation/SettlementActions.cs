@@ -75,7 +75,10 @@ internal static class SettlementActions
 
     private static void Move(WorldState w, string id, string from, string to, string item, long quantity, string reason)
     {
-        if (quantity > 0) w.Ledger.Add(new(w.NextSequence++, w.Clock.Tick, id, from, to, item, quantity, reason));
+        if (quantity > 0) {
+            w.Ledger.Add(new(w.NextSequence++, w.Clock.Tick, id, from, to, item, quantity, reason));
+            if(from!=to){EventDecisions.OrganizationChanged(w,from);EventDecisions.OrganizationChanged(w,to);}
+        }
     }
 
     internal static void Execute(WorldState w, ActionIntent i)
@@ -87,7 +90,9 @@ internal static class SettlementActions
         else if (i.Kind == ActionKind.SetSettlementEmployees)
         {
             int n = s.Buildings.FindIndex(b => b.Id == i.ResourceId);
+            bool changed=s.Buildings[n].EmployeeCount!=i.Quantity;
             s.Buildings[n] = s.Buildings[n] with { EmployeeCount = checked((int)i.Quantity), PaidThroughTick = w.Clock.Tick };
+            if(changed)EventDecisions.SettlementPlanningChanged(w,s);
         }
         else if (i.Kind == ActionKind.UpgradeSettlement)
         {
@@ -95,6 +100,7 @@ internal static class SettlementActions
             Move(w, i.Id, s.OrganizationId, "consumed", "spirit-stone", level.Stones, "SettlementUpgrade");
             Move(w, i.Id, s.OrganizationId, "consumed", "wood", level.Wood, "SettlementUpgrade");
             s.Level = level.Level; s.PopulationCapacity = checked(s.PopulationCapacity + r.HallCapacityPerLevel);
+            EventDecisions.SettlementPlanningChanged(w,s);
         }
         else if (i.Kind == ActionKind.SupportSettlement)
         {
@@ -134,7 +140,7 @@ internal static class SettlementActions
                 string id = $"settlement-day:{s.Id}:{b.Id}:{w.Clock.Tick}";
                 long wages = checked(b.EmployeeCount * r.DailyWage);
                 if (Inventory.Balance(w, s.OrganizationId, "spirit-stone") < wages)
-                { ActionExecutor.Emit(w, id, "SettlementStopped", "Insufficient wages: " + b.Id); continue; }
+                { ActionExecutor.Emit(w, id, "SettlementStopped", "Insufficient wages: " + b.Id); EventDecisions.OrganizationChanged(w,s.OrganizationId); continue; }
                 Move(w, id, s.OrganizationId, s.ResidentsAccountId, "spirit-stone", wages, "SettlementWages");
                 string? output = r.Outputs.GetValueOrDefault(b.Kind);
                 long quantity = output is null ? 0 : checked(b.EmployeeCount * r.DailyOutput(b.Kind));

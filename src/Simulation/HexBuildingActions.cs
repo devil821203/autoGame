@@ -4,6 +4,9 @@ namespace Cultivation.Simulation;
 
 internal static class HexBuildingActions
 {
+    private static string ReservationId(string actionId) => actionId + ":building-funds";
+    private static bool Tracked(WorldState w, string actionId) => w.Time?.ActionRuntime?.Actions.ContainsKey(actionId) == true;
+
     internal static bool Handles(ActionKind kind) => kind is ActionKind.ConstructBuilding or ActionKind.CancelBuilding;
     internal static bool HasService(WorldState w, string actorId, string service)
     {
@@ -43,14 +46,21 @@ internal static class HexBuildingActions
             var b = map.Buildings[index]; var d = map.BuildingDefinitions.Single(d => d.Id == b.DefinitionId);
             var original = w.Scheduled.SingleOrDefault(t => t.Intent.Id == b.IntentId)?.Intent ??
                 new ActionIntent(b.IntentId!, i.ActorId, b.Coord.ToString(), "spirit-stone", d.Cost, 0, i.Source, ActionKind.ConstructBuilding);
-            ActionExecutor.Transfer(w, original, ActionExecutor.Escrow(b.IntentId!), b.OrganizationId, "BuildingRefund");
+            if (Tracked(w, b.IntentId!))
+            {
+                ActionLifecycle.RequireRunning(w, b.IntentId!);
+                ReservationService.Settle(w, ReservationId(b.IntentId!), d.Cost, false, b.OrganizationId, "BuildingRefund");
+                ActionLifecycle.Finish(w, b.IntentId!, ActionPhase.Cancelled, "建造取消，原預留全額退回");
+            }
+            else ActionExecutor.Transfer(w, original, ActionExecutor.Escrow(b.IntentId!), b.OrganizationId, "BuildingRefund");
             w.Scheduled.RemoveAll(t => t.Intent.Id == b.IntentId);
             map.Buildings[index] = b with { Status = BuildingStatus.Cancelled };
             ActionExecutor.Emit(w, i.Id, "BuildingCancelled", b.Id); return;
         }
         var definition = map.BuildingDefinitions.Single(d => d.Id == i.MissionId);
         var coord = HexNavigation.Resolve(map, i.TargetId)!.Value;
-        ActionExecutor.Transfer(w, i, i.OrganizationId!, ActionExecutor.Escrow(i.Id), "BuildingReserved");
+        if (Tracked(w, i.Id)) ReservationService.Reserve(w, i, ReservationId(i.Id), i.OrganizationId!, ActionExecutor.Escrow(i.Id), "BuildingReserved");
+        else ActionExecutor.Transfer(w, i, i.OrganizationId!, ActionExecutor.Escrow(i.Id), "BuildingReserved");
         long due = checked(w.Clock.Tick + definition.Ticks);
         map.Buildings.Add(new(i.Id, definition.Id, i.OrganizationId!, coord, BuildingStatus.Constructing, due, i.Id));
         w.Scheduled.Add(new(w.NextSequence++, due, i));
@@ -59,6 +69,7 @@ internal static class HexBuildingActions
     internal static void Complete(WorldState w, ActionIntent i)
     {
         var map = w.HexMap!; int index = map.Buildings.FindIndex(b => b.Id == i.Id); var b = map.Buildings[index];
+        if (Tracked(w, i.Id)) ActionLifecycle.RequireRunning(w, i.Id);
         if (!Owns(w, b))
         {
             map.Buildings[index] = b with { Status = BuildingStatus.Suspended };
@@ -66,8 +77,14 @@ internal static class HexBuildingActions
             w.Scheduled.Add(new(w.NextSequence++, checked(w.Clock.Tick + 1), i));
             ActionExecutor.Emit(w, i.Id, "BuildingSuspended", "Territory unavailable"); return;
         }
-        ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), "consumed", "BuildingConsumed");
-        map.Buildings[index] = b with { Status = BuildingStatus.Complete };
+        if (Tracked(w, i.Id))
+        {
+            ReservationService.Settle(w, ReservationId(i.Id), i.Quantity, true, "consumed", "BuildingConsumed");
+            ActionLifecycle.Checkpoint(w, i.Id);
+            ActionLifecycle.Finish(w, i.Id, ActionPhase.Completed, "建造完成");
+        }
+        else ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), "consumed", "BuildingConsumed");
+        map.Buildings[index] = b with { Status = BuildingStatus.Complete,DueTick=w.Time?.IndependentScheduledEvents==true?w.Clock.Tick:b.DueTick };
         ActionExecutor.Emit(w, i.Id, "BuildingCompleted", b.DefinitionId);
     }
     internal static void ValidateWorld(WorldState w)

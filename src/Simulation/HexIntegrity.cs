@@ -24,7 +24,7 @@ internal static class HexIntegrity
             var position = HexNavigation.Position(map, actor);
             var tile = map.Tiles.SingleOrDefault(t => t.Coord == position);
             if (tile is null || !HexNavigation.Passable(tile)) throw new InvalidDataException("Invalid actor hex");
-            if (!map.Journeys.Any(j => j.ActorId == actor.Id) && HexNavigation.Resolve(map, actor.DemoLocationId) != position)
+            if (!map.Journeys.Any(j => j.ActorId == actor.Id) && RegionGeometry.Resolve(map,actor,actor.DemoLocationId) != position)
                 throw new InvalidDataException("Hex and logical location disagree");
         }
         foreach (var trip in map.Journeys)

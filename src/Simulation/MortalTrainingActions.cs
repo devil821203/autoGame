@@ -24,7 +24,7 @@ internal static class MortalTrainingActions
     internal static void Start(WorldState w, ActionIntent i)
     {
         int duration = MethodTraining.IsMethod(i) ? w.Methods!.Catalog.TrainingRules.DurationTicks : w.MortalActionRules!.DurationTicks;
-        w.MortalTrainingWork.Add(new(i, checked(w.Clock.Tick + duration), checked((int)i.Quantity)));
+        w.MortalTrainingWork.Add(CreateWork(w, i, duration, checked((int)i.Quantity)));
         ActionExecutor.Emit(w, i.Id, "MortalTrainingStarted", $"{i.ActorId}:{i.ResourceId}:{i.Quantity}次:{GameTimeDisplay.Duration(w, checked(duration * i.Quantity))}");
     }
 
@@ -33,6 +33,7 @@ internal static class MortalTrainingActions
         foreach (var work in w.MortalTrainingWork.Where(t => t.Intent.ActorId == actorId).ToArray())
         {
             w.MortalTrainingWork.Remove(work);
+            ActionLifecycle.Finish(w,work.Intent.Id,ActionPhase.Interrupted,"受襲中斷；已付AP不退");
             ReleaseBusyTime(w, actorId);
             ActionExecutor.Emit(w, work.Intent.Id, "MortalTrainingInterrupted", $"{actorId}:受襲中斷，無經驗／未扣體力，AP不退");
         }
@@ -44,17 +45,18 @@ internal static class MortalTrainingActions
         if (n >= 0) w.Time.Budgets[n] = w.Time.Budgets[n] with { BusyThroughTick = w.Clock.Tick };
     }
 
-    internal static void Complete(WorldState w)
+    internal static void Complete(WorldState w, string? eventActionId = null)
     {
-        foreach (var work in w.MortalTrainingWork.Where(t => t.DueTick <= w.Clock.Tick).OrderBy(t => t.DueTick).ToArray())
+        foreach (var work in w.MortalTrainingWork.Where(t => eventActionId is null ? t.DueTick <= w.Clock.Tick : t.Intent.Id == eventActionId).OrderBy(t => t.DueTick).ToArray())
         {
+            ActionLifecycle.RequireRunning(w,work.Intent.Id);
             var i = work.Intent; int n = w.Characters.FindIndex(c => c.Id == i.ActorId); var a = w.Characters[n];
             w.MortalTrainingWork.Remove(work);
             var methodRules = MethodTraining.IsMethod(i) ? w.Methods!.Catalog.TrainingRules : null;
             int staminaCost = methodRules?.StaminaCost ?? w.MortalTrainingRules!.StaminaCostPerAction;
             if (a.Health <= 0 || a.SeverelyInjured || BoardBattleActions.Participant(w, a.Id) || CombatActions.Active(w, a.Id) is not null ||
                 a.Stamina!.Current < staminaCost)
-            { ReleaseBusyTime(w, a.Id); ActionExecutor.Emit(w, i.Id, "MortalTrainingInterrupted", a.Id); continue; }
+            { ReleaseBusyTime(w, a.Id); ActionLifecycle.Finish(w,i.Id,ActionPhase.Interrupted,"結算資格失效"); ActionExecutor.Emit(w, i.Id, "MortalTrainingInterrupted", a.Id); continue; }
             var s = a.MortalCultivation!; var r = w.MortalTrainingRules!; var options = w.MortalActionRules!;
             decimal multiplier = options.ApplyGrowthModifiers ? (decimal)CharacterGrowthCalculator.Modifiers(w, a).CombinedMultiplier : 1;
             decimal gain = checked((methodRules?.BaseCultivationExperience ?? r.ExperiencePerAction) * multiplier);
@@ -103,16 +105,28 @@ internal static class MortalTrainingActions
                 ActionExecutor.Emit(w, i.Id, "MethodTrainingCompleted", $"{a.Id}:{skill.Id}:熟練+{skillGain}:累計{learned[skill.Id]}:層{MethodTraining.Layer(w, a.Id, skill.Id)}");
             }
             ActionExecutor.Emit(w, i.Id, "MortalTrainingCompleted", $"{a.Id}:{i.ResourceId}:經驗{gain}:體力-{staminaCost}:性{s.SpiritLevel}/命{s.BodyLevel}/炁{s.QiLevel}");
+            ActionLifecycle.Checkpoint(w,i.Id,staminaCost);
             if (work.RemainingIterations > 1) {
                 if (stamina < staminaCost || stamina == 0) {
                     ReleaseBusyTime(w, a.Id);
+                    ActionLifecycle.Finish(w,i.Id,ActionPhase.Interrupted,"體力不足，已付AP不退");
                     ActionExecutor.Emit(w, i.Id, "MortalTrainingInterrupted", $"{a.Id}:體力不足，中止剩餘{work.RemainingIterations - 1}次，已付AP不退");
                 } else {
                     int duration = methodRules?.DurationTicks ?? options.DurationTicks;
-                    w.MortalTrainingWork.Add(work with { DueTick = checked(w.Clock.Tick + duration), RemainingIterations = work.RemainingIterations - 1 });
+                    w.MortalTrainingWork.Add(CreateWork(w, work.Intent, duration, work.RemainingIterations - 1));
                 }
             }
+            else ActionLifecycle.Finish(w,i.Id,ActionPhase.Completed,"全部修練段落完成");
         }
+    }
+
+    private static MortalTrainingWork CreateWork(WorldState w, ActionIntent intent, int duration, int remaining)
+    {
+        if (w.Time?.DiscreteEvents is not { } events) return new(intent, checked(w.Clock.Tick + duration), remaining);
+        long step = DiscreteTime.SecondsPerStep(w);
+        long due = checked(events.WorldTime + duration * step);
+        long projected = checked(due / step + (due % step == 0 ? 0 : 1));
+        return new(intent, projected, remaining, due);
     }
 
     internal static IEnumerable<ScoredAction> Evaluate(WorldState w, CharacterState a, DecisionSource source)

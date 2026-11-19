@@ -5,6 +5,7 @@ namespace Cultivation.Presentation;
 
 public partial class HexMapCanvas : Control
 {
+    private readonly Font drawFont = PresentationFonts.Create();
     public event Action<HexCoord>? Selected;
     private WorldState? world;
     private HexCoord? selected;
@@ -13,6 +14,7 @@ public partial class HexMapCanvas : Control
     private bool dragging;
     private const float Radius = 26;
     public bool FollowPlayer { get; set; } = true;
+    public void CenterOn(HexCoord coord){pan+=Size/2-Center(coord);QueueRedraw();}
     public Vector2 PlayerScreenPosition => world?.HexMap is { } map ? Center(HexNavigation.Position(map,
         world.Characters.Single(c => c.Id == world.ControlledCharacterId))) : Vector2.Zero;
     private void Follow()
@@ -78,7 +80,9 @@ public partial class HexMapCanvas : Control
             var points = new[] { position }.Concat(trip.Remaining).Select(Center).ToArray();
             if (points.Length > 1) DrawPolyline(points, Colors.Gold, 3, true);
         }
+        if(map.Regional is {} topology)
+            foreach(var route in topology.Routes){DrawLine(Center(route.From),Center(route.To),route.Open?Colors.Gold:Colors.Red,4,true);}
         DrawCircle(Center(position) + new Vector2(-10, -9), 6 * zoom, Colors.Gold);
     }
-    private void Text(Vector2 position, string text, Color color) => DrawString(ThemeDB.FallbackFont, position, text, fontSize: 16, modulate: color);
+    private void Text(Vector2 position, string text, Color color) => DrawString(drawFont, position, text, fontSize: 16, modulate: color);
 }

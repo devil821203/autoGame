@@ -8,6 +8,10 @@ public static class NewGameFactory
     public static WorldState CreateLike(WorldState current, string playerName, GameConfiguration? configuration = null)
     {
         var config = configuration ?? GameConfiguration.Find();
+        if(current.Time?.IndependentLifeEvents==true)return LifeEventScenario.Create(playerName,config);
+        if(current.Time?.EquipmentRepair is not null)return EquipmentRepairScenario.Create(playerName,config);
+        if(current.Time?.PlayerControl is not null)return PlayerControlScenario.Create(playerName,current.HexMap?.Regional?.Seed,config);
+        if(current.HexMap?.Regional is {} regions)return RegionalWorldScenario.Create(playerName,regions.Seed,config);
         WorldState fresh;
         if (current.SettlementOrganizationDemo is not null) fresh = SettlementOrganizationScenario.Create(playerName, config);
         else if (current.SettlementRules is not null) fresh = SettlementScenario.Create(playerName, config);
@@ -39,6 +43,11 @@ public static class NewGameFactory
             MinuteTimeProfile.EnableFresh(fresh, config);
         }
         WorldIntegrity.Validate(fresh);
+        if (current.Time?.DiscreteEvents is not null) DiscreteTime.EnableFresh(fresh, config);
+        if (current.Time?.ActionRuntime is not null) ActionLifecycle.EnableFresh(fresh);
+        if (current.Time?.EventDecisions is not null) EventDecisions.EnableFresh(fresh);
+        if (current.Time?.Content is not null) ContentProfile.EnableFresh(fresh,config);
+        if(current.Time?.MarketOrders is not null)MarketOrders.EnableFresh(fresh,config);
         return fresh;
     }
 }

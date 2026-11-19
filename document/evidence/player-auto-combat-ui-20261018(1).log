@@ -1,0 +1,5 @@
+﻿Godot Engine v4.3.stable.mono.official.77dcf97d8
+BOARD_BATTLE_UI_SMOKE_PASS: dual grids, player command, initiative round, NPC attacks, save/load, terminal state
+Additional assertions passed: CheckButton enable/disable signals; pending setting display while paused; persisted enabled setting after save/load; no player attack after disable; battle reaches terminal state.
+Build: 0 warnings / 0 errors.
+Executed 2026-10-18: --headless --path src/Presentation -- --board-battle-smoke

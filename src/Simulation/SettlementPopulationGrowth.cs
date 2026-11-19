@@ -24,6 +24,7 @@ internal static class SettlementPopulationGrowth
             result.Added,checked(s.Population+result.Added),result.Progress));
         s.Population=checked(s.Population+result.Added);s.WorkingPopulation=checked(s.WorkingPopulation+result.Added);s.GrowthProgress=result.Progress;
         ActionExecutor.Emit(w,id,"SettlementPopulationGrowth",$"{s.Id}:groups={groups}:delta={delta}:progress={result.Progress}:added={result.Added}");
+        if(result.Added>0)EventDecisions.SettlementPlanningChanged(w,s);
     }
     internal static void Validate(WorldState w)
     {

@@ -1,0 +1,8 @@
+{
+    "UnreadableSources":  2,
+    "Note":  "Original archive command had an accidental trailing unknown command after files were written; this independent entry/hash verification validates the artifacts.",
+    "VerifiedFiles":  369,
+    "Failures":  [
+
+                 ]
+}

@@ -103,6 +103,7 @@ internal static class BoardBattleActions
                     int damage = (int)Math.Clamp((long)attack.Attack - defense.Defense, 1, 100);
                     int index = w.Characters.FindIndex(c => c.Id == targetId);
                     w.Characters[index] = Actor(targetId) with { Health = Math.Max(0, Actor(targetId).Health - damage) };
+                    EventDecisions.Request(w,targetId,DecisionTrigger.StateChanged);
                     EquipmentDurabilityActions.CombatHit(w,b.Id,id,targetId,damage);
                     ActionExecutor.Emit(w, b.Id, "BoardAttacked", $"{id}->{targetId}:{damage}");
                 }

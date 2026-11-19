@@ -15,10 +15,12 @@ internal static class SocialActions
         if (w.Scheduled.Any(t => t.Intent.ActorId == a.Id) || a.SocialCooldownUntil > w.Clock.Tick) return "Social participant busy or cooling down";
         if (i.Kind is ActionKind.AssistPartner or ActionKind.StudyWithMentor && (w.Scheduled.Any(t => t.Intent.ActorId == b.Id) || CombatActions.Active(w, b.Id) is not null)) return "Social target busy";
         if (rules.CooldownTicks > long.MaxValue - w.Clock.Tick || rules.OfferLifetimeTicks > long.MaxValue - w.Clock.Tick) return "Social time overflow";
+        if(w.Time?.IndependentSocialExpiryEvents==true){try{_ = checked(w.Time.DiscreteEvents!.WorldTime+rules.OfferLifetimeTicks*DiscreteTime.SecondsPerStep(w));}catch(OverflowException){return "Social seconds overflow";}}
         if (i.Kind is ActionKind.AcceptSocialOffer or ActionKind.DeclineSocialOffer)
         {
             var offer = w.SocialOffers.SingleOrDefault(o => o.Id == i.SocialOfferId);
-            if (offer is null || offer.ToId != a.Id || offer.FromId != b.Id || offer.Status != SocialOfferStatus.Pending || offer.ExpiresTick <= w.Clock.Tick) return "Social offer unavailable";
+            if (offer is null || offer.ToId != a.Id || offer.FromId != b.Id || offer.Status != SocialOfferStatus.Pending ||
+                (w.Time?.IndependentSocialExpiryEvents==true?offer.ExpiresAtSeconds<=w.Time.DiscreteEvents!.WorldTime:offer.ExpiresTick <= w.Clock.Tick)) return "Social offer unavailable";
             return i.Kind == ActionKind.DeclineSocialOffer ? null : Qualifications(w, b, a, offer.Kind, offer.OrganizationId);
         }
         if (i.Kind == ActionKind.AssistPartner)
@@ -66,7 +68,9 @@ internal static class SocialActions
         {
             var kind = OfferKind(i.Kind);
             string? org = kind is SocialOfferKind.Recruitment or SocialOfferKind.Succession ? w.Organizations.First(o => o.LeaderId == i.ActorId).Id : null;
-            w.SocialOffers.Add(new(i.Id, i.ActorId, i.TargetId, kind, checked(w.Clock.Tick + rules.OfferLifetimeTicks), org));
+            long? due=w.Time?.IndependentSocialExpiryEvents==true?checked(w.Time.DiscreteEvents!.WorldTime+rules.OfferLifetimeTicks*DiscreteTime.SecondsPerStep(w)):null;
+            long expiryTick=due is {} seconds?seconds/DiscreteTime.SecondsPerStep(w)+(seconds%DiscreteTime.SecondsPerStep(w)==0?0:1):checked(w.Clock.Tick+rules.OfferLifetimeTicks);
+            w.SocialOffers.Add(new(i.Id, i.ActorId, i.TargetId, kind, expiryTick, org,ExpiresAtSeconds:due));
         }
         else if (i.Kind is ActionKind.AcceptSocialOffer or ActionKind.DeclineSocialOffer)
         {
@@ -102,6 +106,9 @@ internal static class SocialActions
             Adjust(w, i.TargetId, i.ActorId, rules.AffinityGain, rules.TrustGain, 0);
         }
         ActionExecutor.Emit(w, i.Id, "Social", $"{i.ActorId}:{i.Kind}:{i.TargetId}");
+        // Only the direct participants know about this private interaction.
+        EventDecisions.Request(w, i.ActorId, DecisionTrigger.StateChanged);
+        EventDecisions.Request(w, i.TargetId, DecisionTrigger.KnownNotification);
     }
 
     internal static void Adjust(WorldState w, string from, string to, int affinity, int trust, int grudge, bool cooperating = false)
@@ -111,13 +118,16 @@ internal static class SocialActions
         w.Relationships.RemoveAll(r => r.FromId == from && r.ToId == to);
         w.Relationships.Add(old with { Affinity = Math.Clamp(old.Affinity + affinity, -100, 100), Trust = Math.Clamp(old.Trust + trust, -100, 100), Grudge = Math.Clamp(old.Grudge + grudge, 0, 100), Cooperating = old.Cooperating || cooperating });
     }
-    internal static void Expire(WorldState w)
+    internal static void Expire(WorldState w,string? offerId=null)
     {
         for (int n = 0; n < w.SocialOffers.Count; n++)
-            if (w.SocialOffers[n].Status == SocialOfferStatus.Pending && w.SocialOffers[n].ExpiresTick <= w.Clock.Tick)
+            if (w.SocialOffers[n].Status == SocialOfferStatus.Pending && (offerId is null||w.SocialOffers[n].Id==offerId) &&
+                (w.Time?.IndependentSocialExpiryEvents==true?offerId is not null&&w.SocialOffers[n].ExpiresAtSeconds<=w.Time.DiscreteEvents!.WorldTime:w.SocialOffers[n].ExpiresTick <= w.Clock.Tick))
             {
                 w.SocialOffers[n] = w.SocialOffers[n] with { Status = SocialOfferStatus.Expired };
                 ActionExecutor.Emit(w, "$social-expire:" + w.SocialOffers[n].Id, "SocialExpired", w.SocialOffers[n].Id);
+                EventDecisions.Request(w, w.SocialOffers[n].FromId, DecisionTrigger.StateChanged);
+                EventDecisions.Request(w, w.SocialOffers[n].ToId, DecisionTrigger.StateChanged);
             }
     }
 }

@@ -1,0 +1,5 @@
+{
+  "TimeUnit": "Seconds",
+  "MaximumEventsPerAdvance": 10000,
+  "MaximumEventsAtSameTime": 1000
+}

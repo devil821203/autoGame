@@ -65,7 +65,17 @@ internal static class StaminaActions
         {
             var actor = w.Characters[n]; var state = actor.Stamina!;
             if (canRecover is not null && !canRecover(actor)) continue;
-            if (!state.Resting || actor.Health == 0 || CombatActions.Active(w, actor.Id) is not null || BoardBattleActions.Participant(w, actor.Id)) continue;
+            Recover(w,n,rules);
+        }
+    }
+    internal static void RecoverActor(WorldState w,string actor)
+    {
+        if(w.StaminaRules is {} rules)Recover(w,w.Characters.FindIndex(c=>c.Id==actor),rules);
+    }
+    private static void Recover(WorldState w,int n,StaminaRules rules)
+    {
+            var actor=w.Characters[n];var state=actor.Stamina!;
+            if (!state.Resting || actor.Health == 0 || CombatActions.Active(w, actor.Id) is not null || BoardBattleActions.Participant(w, actor.Id)) return;
             int value = Math.Min(rules.Maximum, state.Current + StaminaCalculator.Recovery(actor, rules));
             bool unconscious = state.Unconscious && value <= rules.FatigueThreshold;
             int health = Math.Min(100, actor.Health + rules.HealthRecoveryPerTick);
@@ -73,9 +83,9 @@ internal static class StaminaActions
                 : state.Unconscious ? unconscious : value < rules.Maximum;
             resting |= TimeActions.NeedsApRest(w, actor.Id);
             w.Characters[n] = actor with { Health = health, Stamina = state with { Current = value, Unconscious = unconscious, Resting = resting } };
+            if(!resting)EventDecisions.Request(w,actor.Id,DecisionTrigger.RestCompleted);
             if (health != actor.Health) ActionExecutor.Emit(w, "stamina:" + actor.Id, "RestHealthRecovered", $"{actor.Id}:{actor.Health}->{health}");
             ActionExecutor.Emit(w, "stamina:" + actor.Id, "RestRecovered", $"{actor.Id}:{state.Current}->{value}");
-        }
     }
     internal static void ValidateWorld(WorldState w)
     {

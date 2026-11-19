@@ -50,7 +50,7 @@ public partial class SocialPanel : VBoxContainer
         ids = offers.Select(o => o.Id).ToArray();
         if (!ids.SequenceEqual(offerIds)) { offerIds = ids; incoming.Clear(); foreach (var offer in offers) incoming.AddItem(offer.Kind + ":" + offer.FromId); }
         details.Text = w.SocialRules is null ? "此世界未啟用社交；請建立社交新情境。" :
-            "邀請\n" + string.Join("\n", w.SocialOffers.TakeLast(20).Select(o => $"{o.FromId} → {o.ToId}: {o.Kind} / {o.Status} / 截止 {o.ExpiresTick}")) +
+            "邀請\n" + string.Join("\n", w.SocialOffers.TakeLast(20).Select(o => $"{o.FromId} → {o.ToId}: {o.Kind} / {o.Status} / 截止 {(o.ExpiresAtSeconds is {} due?$"{due}秒（剩餘{Math.Max(0,due-w.Time!.DiscreteEvents!.WorldTime)}秒）":o.ExpiresTick+" Tick")}")) +
             "\n\n稀疏關係（僅保存已互動關係）\n" + string.Join("\n", w.Relationships.TakeLast(30).Select(r => $"{r.FromId} → {r.ToId}: 好感 {r.Affinity}, 信任 {r.Trust}, 仇恨 {r.Grudge}, 合作 {r.Cooperating}")) +
             "\n\n師徒與成員\n" + string.Join("\n", w.Characters.Where(c => c.MentorId is not null || c.OrganizationId is not null).Select(c => $"{c.Name}: 師父 {c.MentorId ?? "無"}, 組織 {c.OrganizationId ?? "無"}, 職位 {c.Position}")) +
             $"\n\n授課原價 {w.SocialRules!.LessonPrice} 錢財；玩家師父目前報價：" +

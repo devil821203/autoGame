@@ -59,7 +59,7 @@ internal static class MortalCultivationIntegrity
         }
         else if (world.MortalTrainingWork.Count != 0) throw new InvalidDataException("Mortal work requires action rules");
         if (world.MortalTrainingWork.Select(t => t.Intent.ActorId).Distinct().Count() != world.MortalTrainingWork.Count ||
-            world.MortalTrainingWork.Any(t => t.DueTick <= world.Clock.Tick || !MortalTrainingActions.Handles(t.Intent.Kind) ||
+            world.MortalTrainingWork.Any(t => (world.Time?.DiscreteEvents is null && t.DueTick <= world.Clock.Tick) || !MortalTrainingActions.Handles(t.Intent.Kind) ||
                 t.Intent.Quantity < 1 || t.Intent.Quantity > (world.Time?.ActionDriven?.TrainingBatchLimit ?? 1) ||
                 t.RemainingIterations < 1 || t.RemainingIterations > t.Intent.Quantity ||
                 !world.ProcessedIntentIds.Contains(t.Intent.Id) || !world.Characters.Any(c => c.Id == t.Intent.ActorId && c.MortalCultivation is not null)))

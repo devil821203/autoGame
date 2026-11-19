@@ -63,8 +63,10 @@ internal static class LifeActions
         var life=w.LifeSystem!; int index=w.Characters.FindIndex(c=>c.Id==i.ActorId);var a=w.Characters[index];
         if(IsWork(i.Kind))
         {
-            var inputs=Inputs(w,i);foreach(var p in inputs)ActionExecutor.Transfer(w,i with {ResourceId=p.Key,Quantity=p.Value},a.Id,ActionExecutor.Escrow(i.Id),"LifeReserved");
-            life.Work.Add(new(i,w.Clock.Tick+Cost(w,i),inputs));ActionExecutor.Emit(w,i.Id,"LifeWorkStarted",$"{a.Id}:{i.Kind}:{i.ResourceId}");return;
+            var inputs=Inputs(w,i);foreach(var p in inputs)ReserveInput(w,i,p.Key,p.Value);
+            long? seconds=w.Time?.IndependentLifeEvents==true?checked(w.Time.DiscreteEvents!.WorldTime+Cost(w,i)*DiscreteTime.SecondsPerStep(w)):null;
+            long due=seconds is {} exact?checked((exact+DiscreteTime.SecondsPerStep(w)-1)/DiscreteTime.SecondsPerStep(w)):checked(w.Clock.Tick+Cost(w,i));
+            life.Work.Add(new(i,due,inputs,DueAtSeconds:seconds));ActionExecutor.Emit(w,i.Id,"LifeWorkStarted",$"{a.Id}:{i.Kind}:{i.ResourceId}");return;
         }
         if(i.Kind is ActionKind.UseMedicine or ActionKind.UseCombatMedicine)
         {
@@ -94,11 +96,12 @@ internal static class LifeActions
         long value=CharacterDevelopment.GainExperience(LifeSkillCalculator.Experience(s,kind),CharacterGrowthCalculator.Growth(w,a,w.LifeSystem!.Options.ExperiencePerCompletion));
         w.Characters[n]=a with {LifeSkills=kind switch {LifeSkillKind.Medicine=>s with {MedicineExperience=value},LifeSkillKind.Pharmacy=>s with {PharmacyExperience=value},_=>s with {SmithingExperience=value}}};
     }
-    internal static List<ActionIntent> Complete(WorldState w)
+    internal static List<ActionIntent> Complete(WorldState w,string? eventActionId=null)
     {
         var done=new List<ActionIntent>();if(w.LifeSystem is not {} life)return done;
-        foreach(var task in life.Work.Where(t=>t.DueTick<=w.Clock.Tick).ToArray())
+        foreach(var task in life.Work.Where(t=>eventActionId is not null?t.Intent.Id==eventActionId&&t.DueAtSeconds<=w.Time!.DiscreteEvents!.WorldTime:t.DueAtSeconds is null&&t.DueTick<=w.Clock.Tick).ToArray())
         {
+            ActionLifecycle.RequireRunning(w,task.Intent.Id);
             var i=task.Intent;var a=w.Characters.Single(c=>c.Id==i.ActorId);var patient=w.Characters.SingleOrDefault(c=>c.Id==i.TargetId);
             bool medicine=i.Kind!=ActionKind.CraftLifeItem;
             bool valid=patient is not null&&(!medicine||patient.RegionId==a.RegionId&&patient.DemoLocationId==a.DemoLocationId&&patient.HexPosition==a.HexPosition&&!BoardBattleActions.Participant(w,patient.Id)&&
@@ -106,7 +109,7 @@ internal static class LifeActions
             var recipe=medicine?null:life.Recipes.Single(r=>r.Id==i.ResourceId);
             valid &= recipe?.Slot is not null||recipe is null||InventoryCapacity.CanReceive(w,a.Id,recipe.Output,1);
             valid &= PaidLifeServices.ValidCompletion(w, task);
-            foreach(var p in task.Inputs)ActionExecutor.Transfer(w,i with {ResourceId=p.Key,Quantity=p.Value},ActionExecutor.Escrow(i.Id),valid?"consumed":a.Id,valid?"LifeConsumed":"LifeRefund");
+            foreach(var p in task.Inputs)SettleInput(w,i,p.Key,p.Value,valid);
             if(valid)
             {
                 if(medicine)
@@ -137,34 +140,52 @@ internal static class LifeActions
             else ActionExecutor.Emit(w,i.Id,"LifeWorkCancelled","Patient changed location/state or capacity exceeded; materials refunded, AP retained");
             PaidLifeServices.Settle(w, task, valid);
             life.Work.Remove(task);done.Add(i);
+            if(valid)ActionLifecycle.Checkpoint(w,i.Id);
+            ActionLifecycle.Finish(w,i.Id,valid?ActionPhase.Completed:ActionPhase.Failed,valid?"生活工作完成":"資格改變，依既有政策全退材料／服務費");
         }
         return done;
     }
     internal static void CancelWork(WorldState w, LifeWork task)
     {
-        foreach (var p in task.Inputs) ActionExecutor.Transfer(w, task.Intent with { ResourceId = p.Key, Quantity = p.Value }, ActionExecutor.Escrow(task.Intent.Id), task.Intent.ActorId, "LifeRefund");
+        ActionLifecycle.RequireRunning(w,task.Intent.Id);
+        foreach (var p in task.Inputs) SettleInput(w,task.Intent,p.Key,p.Value,false);
         PaidLifeServices.Settle(w, task, false);
         w.LifeSystem!.Work.Remove(task);
+        ActionLifecycle.Finish(w,task.Intent.Id,ActionPhase.Interrupted,"受襲中斷，材料及服務費全退，已付AP保留");
         ActionExecutor.Emit(w, task.Intent.Id, "LifeWorkCancelled", "Service interrupted; materials and fee refunded");
     }
-    internal static void Effects(WorldState w,string? battleId=null,int round=0)
+    private static string MaterialId(ActionIntent i,string item)=>"material:"+i.Id.Length+":"+i.Id+":"+item;
+    private static void ReserveInput(WorldState w,ActionIntent i,string item,long amount)
+    {
+        var transfer=i with {ResourceId=item,Quantity=amount};
+        if(w.Time?.ActionRuntime is not null)ReservationService.Reserve(w,transfer,MaterialId(i,item),i.ActorId,ActionExecutor.Escrow(i.Id),"LifeReserved");
+        else ActionExecutor.Transfer(w,transfer,i.ActorId,ActionExecutor.Escrow(i.Id),"LifeReserved");
+    }
+    private static void SettleInput(WorldState w,ActionIntent i,string item,long amount,bool consume)
+    {
+        if(w.Time?.ActionRuntime is not null)ReservationService.Settle(w,MaterialId(i,item),amount,consume,consume?"consumed":i.ActorId,consume?"LifeConsumed":"LifeRefund");
+        else ActionExecutor.Transfer(w,i with {ResourceId=item,Quantity=amount},ActionExecutor.Escrow(i.Id),consume?"consumed":i.ActorId,consume?"LifeConsumed":"LifeRefund");
+    }
+    internal static void Effects(WorldState w,string? battleId=null,int round=0,string? effectId=null)
     {
         if(w.LifeSystem is not {} life)return;
-        foreach(var e in life.Effects.ToArray())
+        foreach(var e in life.Effects.Where(e=>effectId is null||e.Id==effectId).ToArray())
         {
-            bool due=battleId is null?e.BattleId is null&&e.NextTick<=w.Clock.Tick:e.BattleId==battleId&&e.NextRound<=round;
+            bool due=battleId is null?e.BattleId is null&&(w.Time?.IndependentRecoveryEvents==true?effectId is not null&&e.NextAtSeconds<=w.Time.DiscreteEvents!.WorldTime:e.NextTick<=w.Clock.Tick):e.BattleId==battleId&&e.NextRound<=round;
             if(!due)continue;int n=w.Characters.FindIndex(c=>c.Id==e.ActorId);var a=w.Characters[n];
             int amount=e.Healing+(e.Remaining==1?w.LifeSkillRules!.BleedingPowderHealing%w.LifeSkillRules.BleedingPowderRounds:0);
             int heal=a.Health>0?Math.Min(amount,100-a.Health):0;w.Characters[n]=a with {Health=a.Health+heal};
-            life.Effects.Remove(e);if(e.Remaining>1&&a.Health>0)life.Effects.Add(e with {Remaining=e.Remaining-1,NextTick=w.Clock.Tick+1,NextRound=round+1});
+            long? next=w.Time?.IndependentRecoveryEvents==true&&battleId is null?checked(w.Time.DiscreteEvents!.WorldTime+DiscreteTime.SecondsPerStep(w)):null;
+            life.Effects.Remove(e);if(e.Remaining>1&&a.Health>0)life.Effects.Add(e with {Remaining=e.Remaining-1,NextTick=w.Clock.Tick+1,NextRound=round+1,NextAtSeconds=next});
             ActionExecutor.Emit(w,e.Id,"MedicineEffectTick",$"{a.Id}:+{heal};remaining:{e.Remaining-1}");
+            if(heal>0)EventDecisions.Request(w,a.Id,DecisionTrigger.StateChanged);
         }
     }
     internal static void EndBattle(WorldState w,BoardBattle b)
     {
         if(w.LifeSystem is not {} life || life.FinishedBattles.Contains(b.Id))return;
         life.FinishedBattles.Add(b.Id);
-        for(int n=0;n<life.Effects.Count;n++)if(life.Effects[n].BattleId==b.Id)life.Effects[n]=life.Effects[n] with {BattleId=null,NextTick=w.Clock.Tick+1};
+        for(int n=0;n<life.Effects.Count;n++)if(life.Effects[n].BattleId==b.Id)life.Effects[n]=life.Effects[n] with {BattleId=null,NextTick=w.Clock.Tick+1,NextAtSeconds=w.Time?.IndependentRecoveryEvents==true?checked(w.Time.DiscreteEvents!.WorldTime+DiscreteTime.SecondsPerStep(w)):null};
         foreach(var f in b.Fighters)
         {
             int n=w.Characters.FindIndex(c=>c.Id==f.ActorId);if(w.Characters[n].Health==0)w.Characters[n]=w.Characters[n] with {SeverelyInjured=true};

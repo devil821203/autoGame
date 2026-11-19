@@ -31,6 +31,7 @@ public static class SettlementOperations
             w.Ledger.Add(new(w.NextSequence++,w.Clock.Tick,i.Id,owner,"consumed",item,amount,"SettlementBuildingUpgrade"));
         s.Buildings[n]=b with{Level=checked(b.Level!.Value+1),EmployeeLimit=w.SettlementRules!.Outputs.ContainsKey(b.Kind)?checked(b.EmployeeLimit+r.EmployeesPerLevel):b.EmployeeLimit,PaidThroughTick=w.Clock.Tick};
         w.SettlementBuildingUpgrades.Add(new(i.Id,s.Id,b.Id,owner,w.Clock.Tick,s.Buildings[n].Level!.Value,r.UpgradeStones,r.UpgradeWood));
+        EventDecisions.OrganizationChanged(w,owner);
     }
     internal static void Advance(WorldState w)
     {
@@ -52,7 +53,7 @@ public static class SettlementOperations
                 string id=$"settlement-day:{s.Id}:{b.Id}:{w.Clock.Tick}";long wages=automatic?0:checked(b.EmployeeCount*r.DailyWage);
                 s.Buildings[index]=b with{PaidThroughTick=w.Clock.Tick};
                 if(Inventory.Balance(w,owner,"spirit-stone")<wages)
-                {ActionExecutor.Emit(w,id,"SettlementStopped","Insufficient wages: "+b.Id);continue;}
+                {ActionExecutor.Emit(w,id,"SettlementStopped","Insufficient wages: "+b.Id);EventDecisions.OrganizationChanged(w,owner);continue;}
                 if(wages>0)w.Ledger.Add(new(w.NextSequence++,w.Clock.Tick,id,owner,s.ResidentsAccountId,"spirit-stone",wages,"SettlementWages"));
                 string? output=r.Outputs.GetValueOrDefault(b.Kind);long gross=output is null?0:checked(employees*r.DailyOutput(b.Kind));
                 decimal exactTax=automatic||output is null?0:checked(gross*(w.SettlementTaxRules?.ProductionRate??0)+b.TaxRemainder);
@@ -63,6 +64,8 @@ public static class SettlementOperations
                 w.SettlementDays.Add(new(id,s.Id,b.Id,w.Clock.Tick,employees,wages,output,net){OwnerId=owner,Automatic=automatic,
                     GrossQuantity=gross,TaxQuantity=tax,TaxRemainder=remainder,Laborers=laborers});
                 ActionExecutor.Emit(w,id,"SettlementDayCompleted",$"{b.Id}:owner={owner}:wages={wages}:{output}={gross}:tax={tax}");
+                if(wages>0||net>0)EventDecisions.OrganizationChanged(w,owner);
+                if(tax>0)EventDecisions.OrganizationChanged(w,s.OrganizationId);
             }
             SettlementDailyEconomy.Advance(w,s);
             s.LastPayrollTick=w.Clock.Tick;

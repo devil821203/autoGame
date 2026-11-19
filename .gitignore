@@ -5,3 +5,15 @@
 saves/
 *.tmp
 .tools/
+.tmp-*.log
+# Keep audit summaries; retain bulky replay artifacts locally.
+/document/evidence/**/*.zip
+/document/evidence/**/archived-events.jsonl
+/document/evidence/**/checkpoint-*.json
+document/evidence/r7-*/**/checkpoints/
+
+# Keep concise audit summaries and small acceptance logs, but exclude bulky,
+# reproducible local simulation snapshots and database checkpoints.
+/document/evidence/**/*.sqlite
+/document/evidence/**/checkpoint-*.json
+/document/evidence/**/*.jsonl

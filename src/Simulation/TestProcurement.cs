@@ -4,7 +4,8 @@ namespace Cultivation.Simulation;
 
 internal static class TestProcurement
 {
-    internal static void Advance(WorldState w)
+    internal static void Advance(WorldState w) => Advance(w, true, true);
+    internal static void Advance(WorldState w, bool purchase = true, bool review = true)
     {
         if (w.TestProcurement is not { } r) return;
         foreach (string item in new[] { r.PrimaryResourceId, "beast-hide" })
@@ -18,7 +19,7 @@ internal static class TestProcurement
             amount = Math.Min(amount, long.MaxValue - Inventory.Balance(w, r.BuyerId, item));
             amount = Math.Min(amount, long.MaxValue - quote.ReceivedThisPeriod);
             long payment = amount * quote.UnitPrice;
-            if (amount > 0 && InventoryCapacity.CanReceive(w, r.BuyerId, "spirit-stone", payment))
+            if (purchase && amount > 0 && InventoryCapacity.CanReceive(w, r.BuyerId, "spirit-stone", payment))
             {
                 string id = $"test-procurement:{item}:{w.Clock.Tick}";
                 var intent = new ActionIntent(id, r.SellerId, r.BuyerId, item, amount, 0, DecisionSource.Npc);
@@ -29,7 +30,7 @@ internal static class TestProcurement
                 quote = quote with { ReceivedThisPeriod = quote.ReceivedThisPeriod + amount };
                 ActionExecutor.Emit(w, id, "TestProcurementBought", $"{item}:{amount}@{quote.UnitPrice}");
             }
-            if (w.Clock.Tick % r.IntervalTicks == 0)
+            if (review && w.Clock.Tick % r.IntervalTicks == 0)
             {
                 long change = Math.Max(1, quote.UnitPrice * r.PriceChangePercent / 100);
                 long price = quote.ReceivedThisPeriod < r.DemandPerItem ? Math.Min(r.MaximumPrice, quote.UnitPrice + change) :

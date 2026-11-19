@@ -32,6 +32,7 @@ public static class SettlementDailyEconomy
             {
                 w.Ledger.Add(new(w.NextSequence++, w.Clock.Tick, id, s.OrganizationId, "consumed", rule.ResourceId, amount, "SettlementDailyConsumption"));
                 w.Ledger.Add(new(w.NextSequence++, w.Clock.Tick, id, "$settlement-residents", s.OrganizationId, "spirit-stone", income, "SettlementConsumptionIncome"));
+                EventDecisions.OrganizationChanged(w,s.OrganizationId);
             }
             w.SettlementConsumption.Add(new(id, s.Id, w.Clock.Tick, s.Population, s.Level, rule.ResourceId, before, reserve, amount, income));
             ActionExecutor.Emit(w, id, "SettlementConsumptionCompleted", $"{s.Id}:{rule.ResourceId}={amount}:income={income}:reserved={reserve}");

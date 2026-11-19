@@ -7,10 +7,10 @@ public sealed record LifeOptions(int TreatmentTicks = 2, int SevereTreatmentTick
     int SevereOintment = 1, int SevereHealing = 20, int ExperiencePerCompletion = 10,
     double FineChance = .25, double SuperiorChance = .05, double QualityChancePerLevel = .03,
     double FineMultiplier = 1.25, double SuperiorMultiplier = 1.5);
-public sealed record LifeWork(ActionIntent Intent, long DueTick, Dictionary<string,long> Inputs, PaidServiceContract? Service = null);
+public sealed record LifeWork(ActionIntent Intent, long DueTick, Dictionary<string,long> Inputs, PaidServiceContract? Service = null,long? DueAtSeconds=null);
 public sealed record LifeProductionReceipt(string ActionId, string ActorId, long Tick, string RecipeId, string Output);
 public sealed record CraftedEquipment(string Id, string DefinitionId, EquipmentQuality Quality, string Slot, int Attack, int Defense, string ActionId);
-public sealed record MedicineEffect(string Id, string ActorId, int Remaining, int Healing, string? BattleId, int NextRound, long NextTick);
+public sealed record MedicineEffect(string Id, string ActorId, int Remaining, int Healing, string? BattleId, int NextRound, long NextTick,long? NextAtSeconds=null);
 public sealed record CombatMedicineUse(string BattleId, string ActorId, int Round);
 public sealed class LifeSystemState
 {

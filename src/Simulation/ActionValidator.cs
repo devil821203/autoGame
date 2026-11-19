@@ -9,16 +9,33 @@ public static class ActionValidator
 
     internal static string? ValidateForTravel(WorldState world, ActionIntent intent)
         => ValidateCore(world, intent, false);
+    // Called only by the resolver for an already-paid, accepted deferred activity.
+    internal static string? ValidateAcceptedCompletion(WorldState world,ActionIntent intent)
+        =>ValidateCore(world,intent,true,world.Time?.PlayerControl is null);
 
-    private static string? ValidateCore(WorldState world, ActionIntent intent, bool checkLocation)
+    private static string? ValidateCore(WorldState world, ActionIntent intent, bool checkLocation,bool checkControl=true)
     {
         if (string.IsNullOrWhiteSpace(intent.Id) || intent.Id.StartsWith("$", StringComparison.Ordinal)) return "Invalid intent ID";
+        if(world.Time?.ActionRuntime is not null&&intent.Id.StartsWith("service-work:",StringComparison.Ordinal))return "R2 reserves service-work: IDs for provider AP charges";
         if (!Enum.IsDefined(intent.Source)) return "Invalid decision source";
+        if (WorldPeriodEvents.Enabled(world) && intent.Source == DecisionSource.Player && !TimeActions.IsBattleCommand(intent.Kind) &&
+            world.Time!.CompletingActionId != intent.Id && world.Time.DiscreteEvents!.Pending.Any(e =>
+                e.DueAt == world.Time.DiscreteEvents.WorldTime && e.Version == world.Time.DiscreteEvents.Versions[e.CorrelationId] &&
+                e.Kind is not (SimulationEventKind.Signal or SimulationEventKind.DecisionRetry or SimulationEventKind.DecisionDrain)))
+            return "同時刻世界事件尚未結算，請先繼續事件佇列";
+        if(world.Time?.DiscreteEvents is {} boundary&&boundary.WorldTime/DiscreteTime.SecondsPerStep(world)>world.Clock.Tick&&world.Time.CompletingActionId!=intent.Id)return "同時刻相容事件尚未完成，請先繼續事件佇列";
+        if (!WorldPeriodEvents.Enabled(world) && world.Time?.DiscreteEvents is { } precise && precise.WorldTime % DiscreteTime.SecondsPerStep(world) != 0 &&
+            !MortalTrainingActions.Handles(intent.Kind) && !TimeActions.IsBattleCommand(intent.Kind)&&
+            !(world.Time!.IndependentLifeEvents&&(LifeActions.IsWork(intent.Kind)||intent.Kind==ActionKind.RequestLifeService))&&
+            !(world.Time.IndependentScheduledEvents&&intent.Kind is not (ActionKind.Engage or ActionKind.ExploreDungeon)&&(intent.Kind!=ActionKind.Rest||world.Time.IndependentRecoveryEvents)))
+            return $"R1相容限制：非整{DiscreteTime.SecondsPerStep(world)}秒邊界暫只接受修練；其他行動須先明確推進至相容邊界，避免縮短工期";
         if(intent.Kind is not (ActionKind.SettlementBuy or ActionKind.SettlementSell)&&intent.SettlementShopId is not null)return "Unexpected settlement shop selection";
         if (intent.Kind != ActionKind.BuildSettlement && intent.SettlementBuildPosition is not null) return "Unexpected settlement build position";
         if (!world.Characters.Any(c => c.Id == intent.ActorId)) return "Unknown actor";
-        if (intent.Source == DecisionSource.Player && world.ControlledCharacterId != intent.ActorId) return "Actor is not player controlled";
-        if (intent.Source == DecisionSource.Npc && world.ControlledCharacterId == intent.ActorId) return "Actor is not AI controlled";
+        if(EquipmentRepairActions.Busy(world,intent.ActorId))return "Actor awaiting equipment repair";
+        if(EquipmentRepairActions.Locked(world,intent.ResourceId))return "Equipment reserved for repair";
+        if(checkControl&&intent.Source==DecisionSource.Player&&(PlayerControl.NeedsSelection(world)||!PlayerControl.IsControlled(world,intent.ActorId)))return world.Time?.PlayerControl is null?"Actor is not player controlled":"Actor lacks current player control; select a qualified character";
+        if(checkControl&&intent.Source==DecisionSource.Npc&&PlayerControl.IsControlled(world,intent.ActorId))return "Actor is not AI controlled";
         if (world.Characters.Single(c => c.Id == intent.ActorId) is { Health: 0 } incapacitated && !(world.LifeSystem is not null && incapacitated.SeverelyInjured && (intent.Kind == ActionKind.TreatSevereInjury || intent.Kind == ActionKind.RequestLifeService && intent.ResourceId == "severe-injury"))) return "Actor incapacitated";
         if (intent.Plan is not null && (intent.Plan.ActorId != intent.ActorId || intent.Plan.Steps.Count == 0 || intent.Plan.Steps[0] != intent.Kind || intent.Plan.Steps.Any(s => !Enum.IsDefined(s)))) return "Invalid plan";
         if (intent.Kind == ActionKind.UseCombatMedicine) return LifeActions.Validate(world, intent);
@@ -26,6 +43,7 @@ public static class ActionValidator
         if (intent.Kind == ActionKind.BoardTurn) return BoardBattleActions.Validate(world, intent);
         if (world.MedicineOnly && (intent.ResourceId == "pill" || intent.Kind is ActionKind.Cultivate or ActionKind.Breakthrough or ActionKind.Heal or ActionKind.CombatHeal or ActionKind.PowerStrike)) return "Pills removed; former pill-consuming actions paused";
         if (world.MortalTrainingWork.Any(t => t.Intent.ActorId == intent.ActorId)) return "Actor busy in mortal training";
+        if(world.Time?.MarketOrders?.Commands.Any(c=>c.Intent.ActorId==intent.ActorId)==true)return "Actor busy in market operation";
         if (world.LifeSystem?.Work.Any(t=>t.Intent.ActorId==intent.ActorId)==true) return "Actor busy in life work";
         if (world.LifeSystem?.Work.Any(t => t.Service?.ClientId == intent.ActorId) == true) return "Actor awaiting commissioned service";
         if (intent.Kind != ActionKind.RequestLifeService && intent.ServiceMaterials is not null) return "Unexpected service payload";
@@ -37,12 +55,14 @@ public static class ActionValidator
         var staminaError = StaminaActions.Validate(world, intent);
         if (staminaError is not null) return staminaError;
         if (MortalTrainingActions.Handles(intent.Kind)) return MortalTrainingActions.Validate(world, intent);
+        if(intent.Kind==ActionKind.RepairEquipment)return EquipmentRepairActions.Validate(world,intent);
         if (intent.Kind == ActionKind.RequestLifeService) return CombatActions.Active(world, intent.ActorId) is not null ? "Client in combat" : PaidLifeServices.Validate(world, intent);
         if (LifeActions.Handles(intent.Kind)) return LifeActions.Validate(world, intent);
         if (CombatActions.Handles(intent.Kind)) return CombatActions.Validate(world, intent);
         if (CombatActions.Active(world, intent.ActorId) is not null) return "Actor in combat";
         if (world.Scheduled.Any(t => t.Intent.ActorId == intent.ActorId && t.Intent.Kind == ActionKind.Travel)) return "Actor traveling";
         if (intent.Kind == ActionKind.Rest) return null;
+        if(MarketOrders.Handles(intent.Kind))return MarketOrders.Validate(world,intent);
         if (intent.Kind == ActionKind.Wait) return world.Time?.ActionDriven is null || intent.TargetId != intent.ActorId || intent.ResourceId != "time" ||
             intent.Quantity != 1 || intent.DurationTicks != 0 || intent.MissionId is not null ? "Invalid wait action" : null;
         if(intent.Kind==ActionKind.InvestSettlementPopulation)return PopulationInvestmentActions.Validate(world,intent);
@@ -52,7 +72,7 @@ public static class ActionValidator
         if (intent.Kind == ActionKind.Travel) return TravelActions.Validate(world, intent);
         if (HexBuildingActions.Handles(intent.Kind)) return HexBuildingActions.Validate(world, intent);
         if (intent.Kind == ActionKind.Transfer && intent.ResourceId == "contribution") return "Contribution is non-transferable";
-        if (world.SectFacilities is not null && intent.Kind is ActionKind.Gather or ActionKind.Brew) return "Sect facilities require accepted sect work";
+        if (world.SectFacilities is not null && (intent.Kind is ActionKind.Gather or ActionKind.Brew) && !(intent.Kind==ActionKind.Gather&&world.HexMap?.Regional is {} topology&&world.Characters.Single(a=>a.Id==intent.ActorId).RegionId!=topology.Regions[0].Id)) return "Sect facilities require accepted sect work";
         if (checkLocation && world.DemoMapEnabled && TravelActions.RequiredLocation(intent.Kind) is { } location &&
             world.Characters.Single(c => c.Id == intent.ActorId).DemoLocationId != location &&
             !HexBuildingActions.HasService(world, intent.ActorId, location)) return "Action requires demo location: " + location;

@@ -5,11 +5,15 @@ namespace Cultivation.Simulation;
 
 internal static class AutonomousDecisions
 {
-    internal static void Queue(WorldState w, IActionPlanner planner, bool playerOnly = false)
+    internal static void Queue(WorldState w, IActionPlanner planner, bool playerOnly = false, IReadOnlyList<string>? requestedActors = null)
     {
-        var actors = w.Characters.Where(c => (c.Id == w.ControlledCharacterId ? w.PlayerAutoSchedule : !playerOnly) && !(w.BoardBattle is { Phase: BoardBattlePhase.Active } activeBoard && activeBoard.Fighters.Any(f => f.ActorId == c.Id)) && (c.RegionId == "valley" || w.Performance is not null) && c.MonsterKind == MonsterKind.None).OrderBy(c => c.Id, StringComparer.Ordinal).ToArray();
-        var ordered = actors.Where(c => string.CompareOrdinal(c.Id, w.DecisionCursor) > 0)
-            .Concat(actors.Where(c => string.CompareOrdinal(c.Id, w.DecisionCursor) <= 0)).ToArray();
+        IEnumerable<CharacterState> sourceActors=requestedActors is null?w.Characters:requestedActors.Select(id=>w.Characters.Single(c=>c.Id==id));
+        var actors = sourceActors.Where(c => (PlayerControl.IsControlled(w,c.Id) ? w.PlayerAutoSchedule : !playerOnly) && !(w.BoardBattle is { Phase: BoardBattlePhase.Active } activeBoard && activeBoard.Fighters.Any(f => f.ActorId == c.Id)) && (c.RegionId == "valley" || w.Performance is not null) && c.MonsterKind == MonsterKind.None).ToArray();
+        // R3 owns FIFO ordering; the legacy cursor must not reorder accepted requests.
+        var ordered = requestedActors is not null
+            ? actors
+            : actors.Where(c => string.CompareOrdinal(c.Id, w.DecisionCursor) > 0).OrderBy(c => c.Id, StringComparer.Ordinal)
+                .Concat(actors.Where(c => string.CompareOrdinal(c.Id, w.DecisionCursor) <= 0).OrderBy(c => c.Id, StringComparer.Ordinal)).ToArray();
         int evaluated = 0;
         var spatial = new WorldSpatialIndex(w);
         var byId = spatial.ById;
@@ -28,12 +32,12 @@ internal static class AutonomousDecisions
         foreach (var actor in ordered)
         {
             if (evaluated >= w.Rules.DecisionBudget) break;
-            var source = actor.Id == w.ControlledCharacterId ? DecisionSource.Player : DecisionSource.Npc;
+            var source = PlayerControl.IsControlled(w,actor.Id) ? DecisionSource.Player : DecisionSource.Npc;
             w.DecisionCursor = actor.Id;
-            if (!NpcDecisionTiming.Ready(w, actor, spatial.LatestNotifications.GetValueOrDefault(actor.Id, -1))) continue;
+            if (requestedActors is null&&!NpcDecisionTiming.Ready(w, actor, spatial.LatestNotifications.GetValueOrDefault(actor.Id, -1))) continue;
             w.Time?.IdleDecisions.Remove(actor.Id);
             if (w.MortalTrainingWork.Any(t => t.Intent.ActorId == actor.Id) || spatial.ScheduledActors.Contains(actor.Id) || w.Pending.Any(t => t.Intent.ActorId == actor.Id) ||
-                w.Time is not null && TimeActions.Budget(w, actor.Id).BusyThroughTick > w.Clock.Tick || !AiLodScheduling.Due(w, actor, stamps, spatial.LatestNotifications)) continue;
+                w.Time is not null && TimeActions.Budget(w, actor.Id).BusyThroughTick > w.Clock.Tick || requestedActors is null&&!AiLodScheduling.Due(w, actor, stamps, spatial.LatestNotifications)) continue;
             if (actor.Stamina is { Resting: true } || w.Time?.ApRestingActors.Contains(actor.Id) == true || w.LifeSystem?.Work.Any(t => t.Intent.ActorId == actor.Id || t.Service?.ClientId == actor.Id) == true) continue;
             if (TimeActions.NeedsApRest(w, actor.Id) && TimeActions.Budget(w, actor.Id).Remaining == 0) {
                 var rest = new ActionIntent("ap-rest:" + actor.Id + ":" + w.Clock.Tick, actor.Id, actor.Id, "stamina", 1, 0, source, ActionKind.Rest, "AP不足，休息回復行動能力");
@@ -48,6 +52,10 @@ internal static class AutonomousDecisions
             }
             evaluated++;
             AiLodScheduling.Mark(w, actor);
+            if(EquipmentRepairActions.Decide(w,actor,source) is {} repair){
+                if(ActionValidator.Validate(w,repair) is null)w.Pending.Add(new(w.NextSequence++,repair));
+                continue;
+            }
             var development = ExternalMarketDecisions.Choose(w, actor) ?? OrganizationLaborDecisions.Choose(w,actor) ?? OrganizationDevelopmentDecisions.Choose(w, actor);
             if (development is not null)
             {
@@ -62,8 +70,11 @@ internal static class AutonomousDecisions
                     w.Pending.Add(new(w.NextSequence++, remote.Intent with { Source = source, DecisionDetail = remote.Reason }));
                 continue;
             }
-            var herbQuote = MarketPricing.Quote(w, "herb");
-            var pillQuote = MarketPricing.Quote(w, "pill");
+            bool eventMode=w.Time?.EventDecisions is not null;
+            var knownHerb=eventMode?ActorKnowledge.ReadMarket(w,actor.Id,"herb"):null;
+            var knownPill=eventMode?ActorKnowledge.ReadMarket(w,actor.Id,"pill"):null;
+            var herbQuote = eventMode?(knownHerb?.Quote??new("market","herb",w.Rules.HerbPrice,w.Rules.HerbPrice,0,w.Clock.Tick,"reference:config")):MarketPricing.Quote(w, "herb");
+            var pillQuote = eventMode?(knownPill?.Quote??new("market","pill",w.Rules.PillPrice,w.Rules.PillPrice,0,w.Clock.Tick,"reference:config")):MarketPricing.Quote(w, "pill");
             OpponentObservation Observe(CharacterState target)
             {
                 var stats = CharacterProgression.Stats(target, w.Advancement);
@@ -80,8 +91,8 @@ internal static class AutonomousDecisions
             }
             long Own(string item) => Inventory.Balance(w, actor.Id, item);
             var observation = new LocalObservation(actor, w.Clock.Tick, Own("spirit-stone"), Own("herb"), Own("pill"),
-                Inventory.Balance(w, "grove", "herb"), Inventory.Balance(w, "market", "spirit-stone"),
-                Inventory.Balance(w, "market", "herb"), Inventory.Balance(w, "market", "pill"), w.Rules with { HerbPrice = herbQuote.BuyPrice, PillPrice = pillQuote.BuyPrice }, "market:valley", w.Clock.Tick,
+                Inventory.Balance(w, "grove", "herb"), eventMode?Math.Max(knownHerb?.Quote.SellPrice??0,knownPill?.Quote.SellPrice??0):Inventory.Balance(w, "market", "spirit-stone"),
+                eventMode?herbQuote.Stock:Inventory.Balance(w, "market", "herb"), eventMode?pillQuote.Stock:Inventory.Balance(w, "market", "pill"), w.Rules with { HerbPrice = herbQuote.BuyPrice, PillPrice = pillQuote.BuyPrice }, "market:valley", w.Clock.Tick,
                 w.Memories.Count(m => m.ActorId == actor.Id && m.Kind == ActionKind.Brew && !m.Success),
                 w.Memories.Where(m => m.ActorId == actor.Id).ToArray(),
                 w.Missions.Where(m => m.RegionId == actor.RegionId && m.Status == MissionStatus.Active && m.DeadlineTick > w.Clock.Tick + 1 && (!m.MembersOnly || actor.OrganizationId == m.OrganizationId))
@@ -141,6 +152,7 @@ internal static class AutonomousDecisions
                     $"sect-work:{facilities.OrganizationId}:{actor.RegionId}", w.Clock.Tick) : null, w.Aspirations, ExpeditionObservations.Observe(w, actor), CharacterGrowthCalculator.Modifiers(w, actor).CombinedMultiplier);
             var candidates = (w.Methods?.TrainingFocusActors?.Contains(actor.Id) == true ? MethodTraining.Evaluate(w, actor, source).Concat(LifeDecisions.Evaluate(w, actor, source)) : actor.TestProfession != TestProfession.None && w.SpecialistRules is not null ? SpecialistDecisions.Evaluate(w, actor, source) : planner.Evaluate(observation).Where(c => w.AlchemyEnabled || !(c.Intent.Kind is ActionKind.Brew or ActionKind.SectBrew || c.Intent.Kind == ActionKind.AcceptSectWork && c.Intent.ResourceId == "pill" || c.Intent.Kind == ActionKind.Buy && c.Intent.ResourceId == "herb")).Concat(LifeDecisions.Evaluate(w, actor, source)).Concat(MortalTrainingActions.Evaluate(w, actor, source))).Concat(PaidLifeServices.Evaluate(w, actor, source)).OrderByDescending(c => c.Score).ThenBy(c => c.Intent.Kind).Select(c => c with { Intent = c.Intent with {
                 Source = source, Id = source == DecisionSource.Player ? $"player-auto:{actor.Id}:{w.Clock.Tick}" : c.Intent.Id } }).ToArray();
+            if(w.Time?.MarketOrders is not null)candidates=candidates.Select(c=>MarketOrderDecisions.Map(w,actor,c)).OfType<ScoredAction>().ToArray();
             if (w.DemoMapEnabled)
                 candidates = candidates.Select(c =>
                 {
@@ -165,6 +177,7 @@ internal static class AutonomousDecisions
                 choice = feasible.FirstOrDefault();
                 oldPlan = null;
             }
+            EventDecisions.RecordCandidates(w,actor.Id,candidates,choice?.Intent);
             if (choice is null) {
                 if (TimeActions.NeedsApRest(w, actor.Id)) {
                     var rest = new ActionIntent("ap-recover:" + actor.Id + ":" + w.Clock.Tick, actor.Id, actor.Id, "stamina", 1, 0, source, ActionKind.Rest,

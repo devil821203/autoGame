@@ -9,11 +9,16 @@ public static class ExternalMarketActions
     internal static void EnableFresh(WorldState w,GameConfiguration config)
     {
         var o=config.Read<Options>("economy/external-market.json");
+        var prices=BasePrices(w);
+        w.ExternalMarket=new(){Rules=new(o.SettlementId,o.PurchaseMultiplier,o.SaleMultiplier,prices,o.ActionPoints,o.OrganizationAutoTrade)};
+    }
+    internal static Dictionary<string,long> BasePrices(WorldState w)
+    {
         var prices=new Dictionary<string,long>(w.PaidServiceRules!.MaterialPrices,StringComparer.Ordinal);
-        foreach(var price in w.SettlementRules!.Prices)prices.Add(price.Item,price.Buy);
+        foreach(var price in w.SettlementRules?.Prices??[])prices.Add(price.Item,price.Buy);
         foreach(var recipe in w.LifeSystem!.Recipes)
             if(!prices.ContainsKey(recipe.Output))prices.Add(recipe.Output,checked(recipe.Inputs.Sum(p=>checked(p.Value*prices[p.Key]))+w.PaidServiceRules.LaborFees[recipe.Id]));
-        w.ExternalMarket=new(){Rules=new(o.SettlementId,o.PurchaseMultiplier,o.SaleMultiplier,prices,o.ActionPoints,o.OrganizationAutoTrade)};
+        return prices;
     }
     public static bool Handles(ActionKind k)=>k is ActionKind.ExternalMarketBuy or ActionKind.ExternalMarketSell;
     public static string Owner(ActionIntent i)=>i.OrganizationId??i.ActorId;
@@ -57,6 +62,7 @@ public static class ExternalMarketActions
         w.ExternalMarket!.Receipts.Add(new(i.Id,w.Clock.Tick,i.ActorId,owner,i.Kind,i.ResourceId,delivered,i.Quantity,total));
         ActionExecutor.Emit(w,i.Id,"ExternalMarketTrade",$"{owner}:{i.Kind}:{i.ResourceId}:{i.Quantity}:total={total}");
         w.Memories.Add(new(i.ActorId,w.Clock.Tick,i.Kind,true,i.ResourceId,buy?-total:total,buy?i.Quantity:-i.Quantity,"external-market:"+i.TargetId));
+        EventDecisions.OrganizationChanged(w,owner);
     }
     internal static void ValidateWorld(WorldState w)
     {

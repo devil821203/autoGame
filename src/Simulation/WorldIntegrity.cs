@@ -6,6 +6,14 @@ public static class WorldIntegrity
 {
     public static void Validate(WorldState world)
     {
+        DiscreteTime.Validate(world);
+        WorldPeriodEvents.Validate(world);
+        ActionRuntimeIntegrity.Validate(world);
+        EventDecisionIntegrity.Validate(world);
+        ContentProfile.Validate(world);
+        MarketOrderIntegrity.Validate(world);
+        RegionalWorldIntegrity.Validate(world);
+        PlayerControl.Validate(world);
         if (world.Organizations.Any(o => !Enum.IsDefined(o.Kind))) throw new InvalidDataException("Invalid or removed organization kind");
         SettlementIntegrity.Validate(world);
         SettlementEconomyIntegrity.Validate(world);
@@ -13,6 +21,13 @@ public static class WorldIntegrity
         PopulationInvestmentActions.ValidateWorld(world);
         OrganizationLaborIntegrity.Validate(world);
         EquipmentDurabilityActions.Validate(world);
+        EquipmentRepairIntegrity.Validate(world);
+        ScheduledEventIntegrity.Validate(world);
+        RecoveryEvents.Validate(world);
+        ResourceEvents.Validate(world);
+        PayrollEvents.Validate(world);
+        MissionExpiryEvents.Validate(world);
+        SocialExpiryEvents.Validate(world);
         ExternalMarketActions.ValidateWorld(world);
         SettlementDailyEconomy.Validate(world);
         SettlementPopulationGrowth.Validate(world);
@@ -81,9 +96,11 @@ public static class WorldIntegrity
         var regenerationIssuance = world.Ledger.Where(e => e.From == "$regeneration").ToLookup(e => e.Tick);
         foreach (var entry in world.Ledger.OrderBy(e => e.Sequence))
         {
-            if (entry.Quantity <= 0 || string.IsNullOrWhiteSpace(entry.ResourceId) || entry.Tick < 0 || entry.Tick > world.Clock.Tick || entry.From == entry.To)
+            bool exactResourceBoundary = world.Time?.IndependentResourceEvents == true && entry.From == "$regeneration" &&
+                entry.Tick == world.Time.DiscreteEvents!.WorldTime / DiscreteTime.SecondsPerStep(world);
+            if (entry.Quantity <= 0 || string.IsNullOrWhiteSpace(entry.ResourceId) || entry.Tick < 0 || entry.Tick > world.Clock.Tick && !exactResourceBoundary || entry.From == entry.To)
                 throw new InvalidDataException("Invalid ledger entry.");
-            bool Known(string owner) => ownerSet.Contains(owner) || owner.StartsWith("$escrow:", StringComparison.Ordinal) || world.Missions.Any(m => MissionActions.Account(m.Id) == owner);
+            bool Known(string owner) => ownerSet.Contains(owner) || owner.StartsWith("$escrow:", StringComparison.Ordinal) || world.Missions.Any(m => MissionActions.Account(m.Id) == owner)||world.Time?.MarketOrders?.Orders.Values.Any(o=>MarketOrders.Account(o.Id)==owner)==true;
             if (!Known(entry.To) || (!Known(entry.From) && entry.From != "$genesis" && entry.From != "$alchemy" && entry.From != "$regeneration" && entry.From != "$dungeon" && entry.From != "$test-procurement" && entry.From != "$dungeon-herb" && entry.From != "$contribution" && entry.From != "$life-production" && entry.From != "$settlement-production" && entry.From != "$settlement-residents" && entry.From != "$external-market" && entry.From != "$recruitment" && entry.From != "$equipment-instance"))
                 throw new InvalidDataException("Unknown ledger account.");
             if (entry.From == "$equipment-instance")
@@ -195,10 +212,10 @@ public static class WorldIntegrity
         {
             if (task.Intent.Kind == ActionKind.Travel)
             {
-                if (task.DueTick <= world.Clock.Tick || !world.ProcessedIntentIds.Contains(task.Intent.Id)) throw new InvalidDataException("Invalid travel timing");
+                if ((task.DueAtSeconds is {} due?due<world.Time!.DiscreteEvents!.WorldTime:task.DueTick<=world.Clock.Tick) || !world.ProcessedIntentIds.Contains(task.Intent.Id)) throw new InvalidDataException("Invalid travel timing");
                 continue;
             }
-            if (task.DueTick <= world.Clock.Tick || !world.ProcessedIntentIds.Contains(task.Intent.Id) ||
+            if ((task.DueAtSeconds is {} deadline?deadline<world.Time!.DiscreteEvents!.WorldTime:task.DueTick<=world.Clock.Tick) || !world.ProcessedIntentIds.Contains(task.Intent.Id) ||
                 task.Intent.Kind != ActionKind.ConstructBuilding && !owners.Contains(task.Intent.TargetId) || task.Intent.Quantity <= 0 ||
                 Inventory.Balance(world, ActionExecutor.Escrow(task.Intent.Id), task.Intent.ResourceId) != task.Intent.Quantity)
                 throw new InvalidDataException("Invalid scheduled reservation.");
@@ -206,7 +223,8 @@ public static class WorldIntegrity
         foreach (var pair in balances.Where(p => p.Key.Item1.StartsWith("$escrow:", StringComparison.Ordinal) && p.Value != 0))
             if (!tasks.Any(t => ActionExecutor.Escrow(t.Intent.Id) == pair.Key.Item1 && t.Intent.ResourceId == pair.Key.Item2 && t.Intent.Quantity == pair.Value) &&
                 world.LifeSystem?.Work.Any(t => ActionExecutor.Escrow(t.Intent.Id) == pair.Key.Item1 && t.Inputs.GetValueOrDefault(pair.Key.Item2) == pair.Value ||
-                    t.Service is { } c && PaidLifeServices.Account(t.Intent.Id) == pair.Key.Item1 && pair.Key.Item2 == "spirit-stone" && pair.Value == c.Fee) != true)
+                    t.Service is { } c && PaidLifeServices.Account(t.Intent.Id) == pair.Key.Item1 && pair.Key.Item2 == "spirit-stone" && pair.Value == c.Fee) != true &&
+                world.Time?.ActionRuntime?.Reservations.Values.Where(r=>r.Account==pair.Key.Item1&&r.ResourceId==pair.Key.Item2).Sum(r=>r.Remaining)!=pair.Value)
                 throw new InvalidDataException("Orphaned reservation.");
         try { EconomyIntegrity.Validate(world); }
         catch (OverflowException error) { throw new InvalidDataException("Economy arithmetic overflow.", error); }

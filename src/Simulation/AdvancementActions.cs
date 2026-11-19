@@ -39,7 +39,8 @@ internal static class AdvancementActions
         long quantity = i.Kind == ActionKind.LearnMethod ? rules.LearningCost : rules.BreakthroughPills;
         long duration = i.Kind == ActionKind.LearnMethod ? rules.LearningTicks : rules.BreakthroughTicks;
         var reserved = i with { Quantity = quantity };
-        ActionExecutor.Transfer(w, reserved, i.ActorId, ActionExecutor.Escrow(i.Id), "Reserved");
+        if (w.Time?.ActionRuntime?.Actions.ContainsKey(i.Id) == true) ReservationService.Reserve(w, reserved, i.Id + ":advancement-resource", i.ActorId, ActionExecutor.Escrow(i.Id), "Reserved");
+        else ActionExecutor.Transfer(w, reserved, i.ActorId, ActionExecutor.Escrow(i.Id), "Reserved");
         w.Scheduled.Add(new(w.NextSequence++, checked(w.Clock.Tick + duration), reserved));
         ActionExecutor.Emit(w, i.Id, "Scheduled", $"{i.ActorId}:{i.Kind}");
     }
@@ -49,10 +50,13 @@ internal static class AdvancementActions
         var rules = w.Advancement!;
         int index = w.Characters.FindIndex(c => c.Id == i.ActorId);
         var actor = w.Characters[index];
-        ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), "consumed", "Consumed");
+        bool tracked = w.Time?.ActionRuntime?.Actions.ContainsKey(i.Id) == true;
+        if (tracked) { ActionLifecycle.RequireRunning(w, i.Id); ReservationService.Settle(w, i.Id + ":advancement-resource", i.Quantity, true, "consumed", "Consumed"); }
+        else ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), "consumed", "Consumed");
         w.Characters[index] = i.Kind == ActionKind.LearnMethod ? actor with { MethodId = rules.MethodId } :
             actor with { Realm = actor.Realm + 1, Cultivation = actor.Cultivation - CharacterProgression.Threshold(actor, rules) };
         w.Memories.Add(new(i.ActorId, w.Clock.Tick, i.Kind, true, i.ResourceId, i.Kind == ActionKind.LearnMethod ? -i.Quantity : 0, -i.Quantity, "self:advancement"));
+        if (tracked) { ActionLifecycle.Checkpoint(w, i.Id); ActionLifecycle.Finish(w, i.Id, ActionPhase.Completed, "學習完成"); }
         ActionExecutor.Emit(w, i.Id, "Completed", $"{i.ActorId}:{i.Kind}");
     }
 }

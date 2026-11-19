@@ -6,6 +6,7 @@ namespace Cultivation.Presentation;
 // A view of the existing logical location; no simulation state is changed here.
 public partial class SectCourtyard : Node2D
 {
+    private readonly Font drawFont = PresentationFonts.Create();
     public event Action<string>? Activated;
     private WorldState? world;
     private readonly Dictionary<string, Button> buttons = new();
@@ -59,7 +60,7 @@ public partial class SectCourtyard : Node2D
             DrawRect(new(p.X - 5, p.Y, 10, 26), new Color("795b43"));
             DrawCircle(p, 23, new Color("325b42"));
         }
-        DrawString(ThemeDB.FallbackFont, new(25, 29), "青雲宗 · 山門廣場", fontSize: 22, modulate: Colors.White);
+        DrawString(drawFont, new(25, 29), "青雲宗 · 山門廣場", fontSize: 22, modulate: Colors.White);
         if (world is null || !PlayerPresent) return;
         var player = world.Characters.Single(c => c.Id == world.ControlledCharacterId);
         if (player.RegionId != "valley") return;
@@ -76,7 +77,7 @@ public partial class SectCourtyard : Node2D
             if (controlled)
             {
                 DrawArc(point + new Vector2(0, -1), 18, 0, Mathf.Tau, 24, Colors.Gold, 2);
-                DrawString(ThemeDB.FallbackFont, point + new Vector2(-15, -25), "玩家", fontSize: 13, modulate: Colors.Gold);
+                DrawString(drawFont, point + new Vector2(-15, -25), "玩家", fontSize: 13, modulate: Colors.Gold);
             }
         }
     }

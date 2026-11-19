@@ -561,6 +561,8 @@ var allTests = tests.Concat(Phase2Tests.Cases).Concat(AdvancementTests.Cases).Co
 allTests = allTests.Concat(HexWorldTests.Cases).ToArray();
 allTests = allTests.Concat(SceneSiteTests.Cases).ToArray();
 allTests = allTests.Concat(BoardBattleTests.Cases).Concat(RestHealthTests.Cases).Concat(PlayerAutoScheduleTests.Cases).Concat(TimeTests.Cases).Concat(LifeSkillTests.Cases).Concat(LifeSystemTests.Cases).ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2LearningIntegrationTests.Cases).ToArray();
+
 if (args.Contains("--time-only")) allTests = TimeTests.Cases.ToArray();
 if (args.Contains("--life-only")) allTests = LifeSkillTests.Cases.Concat(LifeSystemTests.Cases).ToArray();
 allTests = allTests.Concat(HerbProcurementTests.Cases).Concat(MedicineOnlyTests.Cases).ToArray();
@@ -601,6 +603,68 @@ allTests = allTests.Concat(ActionDrivenTests.Cases).ToArray();
 if (args.Contains("--action-driven-only")) allTests = ActionDrivenTests.Cases.ToArray();
 allTests = allTests.Concat(BatchTrainingTests.Cases).ToArray();
 if (args.Contains("--batch-training-only")) allTests = BatchTrainingTests.Cases.ToArray();
+allTests = allTests.Concat(DiscreteEventTests.Cases).ToArray();
+if (args.Contains("--discrete-events-only")) allTests = DiscreteEventTests.Cases.ToArray();
+allTests = allTests.Concat(ActionLifecycleTests.Cases).ToArray();
+allTests = allTests.Concat(EventDecisionTests.Cases).ToArray();
+if (args.Contains("--event-decisions-only")) allTests = EventDecisionTests.Cases.ToArray();
+if (args.Contains("--action-lifecycle-only")) allTests = ActionLifecycleTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(SqlitePersistenceTests.Cases).ToArray();
+if (args.Contains("--sqlite-only")) allTests=SqlitePersistenceTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(MarketOrderTests.Cases).ToArray();
+if(args.Contains("--market-orders-only"))allTests=MarketOrderTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(RegionalWorldTests.Cases).ToArray();
+if(args.Contains("--regional-world-only"))allTests=RegionalWorldTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(PlayerControlTests.Cases).ToArray();
+if(args.Contains("--player-control-only"))allTests=PlayerControlTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(DiscreteBenchmarkTests.Cases).ToArray();
+if(args.Contains("--r7-benchmark-only"))allTests=DiscreteBenchmarkTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(EquipmentRepairTests.Cases).ToArray();
+if(args.Contains("--equipment-repair-only"))allTests=EquipmentRepairTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(LifeEventTests.Cases).ToArray();
+if(args.Contains("--life-events-only"))allTests=LifeEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(ScheduledEventTests.Cases).ToArray();
+if(args.Contains("--scheduled-events-only"))allTests=ScheduledEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(RecoveryEventTests.Cases).ToArray();
+if(args.Contains("--recovery-events-only"))allTests=RecoveryEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(ResourceEventTests.Cases).ToArray();
+if(args.Contains("--resource-events-only"))allTests=ResourceEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(PayrollEventTests.Cases).ToArray();
+if(args.Contains("--payroll-events-only"))allTests=PayrollEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(MissionExpiryEventTests.Cases).ToArray();
+if(args.Contains("--mission-expiry-events-only"))allTests=MissionExpiryEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(SocialExpiryEventTests.Cases).ToArray();
+if(args.Contains("--social-expiry-events-only"))allTests=SocialExpiryEventTests.Cases.ToArray();
+if(!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal)))allTests=allTests.Concat(R1OffGridBattleRegressionTests.Cases).ToArray();
+if(args.Contains("--r1-offgrid-battle-only"))allTests=R1OffGridBattleRegressionTests.Cases.ToArray();
+if (args.Contains("--r2-learning-only")) allTests=R2LearningIntegrationTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(GatherLifecycleTests.Cases).ToArray();
+if (args.Contains("--gather-lifecycle-only")) allTests=GatherLifecycleTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(ScheduledTransferLifecycleTests.Cases).ToArray();
+if (args.Contains("--scheduled-transfer-lifecycle-only")) allTests=ScheduledTransferLifecycleTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(SectGatherLifecycleTests.Cases).ToArray();
+if (args.Contains("--sect-gather-lifecycle-only")) allTests=SectGatherLifecycleTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(ConstructionLifecycleTests.Cases).ToArray();
+if (args.Contains("--construction-lifecycle-only")) allTests=ConstructionLifecycleTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2DeferredTradeTests.Cases).ToArray();
+if (args.Contains("--r2-deferred-trade-only")) allTests=R2DeferredTradeTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2DeferredMedicineTests.Cases).ToArray();
+if (args.Contains("--r2-deferred-medicine-only")) allTests=R2DeferredMedicineTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2EquipmentActionTests.Cases).ToArray();
+if (args.Contains("--r2-equipment-actions-only")) allTests=R2EquipmentActionTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2MissionDeliveryTests.Cases).ToArray();
+if (args.Contains("--r2-mission-delivery-only")) allTests=R2MissionDeliveryTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2MissionCommandsTests.Cases).ToArray();
+if (args.Contains("--r2-mission-commands-only")) allTests=R2MissionCommandsTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2SectCommandsTests.Cases).ToArray();
+if (args.Contains("--r2-sect-commands-only")) allTests=R2SectCommandsTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2PartyHuntTests.Cases).ToArray();
+if (args.Contains("--r2-party-hunt-only")) allTests=R2PartyHuntTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R2BatchIntegrationTests.Cases).ToArray();
+if (args.Contains("--r2-batch-integration-only")) allTests=R2BatchIntegrationTests.Cases.ToArray();
+if (!args.Any(a=>a.EndsWith("-only",StringComparison.Ordinal))) allTests=allTests.Concat(R301NotificationTests.Cases).ToArray();
+if (args.Contains("--r301-only")) allTests=EventDecisionTests.Cases.Concat(R301NotificationTests.Cases).ToArray();
+if (args.Contains("--r301-new-only")) allTests=R301NotificationTests.Cases.ToArray();
 foreach (var test in allTests)
 {
     try { test.Body(); Console.WriteLine("PASS " + test.Name); }
@@ -608,6 +672,7 @@ foreach (var test in allTests)
 }
 Console.WriteLine($"{allTests.Length - failed}/{allTests.Length} passed");
 return failed == 0 ? 0 : 1;
+
 
 
 

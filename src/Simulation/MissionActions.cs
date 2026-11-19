@@ -21,6 +21,7 @@ internal static class MissionActions
                 offer.Quantity <= 0 || offer.UnitPrice <= 0 || offer.DeadlineTick <= w.Clock.Tick || offer.MaximumBudget <= 0) return "Invalid mission offer";
             try
             {
+                if(w.Time?.IndependentMissionExpiryEvents==true&&checked(offer.DeadlineTick*DiscreteTime.SecondsPerStep(w))<=w.Time.DiscreteEvents!.WorldTime)return "Mission deadline already reached";
                 long budget = checked(offer.Quantity * offer.UnitPrice);
                 if (budget > offer.MaximumBudget || Inventory.Balance(w, organization.Id, "spirit-stone") < budget) return "Insufficient mission budget";
                 if (!InventoryCapacity.CanReceive(w, organization.Id, i.ResourceId, offer.Quantity)) return "Mission inventory capacity exceeded";
@@ -30,7 +31,9 @@ internal static class MissionActions
         }
         var mission = w.Missions.SingleOrDefault(m => m.Id == i.MissionId);
         if (mission is null || mission.OrganizationId != organization.Id || mission.ResourceId != i.ResourceId) return "Unknown mission";
-        if (mission.Status != MissionStatus.Active || w.Clock.Tick >= mission.DeadlineTick) return "Mission unavailable or expired";
+        if (mission.Status != MissionStatus.Active || (w.Time?.IndependentMissionExpiryEvents==true
+            ? w.Time.DiscreteEvents!.WorldTime>=MissionExpiryEvents.Due(w,mission)
+            : w.Clock.Tick >= mission.DeadlineTick)) return "Mission unavailable or expired";
         if (i.Kind == ActionKind.CancelMission) return GovernanceActions.CanManageMissions(w, actor, organization) ? null : "Only authorized organization officers may cancel";
         if (mission.MembersOnly && actor.OrganizationId != organization.Id) return "Mission requires membership";
         if (w.Scheduled.Any(t => t.Intent.ActorId == actor.Id)) return "Actor busy";
@@ -55,6 +58,7 @@ internal static class MissionActions
                 offer.UnitPrice, offer.DeadlineTick, budget, 0, MissionStatus.Active, [], w.OrganizationPolicies.SingleOrDefault(p => p.OrganizationId == organization.Id)?.MissionsMembersOnly ?? false));
             ActionExecutor.Transfer(w, i with { ResourceId = "spirit-stone", Quantity = budget }, organization.Id, Account(offer.Id), "MissionReserved");
             ActionExecutor.Emit(w, i.Id, "MissionPublished", offer.Id);
+            Notify(w,w.Missions[^1]);
             return;
         }
         int index = w.Missions.FindIndex(m => m.Id == i.MissionId);
@@ -88,11 +92,13 @@ internal static class MissionActions
         long delivered = mission.Delivered + quantity;
         w.Missions[index] = mission with { Delivered = delivered, Status = delivered == mission.Required ? MissionStatus.Completed : MissionStatus.Active };
         ActionExecutor.Emit(w, i.Id, "MissionDelivered", $"{i.ActorId}:{mission.Id}:{quantity}@{mission.UnitPrice}");
+        Notify(w,w.Missions[index]);
     }
 
-    internal static void Expire(WorldState w)
+    internal static void Expire(WorldState w,string? missionId=null)
     {
-        foreach (var mission in w.Missions.Where(m => m.Status == MissionStatus.Active && m.DeadlineTick <= w.Clock.Tick).ToArray())
+        foreach (var mission in w.Missions.Where(m => m.Status == MissionStatus.Active && (missionId is null||m.Id==missionId) &&
+            (w.Time?.IndependentMissionExpiryEvents==true?missionId is not null&&MissionExpiryEvents.Due(w,m)<=w.Time.DiscreteEvents!.WorldTime:m.DeadlineTick <= w.Clock.Tick)).ToArray())
             Close(w, mission, MissionStatus.Expired, "expire:" + mission.Id);
     }
 
@@ -103,5 +109,18 @@ internal static class MissionActions
             ActionExecutor.Transfer(w, new(actionId, mission.OrganizationId, mission.OrganizationId, "spirit-stone", refund, 0, DecisionSource.Npc), Account(mission.Id), mission.OrganizationId, "MissionRefund");
         w.Missions[w.Missions.FindIndex(m => m.Id == mission.Id)] = mission with { Status = status };
         ActionExecutor.Emit(w, actionId, "Mission" + status, mission.Id);
+        Notify(w,w.Missions.Single(m=>m.Id==mission.Id));
+    }
+
+    private static void Notify(WorldState w,MissionState mission)
+    {
+        if(w.Time?.EventDecisions is null)return;
+        var participants=mission.Participants.ToHashSet(StringComparer.Ordinal);
+        // Local public board visibility matches the current observation rules.
+        // Prior participants know their own contract even after moving or leaving the organization.
+        foreach(var actor in w.Characters.Where(a=>a.MonsterKind==MonsterKind.None&&a.Health>0&&
+            (participants.Contains(a.Id)||a.RegionId==mission.RegionId&&(!mission.MembersOnly||a.OrganizationId==mission.OrganizationId)))
+            .OrderBy(a=>a.Id,StringComparer.Ordinal))
+            EventDecisions.Request(w,actor.Id,DecisionTrigger.KnownNotification);
     }
 }

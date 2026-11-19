@@ -66,9 +66,9 @@ public static class MethodTraining
         var ids = state.Catalog.Methods.SelectMany(m => m.Skills).Select(s => s.Id).ToHashSet();
         if (state.Learners.Any(p => !w.Characters.Any(a => a.Id == p.Key && a.MortalCultivation is not null) || p.Value.Any(s => !ids.Contains(s.Key) || s.Value < 0)))
             throw new InvalidDataException("Invalid method learner/proficiency");
-        if (state.TrainingFocusActors?.Any(id => !state.Learners.ContainsKey(id) || id == w.ControlledCharacterId) == true)
+        if (state.TrainingFocusActors?.Any(id => !state.Learners.ContainsKey(id) || id == w.ControlledCharacterId&&w.Time?.PlayerControl is null) == true)
             throw new InvalidDataException("Invalid method training focus actor");
-        if (work.Any(t => Validate(w, t.Intent) is not null || t.DueTick > w.Clock.Tick + state.Catalog.TrainingRules.DurationTicks))
+        if (work.Any(t => Validate(w, t.Intent) is not null || t.DueTick > w.Clock.Tick + state.Catalog.TrainingRules.DurationTicks + (w.Time.DiscreteEvents is null ? 0 : 1)))
             throw new InvalidDataException("Invalid method training work");
     }
 }

@@ -37,9 +37,11 @@ public static class OrganizationLaborActions
     internal static void Execute(WorldState w,ActionIntent i)
     {
         string org=i.OrganizationId!;
+        bool changed=true;
         if(i.Kind==ActionKind.SetOrganizationLabor)
         {
             var s=w.Settlements.Single(s=>s.Id==i.TargetId);int n=s.Buildings.FindIndex(b=>b.Id==i.ResourceId);
+            changed=s.Buildings[n].LaborCount!=i.Quantity;
             s.Buildings[n]=s.Buildings[n] with{LaborCount=checked((int)i.Quantity)};
         }
         else if(i.Kind==ActionKind.RecruitOrganizationLabor)
@@ -72,8 +74,12 @@ public static class OrganizationLaborActions
                 w.Ledger.Add(new(w.NextSequence++,w.Clock.Tick,i.Id,RecruitSource,id,item,quantity,"RecruitInitialStock"));
             w.MemberRecruitments.Add(new(i.Id,org,s.Id,id,w.Clock.Tick,before,after,stock));
             TimeActions.Refresh(w);
+            // The new actor did not exist when R3 seeded its startup requests.
+            // Queue only after its inventory, recruitment receipt and AP state exist.
+            EventDecisions.Request(w,id,DecisionTrigger.Startup);
         }
         ActionExecutor.Emit(w,i.Id,"OrganizationLaborChanged",$"{org}:{i.Kind}:{i.ResourceId}:{i.Quantity}");
+        if(changed)EventDecisions.OrganizationChanged(w,org);
     }
     internal static Dictionary<string,long> InitialStock(MemberRecruitmentOptions o,ulong before,out ulong after)
     {
@@ -99,6 +105,8 @@ public static class OrganizationLaborActions
             if(paid&&due>0)w.Ledger.Add(new(w.NextSequence++,w.Clock.Tick,id,labor.OrganizationId,labor.PayrollAccountId,"spirit-stone",due,"OrganizationLaborWages"));
             w.LaborPayroll.Add(new(id,labor.OrganizationId,w.Clock.Tick,labor.Count,due,paid));
             ActionExecutor.Emit(w,id,paid?"LaborSalaryPaid":"LaborSalaryUnpaid",$"{labor.OrganizationId}:{labor.Count}:{due}");
+            // A new unpaid payroll also changes today's usable labor/production state.
+            if(due>0)EventDecisions.OrganizationChanged(w,labor.OrganizationId);
         }
     }
     internal static bool PaidToday(WorldState w,string organization)=>w.LaborPayroll.Any(p=>p.OrganizationId==organization&&p.Tick==w.Clock.Tick&&p.Paid);

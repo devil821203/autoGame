@@ -5,6 +5,7 @@ namespace Cultivation.Simulation;
 // All state changes occur on the engine's transactional working copy.
 internal static class ProductionActions
 {
+    private static string ResourceOwner(WorldState w,CharacterState actor)=>w.HexMap?.Regional?.Regions.Single(r=>r.Id==actor.RegionId).ResourceOwner??"grove";
     internal static long Duration(WorldState w, ActionKind kind) => kind switch
     {
         ActionKind.Gather => w.Rules.GatherTicks,
@@ -19,11 +20,11 @@ internal static class ProductionActions
         if (!Enum.IsDefined(i.Kind) || i.Quantity != 1 || i.DurationTicks != 0) return "Invalid production action";
         if (w.Scheduled.Any(t => t.Intent.ActorId == i.ActorId)) return "Actor busy";
         var actor = w.Characters.Single(c => c.Id == i.ActorId);
-        if (actor.RegionId != "valley" && i.Kind is not (ActionKind.Cultivate or ActionKind.Heal)) return "No local facilities";
+        if (actor.RegionId != "valley" && i.Kind is not (ActionKind.Cultivate or ActionKind.Heal) && !(w.HexMap?.Regional is not null&&i.Kind==ActionKind.Gather)) return "No local facilities";
         if (Duration(w, i.Kind) > long.MaxValue - w.Clock.Tick) return "Duration overflow";
         long Balance(string owner, string item) => Inventory.Balance(w, owner, item);
         if (i.Kind == ActionKind.Gather)
-            return i.TargetId == "grove" && i.ResourceId == "herb" && actor.Health >= 30 && Balance("grove", "herb") > 0 && InventoryCapacity.CanReceive(w, actor.Id, "herb", 1) ? null : "No gatherable herbs, capacity or safe health";
+            return i.TargetId == "grove" && i.ResourceId == "herb" && actor.Health >= 30 && Balance(ResourceOwner(w,actor), "herb") > 0 && InventoryCapacity.CanReceive(w, actor.Id, "herb", 1) ? null : "No gatherable herbs, capacity or safe health";
         if (i.Kind == ActionKind.Brew)
             return i.TargetId == i.ActorId && i.ResourceId == "herb" && actor.AlchemyChance > 0 && Balance(i.ActorId, "herb") >= w.Rules.HerbsPerPill && InventoryCapacity.CanReceive(w, actor.Id, "pill", 1) ? null : "Missing skill, capacity or ingredients";
         if (i.Kind == ActionKind.Cultivate)
@@ -64,7 +65,10 @@ internal static class ProductionActions
             return;
         }
         long quantity = i.Kind == ActionKind.Brew ? w.Rules.HerbsPerPill : 1;
-        ActionExecutor.Transfer(w, i with { Quantity = quantity }, i.Kind == ActionKind.Gather ? "grove" : i.ActorId, ActionExecutor.Escrow(i.Id), "Reserved");
+        string owner = i.Kind == ActionKind.Gather ? ResourceOwner(w,w.Characters.Single(a=>a.Id==i.ActorId)) : i.ActorId;
+        if (i.Kind == ActionKind.Gather && w.Time?.ActionRuntime is not null && WorldPeriodEvents.Enabled(w))
+            ReservationService.Reserve(w, i with { Quantity = quantity }, i.Id + ":gather-resource", owner, ActionExecutor.Escrow(i.Id), "Reserved");
+        else ActionExecutor.Transfer(w, i with { Quantity = quantity }, owner, ActionExecutor.Escrow(i.Id), "Reserved");
         long duration = Duration(w, i.Kind);
         if (i.Kind == ActionKind.Gather)
             duration = Math.Max(1, duration - Math.Min(duration - 1, w.Characters.Single(c => c.Id == i.ActorId).GatheringExperience / w.Rules.GatheringExperiencePerSpeedLevel));
@@ -76,11 +80,17 @@ internal static class ProductionActions
     {
         if (i.Kind == ActionKind.Gather)
         {
-            ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), i.ActorId, "Gathered");
+            if (w.Time?.ActionRuntime is not null && WorldPeriodEvents.Enabled(w))
+            {
+                ActionLifecycle.RequireRunning(w, i.Id);
+                ReservationService.Settle(w, i.Id + ":gather-resource", i.Quantity, true, i.ActorId, "Gathered");
+            }
+            else ActionExecutor.Transfer(w, i, ActionExecutor.Escrow(i.Id), i.ActorId, "Gathered");
             int index = w.Characters.FindIndex(c => c.Id == i.ActorId);
             var actor = w.Characters[index];
             w.Characters[index] = actor with { GatheringExperience = CharacterDevelopment.GainExperience(actor.GatheringExperience, StaminaCalculator.Growth(w, actor, w.Rules.ExperiencePerAction)) };
-            w.Memories.Add(new(i.ActorId, w.Clock.Tick, i.Kind, true, "herb", 0, 1, "grove:valley"));
+            w.Memories.Add(new(i.ActorId, w.Clock.Tick, i.Kind, true, "herb", 0, 1, w.HexMap?.Regional is null?"grove:valley":"resource:"+ResourceOwner(w,actor)+":"+actor.RegionId));
+            if (w.Time?.ActionRuntime is not null && WorldPeriodEvents.Enabled(w)) { ActionLifecycle.Checkpoint(w,i.Id); ActionLifecycle.Finish(w,i.Id,ActionPhase.Completed,"採集完成"); }
         }
         else
         {
