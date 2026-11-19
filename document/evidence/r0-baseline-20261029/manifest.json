@@ -1,0 +1,1861 @@
+{
+    "Date":  "2026-10-29",
+    "Purpose":  "R0 read-only pre-refactor baseline; excludes saves/build outputs",
+    "Files":  [
+                  {
+                      "Path":  "tests\\SectTrainingProbe\\SectTrainingProbe.csproj",
+                      "Bytes":  212,
+                      "SHA256":  "AF9085BA18A4079840AA993EF7D3BD5FDA317EC149F53F75F6AE42EAB87D6197"
+                  },
+                  {
+                      "Path":  "tests\\SectTrainingProbe\\Program.cs",
+                      "Bytes":  4652,
+                      "SHA256":  "C404009BCCFE0B8199D5C748B7CF4997920DF7EA49FB805DCD7FF9CFEDB40501"
+                  },
+                  {
+                      "Path":  "config\\world\\regeneration.json",
+                      "Bytes":  65,
+                      "SHA256":  "7B0D3C792F15A2CB47AC424B995D2D15918F66CEF3E9B2F8552EBE65AD252380"
+                  },
+                  {
+                      "Path":  "config\\world\\performance.json",
+                      "Bytes":  189,
+                      "SHA256":  "2C0BE011C3E31B9601ED97225AEF91B9641ED7D06A4F3469D3F7760E1651CE44"
+                  },
+                  {
+                      "Path":  "config\\world\\organizations.json",
+                      "Bytes":  448,
+                      "SHA256":  "FFBDDBA2587F806F1253B9D334B24419F6BFF65863C2360F7D8275B31C803740"
+                  },
+                  {
+                      "Path":  "config\\world\\demo.json",
+                      "Bytes":  79,
+                      "SHA256":  "156E40F24DAA4EEB4C5760A72D3689EF40FB7FA6C4959CA377D882F09CC0EC71"
+                  },
+                  {
+                      "Path":  "tests\\MethodCatalog\\Program.cs",
+                      "Bytes":  2852,
+                      "SHA256":  "C60832C6A5A0344E1ED0EA74738A1EE18B39BEB09D89E7E4B6DCD73C1BD16262"
+                  },
+                  {
+                      "Path":  "tests\\MethodCatalog\\MethodCatalog.csproj",
+                      "Bytes":  352,
+                      "SHA256":  "F52238ABC2D350089D7992E7095E1F99E3327049A4825066243ADEE31CD28D13"
+                  },
+                  {
+                      "Path":  "config\\time\\calendar.json",
+                      "Bytes":  125,
+                      "SHA256":  "10BFCBB308A63DA129BC28DB4B7BBB7DB2AD1B371D867BA38CC9DA799D32A511"
+                  },
+                  {
+                      "Path":  "config\\time\\action-driven.json",
+                      "Bytes":  225,
+                      "SHA256":  "3162258F47D5441AF8C05372A00F6A7744481251F662C558CEACEBD491A7159C"
+                  },
+                  {
+                      "Path":  "config\\time\\action-costs.json",
+                      "Bytes":  156,
+                      "SHA256":  "43BB973300D90C02F1236AA94DABC9D3383AD066A5999B1E64E98356A2E1350B"
+                  },
+                  {
+                      "Path":  "config\\scenes\\sites.json",
+                      "Bytes":  1956,
+                      "SHA256":  "BA5522F21C11FE2E7B20091EAA976A00496BBF59E7DB80BFEC73A766DE8D4BA4"
+                  },
+                  {
+                      "Path":  "config\\README.md",
+                      "Bytes":  50631,
+                      "SHA256":  "0F0D344ACC4C3EFE4464417B207F11747D64370F6CB10A91BD92898AA31A1A6B"
+                  },
+                  {
+                      "Path":  "config\\testing\\specialists-long-run.json",
+                      "Bytes":  297,
+                      "SHA256":  "88C2BC73249FD083C00D28FF62C85A04F43CF0E9C72DF7E56D4A939B166F8B8F"
+                  },
+                  {
+                      "Path":  "src\\Headless\\SpecialistLongRunReport.cs",
+                      "Bytes":  9294,
+                      "SHA256":  "2391335F287B8662D4CB65B4D44CDE3B2B89B117A5B659BEC8B69D04DCBB4262"
+                  },
+                  {
+                      "Path":  "config\\testing\\scenarios.json",
+                      "Bytes":  631,
+                      "SHA256":  "958CF50300FF9A8ED1743B9AC017161854F1C2A1A683A91EC3DE1EE114114522"
+                  },
+                  {
+                      "Path":  "src\\Headless\\SettlementGrowthReport.cs",
+                      "Bytes":  8421,
+                      "SHA256":  "7E6B93CEDAC083FEE965E8F6C88FAF6371B8DF7AEAC4440AD3F573900481E9E4"
+                  },
+                  {
+                      "Path":  "src\\Headless\\Program.cs",
+                      "Bytes":  5928,
+                      "SHA256":  "A5EDC12E21DBC7637FC8F4FCAE35486F60F689E4B97956FFD43CE194833EC8E2"
+                  },
+                  {
+                      "Path":  "src\\Headless\\PerformanceBenchmark.cs",
+                      "Bytes":  3736,
+                      "SHA256":  "E4ED497A3BFFBE32B4E18DFF6ABA111928446C5D900EC2FC57BC4137C52DE7DC"
+                  },
+                  {
+                      "Path":  "src\\Headless\\LongRunProbe.cs",
+                      "Bytes":  4424,
+                      "SHA256":  "463C1AD1B6740AF0A1EAF7F7CE14FFDC30695365E75D53B5C028E9C07C3C4717"
+                  },
+                  {
+                      "Path":  "src\\Headless\\Headless.csproj",
+                      "Bytes":  263,
+                      "SHA256":  "78E88025E7DC2E4CA1D009CE7706B8B6FB19D55E3303B1CC91C4EFD3F0AE4F66"
+                  },
+                  {
+                      "Path":  "src\\Headless\\FighterEconomyReport.cs",
+                      "Bytes":  5512,
+                      "SHA256":  "24756375D564EEFF64010B0F435BA0F1A6797C39B782D08288F66125C00AB155"
+                  },
+                  {
+                      "Path":  "src\\Headless\\EconomyReport.cs",
+                      "Bytes":  4237,
+                      "SHA256":  "A7044A0A5788879BDAD0D308B8DFBE4FE87A541EC6137E498D34AA69B63EEA0E"
+                  },
+                  {
+                      "Path":  "src\\Headless\\AutonomousRunner.cs",
+                      "Bytes":  196,
+                      "SHA256":  "FD64466E5D678E27AE7B480E12FAAC325F67EF6A392661B173271A2DE3CC8A55"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\TimeTests.cs",
+                      "Bytes":  11766,
+                      "SHA256":  "B42DA9F7437B3087B9009F2ACCC1AF2A71DB7DD57CA3B0B24C3D81F7B2EC5DBC"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\TestScenarioCatalogTests.cs",
+                      "Bytes":  2754,
+                      "SHA256":  "589528F76082699976C44DDDD875707E4C6AF1855931C4CAB4F574316273C957"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SpecialistServiceTests.cs",
+                      "Bytes":  10785,
+                      "SHA256":  "957D99AC5DD283AF9680EC513D26C36E0521F66B553DF7EDE4108E18BE12167C"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SocialTests.cs",
+                      "Bytes":  11861,
+                      "SHA256":  "19CE8CC03625E3D0618D750EE224812E05BD32780B2ADE23BF9EE24DCFC362E7"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementTests.cs",
+                      "Bytes":  4318,
+                      "SHA256":  "931DAEAE48782274E429D6B831AF66DB089EA55BB354E9F3EFF2229F422A4C39"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementPopulationTests.cs",
+                      "Bytes":  5699,
+                      "SHA256":  "610C20DB388860BE86C8A0E888389F369C0F9EE05DCF1E0E067D97575E0248A3"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementOwnershipTests.cs",
+                      "Bytes":  9741,
+                      "SHA256":  "1A52F53F7113705B30511698ABE1ADCA8A1A077565113CD6C732241E2FEC8E9D"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementOrganizationTests.cs",
+                      "Bytes":  3369,
+                      "SHA256":  "0C70C34431B2C5B81FB2D6C3641DF608EEF8C66C12D76F3C88012788FF06EAE8"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementEconomyTests.cs",
+                      "Bytes":  10783,
+                      "SHA256":  "8D94FF66E14BF7D92E81201AEB8C5BBBA0551BACF95419C696FE68C6E8DF791E"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementDailyTests.cs",
+                      "Bytes":  8411,
+                      "SHA256":  "A1EFF3B46CBE91629C24D4BF249CC60F1A6D2E8733575257E98E6FBD2AF708EE"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SettlementConstructionTests.cs",
+                      "Bytes":  8523,
+                      "SHA256":  "95ACE70E0A152BF945A766C3AE35BDD8BEAEA4C0A7ADDF1AAEC6AC85F3FC1B61"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SectFacilityTests.cs",
+                      "Bytes":  11926,
+                      "SHA256":  "B5FCE3196A83E0F059F132BE5E8443BB3FE21EF5FA91809B7006B68EAA7F59E1"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SectEconomyTests.cs",
+                      "Bytes":  11075,
+                      "SHA256":  "CF4BDB83490020BF263E8395D7B6532DEB19F4D8ED26C5546F240073EBC5F19B"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\SceneSiteTests.cs",
+                      "Bytes":  4083,
+                      "SHA256":  "0E80BF5C097A23EA3E4158671A8033A7A9E9DC2A0877BB51BF29CE5028A7DD28"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\RestHealthTests.cs",
+                      "Bytes":  4773,
+                      "SHA256":  "F7CC6BF93D46BA73E8BDBB0306F8776BF2D26D95B136FDEC924A8DECEE462A69"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\Program.cs",
+                      "Bytes":  44456,
+                      "SHA256":  "A12B3FC4477C6AA8DC150AFD0749F600AF72FDD1722A1E41D7D562EDF5C9C85C"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\PlayerAutoScheduleTests.cs",
+                      "Bytes":  3604,
+                      "SHA256":  "A0F9C50FD34A63A6981C935D5CEA68CEFA4E2C3EFBBF75CAB12B076B4E037A90"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\Phase2Tests.cs",
+                      "Bytes":  15804,
+                      "SHA256":  "BA36CACB9298F644850D129CF2CE69A96E8BA29B6C7FB4D971B1191316AE683F"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\PersistenceMigrationTests.cs",
+                      "Bytes":  3031,
+                      "SHA256":  "7E6C8085A6EC30515DA25E1F5CE996386F612CC92D1C450F2C86D03C3A5866CF"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\PerformanceTests.cs",
+                      "Bytes":  8031,
+                      "SHA256":  "B065B20F4272FFC8FDBE4FA97F6CFDAAB7073946D81EA4D659110C0FFEE8AD88"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\OrganizationSiteTests.cs",
+                      "Bytes":  7308,
+                      "SHA256":  "A3F02FB551525D7AEAE4F8C6155AE4F07A2605936A055F8D13850FBB0A5C79B7"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\OrganizationLaborTests.cs",
+                      "Bytes":  10399,
+                      "SHA256":  "2F2673B5BB897F3F4AED068967F87E81B4006012FA123EEF4FCF2370D620623F"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\OrganizationDevelopmentTests.cs",
+                      "Bytes":  3679,
+                      "SHA256":  "E7CBEBD09016B8A409B6927BA195BB3677427AA3A9824877746EDBCFED43947F"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\NewGameTests.cs",
+                      "Bytes":  2247,
+                      "SHA256":  "B16CBCACF1E7778950D2906EAD32C698CCEC43423291DB58538F51434A198320"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\MortalTrainingActionTests.cs",
+                      "Bytes":  12897,
+                      "SHA256":  "A13B202636800957688694191CAA5FC2F66AF6A5075776E64CCCA8D799304668"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\MortalCultivationTests.cs",
+                      "Bytes":  6870,
+                      "SHA256":  "47D31F206A743C2A2789A00FA0E4F761EF3D1878891E82AB6D0891B4D57DED94"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\MethodTrainingTests.cs",
+                      "Bytes":  5991,
+                      "SHA256":  "5D2917865B8FAFA311199146BA5816889421299905E594242F517159DB7835D4"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\MedicineOnlyTests.cs",
+                      "Bytes":  5496,
+                      "SHA256":  "4FB76A6082300AFC4892147A70481C0309EF7F10401B7A0DFC3ABD023BE8FEC1"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\LifeSystemTests.cs",
+                      "Bytes":  10779,
+                      "SHA256":  "7A699518D1D548AF9668AE8FA4192AEFD685B457E17877EC23D468DAE882965C"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\LifeSkillTests.cs",
+                      "Bytes":  3209,
+                      "SHA256":  "6FABF9A71ABAF8118D60D5AB2102345667E39ADF65028406997F25FD070AB174"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\HexWorldTests.cs",
+                      "Bytes":  12187,
+                      "SHA256":  "CF257957EF361C90C83044F7085974C0A50BE9E8997E781075BF7C0A75599400"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\HerbProcurementTests.cs",
+                      "Bytes":  3320,
+                      "SHA256":  "9F83136543194A5BD680CC27DE09A5D54C2ABD6879C0CA5796E3016DCB3D159E"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\GovernanceTests.cs",
+                      "Bytes":  39492,
+                      "SHA256":  "71AC57373D54FF545BE985393A207B9CD49F60ED2174B1BAD13FB63A00194ED2"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\ExternalMarketTests.cs",
+                      "Bytes":  7229,
+                      "SHA256":  "D20A8B37065673C6FC8F5539FFE526BD3A387E3B330E380CE9C20F3881A4D475"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\ExpeditionTests.cs",
+                      "Bytes":  8362,
+                      "SHA256":  "87FD7E03E402DA3D5E023B272A638DE2576ACF8916B5B4641DCE8A9755816870"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\EquipmentDurabilityTests.cs",
+                      "Bytes":  7092,
+                      "SHA256":  "9AC791D937CAF55489BC7297F8CE2C9968299F87069687186D8DDED8B507DEEA"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\DungeonLootTests.cs",
+                      "Bytes":  6912,
+                      "SHA256":  "6B73E1BD7177834CA49D55B93C33F1F8D26AF7123317D1383645D2CA80C7EC42"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\CurrencyTests.cs",
+                      "Bytes":  2651,
+                      "SHA256":  "4731465B42A9F524011A6F27CB2F8F4BDF73A546B11E6BE3B378E47B6C72E2CC"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\CountryRemovalTests.cs",
+                      "Bytes":  3247,
+                      "SHA256":  "BFBFD8F0C947F2D9A888D52573DF23C67CF6A9ABE56B67A7F2358F1596C287D1"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\ConfigurationTests.cs",
+                      "Bytes":  11484,
+                      "SHA256":  "E71B2C5230BFF053B3C3622E051AA12ED75CE7FC38D6AD284CA1DC4797479D1D"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\CombatTests.cs",
+                      "Bytes":  11383,
+                      "SHA256":  "BF51A63B7DCB77655A4885E9B448AA9F46C9B5210223590962CA5D9A16CFFA1C"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\BoardBattleTests.cs",
+                      "Bytes":  10307,
+                      "SHA256":  "3531973689D8D3E99F415196FCB136762042007B241A26A683189705BE073D8C"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\BatchTrainingTests.cs",
+                      "Bytes":  6810,
+                      "SHA256":  "A58E86BB3C18830E4C68B56D1A00AD7C690CC8601FBA62680F3815367A878F46"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\BatchMeasurementTests.cs",
+                      "Bytes":  3272,
+                      "SHA256":  "F7A588451E6ED77BB553DCCECBD121915E5D1BA9CA019FACC3B05351F69105AE"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\AdvancementTests.cs",
+                      "Bytes":  10817,
+                      "SHA256":  "60EDC425A62BD9D39FF74FABAD455B61D97504452EE6001D4D70654BB4A707A5"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\ActionDrivenTests.cs",
+                      "Bytes":  9298,
+                      "SHA256":  "8FC06BDABAE98C8942BD4604F726818DDF8F63BE1A63B4F58BF913E8B6DCA90A"
+                  },
+                  {
+                      "Path":  "tests\\Acceptance\\Acceptance.csproj",
+                      "Bytes":  348,
+                      "SHA256":  "DE2CD73ABE88980B683F6F41C889186BF0493E0337DB0CD4F03DB80570A97346"
+                  },
+                  {
+                      "Path":  "config\\buildings\\definitions.json",
+                      "Bytes":  233,
+                      "SHA256":  "FB140FD32D890847368FD7BEC6F3022F179D8347E3689A3C6CDAEC6EC58844C6"
+                  },
+                  {
+                      "Path":  "config\\map\\layout.json",
+                      "Bytes":  1241,
+                      "SHA256":  "025E42247F285B9FDFD96F2825C724F4C4040B33AFD9B80ADB379E9A44BA61A4"
+                  },
+                  {
+                      "Path":  "config\\map\\movement.json",
+                      "Bytes":  63,
+                      "SHA256":  "151E77A53DAF94778A3E5689E9049A3647509AE79C274D4B3B39877143121ECF"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\AdvancementScenario.cs",
+                      "Bytes":  570,
+                      "SHA256":  "A3F14A82F7BC77E2489D49B8B388E617178A44E88E78A7A7F9CD4344A834D42E"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\AdvancementIntegrity.cs",
+                      "Bytes":  3717,
+                      "SHA256":  "0F1F669DEC05F1CD26CD077C5019EA3B7D281A2119045A09C9C29E9CC1D761F8"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\AdvancementActions.cs",
+                      "Bytes":  4051,
+                      "SHA256":  "FA4D315AADFFA740DDC62E817A9E53CBDC337CBA62E703FDEA7520955169A966"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ActionValidator.cs",
+                      "Bytes":  8529,
+                      "SHA256":  "03CDF6F386835FC7016FA26FDF2B34503D7532AD98DDB5FF71EC412EB6778721"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ActionExecutor.cs",
+                      "Bytes":  3901,
+                      "SHA256":  "475B28B9C13FE03DA17163618269B3DA46993FD98BE96B3B65492AEF19E87F41"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\LifeActions.cs",
+                      "Bytes":  14227,
+                      "SHA256":  "29593C1B37CDD12D19B9154E4A9B1D1687768B0B79838CDEBD5031ABEA1A1754"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\InventoryCapacity.cs",
+                      "Bytes":  1564,
+                      "SHA256":  "CDCAFA0C2769798372C2BA60E04F8E979402F7118B0229C86EEA30A924B38F11"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\IntentDeduplication.cs",
+                      "Bytes":  666,
+                      "SHA256":  "5D308B6128267CB57ED83AFFBD0764127E48E94BDC0AF62FD441C69514F5C7B1"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\HuntActions.cs",
+                      "Bytes":  3447,
+                      "SHA256":  "7844942B19F0A883EE063B29F93A6A3D2BEC727EB9DDBF0BED14F2C3F160A1BE"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\HexWorldScenario.cs",
+                      "Bytes":  3205,
+                      "SHA256":  "E8C189B6831234B901CC09D0ADDF137F8F997AB77DD4A26B2CC4DE425857986B"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\HexTravel.cs",
+                      "Bytes":  3175,
+                      "SHA256":  "4A3E4FEB575FFD48915CE978DF9C477944D28116DC12CEFAC311E8B1F8E6192D"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\HexIntegrity.cs",
+                      "Bytes":  4429,
+                      "SHA256":  "002B00CF5954514873EA8DA9D259F91C37D8EA906AC0DEDEE19D811B51087D99"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\HexBuildingActions.cs",
+                      "Bytes":  8679,
+                      "SHA256":  "A1C87F7FBE83297E3841A5C37BEB1AA5731F38618B6A21806BFF2E8EAD1EC064"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\GovernanceActions.cs",
+                      "Bytes":  4886,
+                      "SHA256":  "E10CA5D63A60F2EFD79B8018CE8CA863EE4BBFA51833E4DA10F8557E32A94257"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\GameConfiguration.cs",
+                      "Bytes":  4962,
+                      "SHA256":  "049F6876B9644E330E18C57E52AB5313265A1CB39A7272694052D83C472C8929"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ExternalMarketDecisions.cs",
+                      "Bytes":  3453,
+                      "SHA256":  "EC7F627E1993A12F7BE7904E3E35E88554F210763125DE6C1542403297B3DB0A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ExternalMarketActions.cs",
+                      "Bytes":  7234,
+                      "SHA256":  "1D7FFCAE6F0A2C3E65DBDCC93E1C70FF3D3CA8F8CF0F2B1DC09550B0393320E3"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ExpeditionObservations.cs",
+                      "Bytes":  1923,
+                      "SHA256":  "53CD7A0D6807F441AE526AB04717A4D29FFB0C0F74A25B04413E00297E57E665"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ExpeditionIntegrity.cs",
+                      "Bytes":  5340,
+                      "SHA256":  "33E927B890DC4B35F7FFE57D84439753E95AC79A699C6368CF28D0FAC497C080"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\EquipmentDurabilityActions.cs",
+                      "Bytes":  7756,
+                      "SHA256":  "3933AD83E42E9A72AAE2DDBD540B681CCCEA6411345E2FBB9624BB4A601ADDA9"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\EconomyIntegrity.cs",
+                      "Bytes":  4922,
+                      "SHA256":  "BD24236CD70046419A2D82A7F9FE1F766EF8959458C97F2B58033B4CC680FC37"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\DungeonLoot.cs",
+                      "Bytes":  2518,
+                      "SHA256":  "A1C70C901985C47900C5D028CB2BC54388444D43D5F35ABBD581CC42EE697E02"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\DungeonActions.cs",
+                      "Bytes":  3266,
+                      "SHA256":  "86B6BA33196DC62F9EA273780EF2491622666219F9FB316AB36A4DADB56CF74C"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\DemoWorld.cs",
+                      "Bytes":  1289,
+                      "SHA256":  "F2739183FE7B8B1F1EB52C2C26C4FC00A9F610F08DFEAEA47326AACDEE3AE747"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CurrencyIntegrity.cs",
+                      "Bytes":  1333,
+                      "SHA256":  "C29A939157A975044DA7F8FE3E3D8A6CC8C36F5EA14145C07CFD4D620A57F37E"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CultivationMethodConfiguration.Loader.cs",
+                      "Bytes":  418,
+                      "SHA256":  "F19E4EB242740AF02D80F7015482F788A974AC21DE75FD74492DA69282466322"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CultivationMethodConfiguration.cs",
+                      "Bytes":  4636,
+                      "SHA256":  "CC0CC902DEA4232F03299D83B7E220E42055DCCEB80957FCA4139CD083BFA8D8"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ConfigurationIntegrity.cs",
+                      "Bytes":  2488,
+                      "SHA256":  "00A99776087F8956B068A3DCEF1F4B2E67E6B12B0CF3C213AB9AC1E60CD59597"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CombatScenario.cs",
+                      "Bytes":  543,
+                      "SHA256":  "E0997DE91B0F095872CA7A2FA6318AC3EAB15D0E3638DDDBB1E870128BA13F3C"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CombatIntegrity.cs",
+                      "Bytes":  5039,
+                      "SHA256":  "728D712868D833C90FC203A209CF4E12653C404FF268807D68FFE0716DA2C4AB"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CombatActions.cs",
+                      "Bytes":  9895,
+                      "SHA256":  "471B8F3BB583ADBFC30C286C673465488E8FAE64D54189E3EA65068A62A3C873"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\CharacterGrowthIntegrity.cs",
+                      "Bytes":  855,
+                      "SHA256":  "13241950EC19CB88710BF52DAEA0B0E48DA1F56CBF3749F4D93A0BACEB353A86"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\BoardBattleIntegrity.cs",
+                      "Bytes":  2238,
+                      "SHA256":  "698703D5AD1DAB95AE2B2D057E10E6478F92945DDED9A8FDAFD12DD5597907F1"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\BoardBattleActions.cs",
+                      "Bytes":  8005,
+                      "SHA256":  "DB9E46FBCC2D28A36121263E208CCF1A0EDDACA20050788E40AD856DB5C62AA0"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\AutonomousWorld.cs",
+                      "Bytes":  1121,
+                      "SHA256":  "D09B8E7F950E05E13AE7E73B04A8BED2DF279EC1528F38A585DAD8D531ED429A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\AutonomousDecisions.cs",
+                      "Bytes":  20144,
+                      "SHA256":  "9B01F7C9D2160A49265B19AD45750CA7EF836940A90A8D32A7A114AE6011C9B7"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\AiLodScheduling.cs",
+                      "Bytes":  2797,
+                      "SHA256":  "086571D2517997B3981834B6891D22A1E7AA96F6A37085628F3E66F22A9CA1D3"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\RemoteCombat.cs",
+                      "Bytes":  888,
+                      "SHA256":  "3F43D1BB23BCE888E633FC3AF99139DB6BC6BA0026F22EE49A5689EF47E55003"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ProductionActions.cs",
+                      "Bytes":  8131,
+                      "SHA256":  "8E37BDA9A1E9AA269B93E4E3FE823EFF4525E61E9194DEE2FDF54C72EDF424FD"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PopulationInvestmentActions.cs",
+                      "Bytes":  5354,
+                      "SHA256":  "45C3569F45827868091B5F972D71CD00EA7B6A6FC36771D791F9618F8421BB2B"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PlayerDemoScenario.cs",
+                      "Bytes":  949,
+                      "SHA256":  "044E92AE23ABE4CB28A83E0F83C83DEE915A45EB5483DF57571203078A0AFB5A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PlayerAutoScheduleScenario.cs",
+                      "Bytes":  412,
+                      "SHA256":  "40CF925E913F740BFC7EE49333D460CF53091359B3C1770D0506806E2B8AB2EE"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PerformanceIntegrity.cs",
+                      "Bytes":  1427,
+                      "SHA256":  "C3CE76EAA21E311ED09CE19151861DFCFD32D9CB1BB8604A82515F5295C85410"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PartyCombat.cs",
+                      "Bytes":  7035,
+                      "SHA256":  "1648B84E8AECB809241FC6213C523D7738D1574AB0FC041B8F85FF29AB6D2F95"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PartyActions.cs",
+                      "Bytes":  5545,
+                      "SHA256":  "76EE4E6CFEC7F9A03358F56ACF181015A9535E48D74C5D832D604080ECA276CE"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PaidLifeServices.cs",
+                      "Bytes":  10256,
+                      "SHA256":  "60FD9E9C4BC8ED3FD433FB54E49931CC63361D9B88F9831517047A0DF8522DB3"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\PaidLifeServiceIntegrity.cs",
+                      "Bytes":  3656,
+                      "SHA256":  "95C12D37525131DB44F3D4FC9C15F27D958A1CFA4362EF6FEF6FC0390CC8FFD5"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\OrganizationSiteActions.cs",
+                      "Bytes":  6973,
+                      "SHA256":  "E1590A3F972F286E49EFC106EA1897FD3A7AE8E8CA1C1486791AD60E3C18177E"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\OrganizationLaborIntegrity.cs",
+                      "Bytes":  7218,
+                      "SHA256":  "D3D4EDBDACEF5E8527511FA514176DA0F1FC355E227C9931023ECF4A0FC9E3AD"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\OrganizationLaborDecisions.cs",
+                      "Bytes":  2326,
+                      "SHA256":  "C2AE7123F55A2C6BE18A65C63CB4EC53109CB8D53F8C069077E590DB1C955FB7"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\OrganizationLaborActions.cs",
+                      "Bytes":  8004,
+                      "SHA256":  "447DA3CEE7D9E144F8D93B19BA95F62E6700070F4D3DC9A19BB9FC67CEA1895D"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\OrganizationDevelopmentDecisions.cs",
+                      "Bytes":  6562,
+                      "SHA256":  "C3D355002522C9350A9D231449F4DC65BEC6230AD64C5266AA8FEF5FD501C183"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\NpcDecisionTiming.cs",
+                      "Bytes":  508,
+                      "SHA256":  "6A9E75CE48F24FE201650DC5453287295BB264452A74192FCE7A8EFD52C11012"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\NewGameFactory.cs",
+                      "Bytes":  3430,
+                      "SHA256":  "5785C9C801866F64615D908350C06AD74C41F085C9FAB45087B2DE1DA2DD0053"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MortalTrainingActions.cs",
+                      "Bytes":  10675,
+                      "SHA256":  "1CF5D7846E21B0F3FCA3C1E607CE5DB7A8C170EC1A6B125B8BD5A2AA2BF421BB"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MortalCultivationConfiguration.cs",
+                      "Bytes":  7772,
+                      "SHA256":  "E734D1C0349894398BC6425E04ED086A34FF0496CEF118CFF06B3A284F4D8C01"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MissionScenario.cs",
+                      "Bytes":  1455,
+                      "SHA256":  "3D05A3B155693F6BF60C4F22282EB9B3F96C36C3E97B1AB3960A889805FD523F"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MissionActions.cs",
+                      "Bytes":  7623,
+                      "SHA256":  "5C907083C50575DA44004B3FBDB9262072E93FECDA47C9C4B69537058EC7D65A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MinuteTimeProfile.cs",
+                      "Bytes":  1101,
+                      "SHA256":  "BF5B3DC0D0046091C5D9250B0A83640E71FF8EAEC30DD795D338B13C1A966E27"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MethodTraining.cs",
+                      "Bytes":  8111,
+                      "SHA256":  "03629FBB093266430C3095509AB67561F0B2212647302DDA4CEAE5BF6B4CB876"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\MedicineOnlyProfile.cs",
+                      "Bytes":  2649,
+                      "SHA256":  "9302451BB161F9AF9A13CFBC27FBC8FF460C35594C9E819AEBC646DF5B6402BF"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\LifeSystemIntegrity.cs",
+                      "Bytes":  5436,
+                      "SHA256":  "85470BE422810D6B3AB0CD90DB57781DB229F5A8EA2625CA78FCE92496826967"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\LifeSkillScenario.cs",
+                      "Bytes":  2427,
+                      "SHA256":  "CCF049599503408D93A81B2CB10D7DF3A085CCAED04B2FB0A202B653CABDA7C7"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\LifeDecisions.cs",
+                      "Bytes":  707,
+                      "SHA256":  "0ECE7FE318ABADAEB75E325BEF06CFB7EB290365371246F492F23ACEDC2B47D4"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementScenario.cs",
+                      "Bytes":  4680,
+                      "SHA256":  "6EB48D3F7A3B9EF428F9AC6778920C75937F89BA285D4A359632CEABED6680BE"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementPopulationGrowth.cs",
+                      "Bytes":  6218,
+                      "SHA256":  "7A2A95FD4DF7D573B21DFF03F268A5CB3D3AFC03F03C1F306F875F66BBB052FC"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementOrganizationScenario.cs",
+                      "Bytes":  5189,
+                      "SHA256":  "605A9C19B0FC4ED42909A00C425C272E1178769D77F2CEEA3DC27096B74E16B5"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementOperationsIntegrity.cs",
+                      "Bytes":  5958,
+                      "SHA256":  "1F82F6278CB56FCF1FEB974BB8D923F09418E58BA8339FAFBD23D183FBFBF853"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementOperations.cs",
+                      "Bytes":  6027,
+                      "SHA256":  "BC777B8520C13D3603A7D06E649D20B37D95A2DDC33251B689026A4C34DB40F1"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementIntegrity.cs",
+                      "Bytes":  3502,
+                      "SHA256":  "1F161DC670DC18115941DE78F90C4E13393A2E7F8D1E75F8D8E642151061939A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementEconomyIntegrity.cs",
+                      "Bytes":  7264,
+                      "SHA256":  "56210C7837BBA0DD61F90A3C977A693D3CDF66C3A4119642C3E32368ED6CB258"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementDailyEconomy.cs",
+                      "Bytes":  6155,
+                      "SHA256":  "90A6DEB753824BE51A58D0065A174D5AC9C27881BDB0557A580EB4DB744561A3"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementConstruction.cs",
+                      "Bytes":  6879,
+                      "SHA256":  "0377248D67600980B783BED2448CF16E9166FF058E7BB3F159352DF49439A223"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SettlementActions.cs",
+                      "Bytes":  10091,
+                      "SHA256":  "081EDEBA33C43E6F80C3864767EFBA421744677AF35B8998EA9EDA91A011BD3A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SectPayroll.cs",
+                      "Bytes":  1452,
+                      "SHA256":  "7A67429853560FB5613CC38C9DB261FF349F130439751697C80A559416CA846E"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SectFacilityIntegrity.cs",
+                      "Bytes":  3020,
+                      "SHA256":  "5D162D447F762DE1483E7A2C5A68A71AFED74E1AC4C15866B701D94058B323FD"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SectFacilityActions.cs",
+                      "Bytes":  8330,
+                      "SHA256":  "0B27E26A9243B8415C08F8E6DD80E7A028E56A259391D22DAAEA5147E654E728"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SectEconomyScenario.cs",
+                      "Bytes":  1743,
+                      "SHA256":  "8F1A80841F80AA27583376D12B50A45405A1340504261644CF9972DD47F7360F"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SectDuties.cs",
+                      "Bytes":  3960,
+                      "SHA256":  "F7B4B4819CAE1A301F5DA41A047FDA81F083966CD9CA3AE4387570C55AD724D7"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ScaleScenario.cs",
+                      "Bytes":  1660,
+                      "SHA256":  "ACA14BEF55E999845A84936BBE00D7DD1179D4E6B932C86080491553C115D962"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\ResourceRegeneration.cs",
+                      "Bytes":  1257,
+                      "SHA256":  "2159A52735F4EFDDC8D95C2F042E714618533F70EF33B82C608286E4EC45428E"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SpecialistProfile.cs",
+                      "Bytes":  4665,
+                      "SHA256":  "310D333BA96FFBD7F1660CEDC0214DFDE1B15B383FEA441DD87448FDC534207C"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SocialScenario.cs",
+                      "Bytes":  507,
+                      "SHA256":  "57659F7C96340D1ECC43850073428216A523850521AE293014EF58B7B46FAE9F"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SocialIntegrity.cs",
+                      "Bytes":  3170,
+                      "SHA256":  "582FBE41883B0769A982432C2D502415AC4B9C1B44863A0D52558D882F3FDC0E"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SocialActions.cs",
+                      "Bytes":  10447,
+                      "SHA256":  "B7195288384658695816D9C341B78400264C84A0415257FEF67010E670A73084"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SimulationEngine.Time.cs",
+                      "Bytes":  13971,
+                      "SHA256":  "63BD1C2A9AB313E3FFBCE6CE500F85E6F94758E91555D642AB3B95D800D25401"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SimulationEngine.cs",
+                      "Bytes":  7376,
+                      "SHA256":  "CDF7EF1946C0CC5F8AD933690E0FEE670ECC629B386138E0C5A8E5335EC8E421"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SimulationEngine.Batch.cs",
+                      "Bytes":  1967,
+                      "SHA256":  "4282E97B25B07EBDBAA16763135D0273629AC834BE9AC1B0D9F17F8B34FD835D"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\SimulationEngine.ActionDriven.cs",
+                      "Bytes":  3027,
+                      "SHA256":  "B08D7166038C50B0A8F6BF8C5F9485FB37F215432593FF6A8B4B57633EAE6B10"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\Simulation.csproj",
+                      "Bytes":  377,
+                      "SHA256":  "40D6E4A9BCF938175ECCCF9CE8D09FAB7232C1CAF2AD1431F21728BF6CE44E7C"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TickDiagnostics.cs",
+                      "Bytes":  304,
+                      "SHA256":  "E7EA509F930D5D6F2FC371791B119C646D4D56B59BCD4DAEF07FD1A1EE414D13"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TestScenarioCatalog.cs",
+                      "Bytes":  1979,
+                      "SHA256":  "4928859EA9C06EBE12F67353ECB71F2B62565625B03EC1F050A379234140D038"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TestProcurement.cs",
+                      "Bytes":  3020,
+                      "SHA256":  "F063102A4B282CEEB89F80FE21719645B8129A84FE1F3D1BB57E830F96848624"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TestEconomyIntegrity.cs",
+                      "Bytes":  3937,
+                      "SHA256":  "D415A8A7E8674126BF0CDA89E73B2A024ADD853971185537E3EE647CEE4C1694"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\StaminaActions.cs",
+                      "Bytes":  5924,
+                      "SHA256":  "CB5CDD657936588FC424C4379D96CEB17618AD3F5B63D61AD9C9858D8A39B2CF"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TimeScenario.cs",
+                      "Bytes":  2139,
+                      "SHA256":  "8293FCE6377D836F0224FFC4F8603EBFEC0B3A8FFF64E3BBD8D1D8AC12B19678"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TimeActions.cs",
+                      "Bytes":  9554,
+                      "SHA256":  "3653277FC11DF420C433086C4A744B434FCBA628A3BAAB92FDEA75E14A8C252A"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TickPump.cs",
+                      "Bytes":  878,
+                      "SHA256":  "449E5E10F79F7FE4F3101BE3ACBD030D276EB10C8E1BA0009E6A9C3698BD26A5"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\TravelActions.cs",
+                      "Bytes":  3322,
+                      "SHA256":  "FD149BAFC3DDB167C6CEC7DB75CCF216CF99C61A0EC93D5D6A0D9C5F2B958B39"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\WorldCodec.cs",
+                      "Bytes":  1324,
+                      "SHA256":  "FC598723C2B3171E91D83D385D3BAF0B46261A3281A581E4E1B199F41549233F"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\WorldIntegrity.cs",
+                      "Bytes":  19129,
+                      "SHA256":  "DFC9F5794EB0BD86C32B17ACD89515807E3DFDF04355B4E6E58E667DD2B702F7"
+                  },
+                  {
+                      "Path":  "config\\economy\\autonomous-stock.json",
+                      "Bytes":  9043,
+                      "SHA256":  "2217ED1724FF7EABD06F4B3A824C6AD517F72222BA75E7D18342F220C31B21F9"
+                  },
+                  {
+                      "Path":  "config\\economy\\advancement-stock.json",
+                      "Bytes":  5775,
+                      "SHA256":  "8585A17FFE1CD31BAA5756B2294A888969CD951DC21ED91AFC65848E41035BE7"
+                  },
+                  {
+                      "Path":  "src\\Simulation\\WorldSpatialIndex.cs",
+                      "Bytes":  1111,
+                      "SHA256":  "2B026D634516DA1EB78D20D65CA7758AC390690117F44CDD415F63ED70E55930"
+                  },
+                  {
+                      "Path":  "config\\economy\\external-market.json",
+                      "Bytes":  148,
+                      "SHA256":  "FC9E1EF38589EA5AC4FC95B1F90C83D8494A703E806F3E3A69D42BAE0CC3381C"
+                  },
+                  {
+                      "Path":  "config\\items\\durability.json",
+                      "Bytes":  39,
+                      "SHA256":  "86186B7A910996C5764CDBE2DB35D1EB31B2A9DFF93ED02AB62DADDAAC48A792"
+                  },
+                  {
+                      "Path":  "config\\items\\currencies.json",
+                      "Bytes":  176,
+                      "SHA256":  "ADD50A1F8992751B51D83E1D068EAB879CA26A8E0E4DD46D46E43171502D8C45"
+                  },
+                  {
+                      "Path":  "config\\items\\catalog.json",
+                      "Bytes":  517,
+                      "SHA256":  "01D135254EEA7F0E500E3C67A9ACD6D4FEE46B5134C337193AD2B5EFB2BD6557"
+                  },
+                  {
+                      "Path":  "config\\life\\test-stock.json",
+                      "Bytes":  47,
+                      "SHA256":  "00C60C6953ABC03394D97E3B17B3BF0351794C5054F6F515AEFE3AB85E85E4C9"
+                  },
+                  {
+                      "Path":  "config\\life\\skills.json",
+                      "Bytes":  224,
+                      "SHA256":  "F0F700A0635464A6BBA0A4D0C7CEE621DFA54D55237574E49A0AAE2BBA1CD53E"
+                  },
+                  {
+                      "Path":  "config\\life\\service-prices.json",
+                      "Bytes":  254,
+                      "SHA256":  "8F892563D2A5D3CE4BC6441401BCCB7A09410C138141BD26AA5EE832B3F4679F"
+                  },
+                  {
+                      "Path":  "config\\life\\recipes.json",
+                      "Bytes":  498,
+                      "SHA256":  "BAB762F3EB026FCDE49294E8F1B430CA845CBD57C9B76DB960A942879A70D82A"
+                  },
+                  {
+                      "Path":  "config\\life\\procurement.json",
+                      "Bytes":  57,
+                      "SHA256":  "A09451EAA2BA0421DEB25402503C52BF6F2760D381A0DFEE4A04E49BDDF23C74"
+                  },
+                  {
+                      "Path":  "config\\life\\options.json",
+                      "Bytes":  266,
+                      "SHA256":  "37FA9CBBD8A1B0E0A8ADDB2E80BFD51023C7C123DE94F38E872CFAAFE1297042"
+                  },
+                  {
+                      "Path":  "config\\life\\medicine-only.json",
+                      "Bytes":  90,
+                      "SHA256":  "55AF841675CE43635B1443A4DF73653069B04B7FA8B5F76260C5CB155D311536"
+                  },
+                  {
+                      "Path":  "config\\life\\availability.json",
+                      "Bytes":  29,
+                      "SHA256":  "ACFF885971EE4C1FE9C806D9F641F0F6A3206B1CE98E726B3EEA9F12C3FB4A3A"
+                  },
+                  {
+                      "Path":  "config\\economy\\sect-stock.json",
+                      "Bytes":  177,
+                      "SHA256":  "ABD6F74EAE9A5B2A14997A8A1408E8BBCB5FF1CF961D959AFC1E2EAC055B96C3"
+                  },
+                  {
+                      "Path":  "config\\economy\\combat-stock.json",
+                      "Bytes":  531,
+                      "SHA256":  "2C8FAAE69008801E6522358966D83375061EBFA0B3B75CED64295EB0ABE399F9"
+                  },
+                  {
+                      "Path":  "config\\economy\\sect-production.json",
+                      "Bytes":  110,
+                      "SHA256":  "AFB1D823E800419F0E2AB8A7366882F54CA8A0B0A3B12F9C022390996DD6D100"
+                  },
+                  {
+                      "Path":  "config\\economy\\sect-market.json",
+                      "Bytes":  277,
+                      "SHA256":  "AAEFDB54020C09212BF68C01A5E04795E92C2D0B12B37DA3D4908E5FB9958F21"
+                  },
+                  {
+                      "Path":  "config\\economy\\production.json",
+                      "Bytes":  391,
+                      "SHA256":  "718CCAF30F876897FC52A85BC2D156F356E74F259EDCEB5AD28852A1D21C59AA"
+                  },
+                  {
+                      "Path":  "config\\economy\\procurement.json",
+                      "Bytes":  236,
+                      "SHA256":  "DCDFE4CF367BF348430F5F03909203F09747CCDDF19F26100497A34CFE0B9601"
+                  },
+                  {
+                      "Path":  "config\\economy\\mission-stock.json",
+                      "Bytes":  6184,
+                      "SHA256":  "18414B9C3ED7FB8A9B23A92B266D5216BB897DF7340F8FA17CB2C94DD6EF522C"
+                  },
+                  {
+                      "Path":  "config\\economy\\mission-production.json",
+                      "Bytes":  87,
+                      "SHA256":  "C8EBCE917CEAF824F271E1827C92AAF19896C58EADC795231A538E5C68E839A0"
+                  },
+                  {
+                      "Path":  "config\\economy\\demo-start.json",
+                      "Bytes":  43,
+                      "SHA256":  "62E5EEF75C50895483F9F1ED6E54DF2D9CC3945341F1B43C2CC4B5036EE062CC"
+                  },
+                  {
+                      "Path":  "config\\economy\\market.json",
+                      "Bytes":  467,
+                      "SHA256":  "02D1920A5108FAC95E9CBA20E22F3D5655E6C67AC96B1D0079C7436A865C58CB"
+                  },
+                  {
+                      "Path":  "config\\characters\\advancement.json",
+                      "Bytes":  4420,
+                      "SHA256":  "33CA808E6C11DD4E668051285B57A3B6BF6D5E504F306F88D67BCEBFC0B48294"
+                  },
+                  {
+                      "Path":  "config\\characters\\aspirations.json",
+                      "Bytes":  902,
+                      "SHA256":  "B4C1466D76FC1193DE5D9825FEA667D49EEE9180E419F79531600EAED431DD7E"
+                  },
+                  {
+                      "Path":  "config\\settlements\\construction.json",
+                      "Bytes":  366,
+                      "SHA256":  "B746AF0C7C3FB7F333E3F208E6C7F6C438E2F159292E9E1257AF9FDA1AE75ABA"
+                  },
+                  {
+                      "Path":  "config\\settlements\\buildings.json",
+                      "Bytes":  732,
+                      "SHA256":  "6E43F27127ACB6AD95BFA85EFF5FF6FE382500473E57C92D50C82DE7F0100408"
+                  },
+                  {
+                      "Path":  "config\\settlements\\daily-economy.json",
+                      "Bytes":  362,
+                      "SHA256":  "74587B349EA5DF27ABA941A79B423CE9440470C63CB7CEEA60C90887E2CCCF2D"
+                  },
+                  {
+                      "Path":  "config\\settlements\\demo.json",
+                      "Bytes":  96,
+                      "SHA256":  "C7A92D25BEA98D7969AF849F7D27FEB173068760540570FFD07D1D0549C8513C"
+                  },
+                  {
+                      "Path":  "config\\settlements\\taxes.json",
+                      "Bytes":  26,
+                      "SHA256":  "A552ED929EA031BE88632C52193EC9A767EF014B7486EEB7CAC09BBBC562B6CB"
+                  },
+                  {
+                      "Path":  "config\\settlements\\runtime.json",
+                      "Bytes":  803,
+                      "SHA256":  "C558655B24C3722399C7B75605F10A9BFA5C10141B1F899133C53FBEBC6D4A4C"
+                  },
+                  {
+                      "Path":  "config\\settlements\\resident-organization.json",
+                      "Bytes":  355,
+                      "SHA256":  "107608A5374F3874B34B6AB91A4CEC5A6F65A4514E4ED0177246E4C7E0E229D0"
+                  },
+                  {
+                      "Path":  "config\\settlements\\population-investment.json",
+                      "Bytes":  157,
+                      "SHA256":  "DF2C89AA2CFB77CEB76DAF421968DD8690C2F38B6C1FE3CF2A0D91D38525581C"
+                  },
+                  {
+                      "Path":  "config\\settlements\\organization-sites.json",
+                      "Bytes":  370,
+                      "SHA256":  "71D20710B466E8C18E9899814A8D86C62484D8DB8AD7E1EB3CF494E36212948D"
+                  },
+                  {
+                      "Path":  "config\\settlements\\organization-development.json",
+                      "Bytes":  167,
+                      "SHA256":  "C080CE94DEC3167C7B0DCEA2C209005BBD594A29D7BF7B7F852DE872AB1A523A"
+                  },
+                  {
+                      "Path":  "config\\settlements\\operations.json",
+                      "Bytes":  124,
+                      "SHA256":  "AA77A1090EA62391284A662A2B588C071A5ED9343F2996B17D5E9FB4D6946042"
+                  },
+                  {
+                      "Path":  "config\\settlements\\items.json",
+                      "Bytes":  192,
+                      "SHA256":  "7643D1E839BA8316C97EC1B915D1183C846C3175FC4625E78CE8F2CE61779DC5"
+                  },
+                  {
+                      "Path":  "config\\characters\\demo.json",
+                      "Bytes":  83,
+                      "SHA256":  "AB0E1896DEC9DE5C06E14E65756DDC3A139A0272EF265D5DFB23AD023DA3BC81"
+                  },
+                  {
+                      "Path":  "config\\characters\\combat.json",
+                      "Bytes":  1953,
+                      "SHA256":  "5C22958F64C6F0C051D9A9211BB1C4F2B4F12AB89CC9F8CD5E304A39F7DB402A"
+                  },
+                  {
+                      "Path":  "config\\characters\\board-battle.json",
+                      "Bytes":  327,
+                      "SHA256":  "87AA18250BB8557427104D7FE42F2EEC722B3695434CE905503FDAA7E377B57E"
+                  },
+                  {
+                      "Path":  "config\\characters\\autonomous.json",
+                      "Bytes":  48687,
+                      "SHA256":  "F0EDEE92F9C07559591A33DB3995AF8316886F746330D634758060252D02093C"
+                  },
+                  {
+                      "Path":  "config\\characters\\mindset.json",
+                      "Bytes":  113,
+                      "SHA256":  "77F5AC3D7DB5140DF452BE8A56FAF412ECF0EA5434AF806D531E180207D22DFE"
+                  },
+                  {
+                      "Path":  "config\\characters\\hex-world.json",
+                      "Bytes":  73,
+                      "SHA256":  "AC561B21EE9F852ED8C7B456F79116CC66D3E2F442983A6909FAB4E226DE4B1E"
+                  },
+                  {
+                      "Path":  "config\\characters\\mission.json",
+                      "Bytes":  559,
+                      "SHA256":  "0B94D7E3DE0D00130B4A84637C0C881FEF3964DA53C55CA71ED132A111A3F394"
+                  },
+                  {
+                      "Path":  "config\\characters\\sect-economy.json",
+                      "Bytes":  1482,
+                      "SHA256":  "058884C710FB93BBE5251D699A87F3707E53A9AD4F70969221DAD64E44C680D6"
+                  },
+                  {
+                      "Path":  "config\\characters\\stamina.json",
+                      "Bytes":  239,
+                      "SHA256":  "B5876D9BEDC085AA3C07641645619F7DC1AFA42AF012F6413CBB7533C7CF3118"
+                  },
+                  {
+                      "Path":  "config\\characters\\specialists.json",
+                      "Bytes":  842,
+                      "SHA256":  "AD4FA6FD69E80D45E492FE5D5120A69E563BE187EB0AD7E29BFE776ABF0504E4"
+                  },
+                  {
+                      "Path":  "config\\characters\\social.json",
+                      "Bytes":  599,
+                      "SHA256":  "58B088E5CD5D814BB54BD78D244B0F45AD48F93FCFDD1B3237D5127A5E83CF53"
+                  },
+                  {
+                      "Path":  "src\\AI\\AI.csproj",
+                      "Bytes":  128,
+                      "SHA256":  "C39EF9FA6D59598AEE5971DF14557F596AACC15D8B8D999724DB474517864FA2"
+                  },
+                  {
+                      "Path":  "src\\AI\\BoardBattlePlanner.cs",
+                      "Bytes":  1486,
+                      "SHA256":  "4CF0463FC52D0B93D7EC4AB23DEBB6D6A0B8DC249EB6B43E999BAD690891F684"
+                  },
+                  {
+                      "Path":  "config\\organizations\\duty.json",
+                      "Bytes":  235,
+                      "SHA256":  "B4EA61E3A8E9FA83816B1AB2FE286475C8AA1B0543952179548C05954BE88EBC"
+                  },
+                  {
+                      "Path":  "src\\AI\\UtilityPlanner.cs",
+                      "Bytes":  14606,
+                      "SHA256":  "7ECA2DABF0CE2563C7E5C2E3B3D6D2F5CF028808C06B9150DBE559108C4A1AAC"
+                  },
+                  {
+                      "Path":  "config\\organizations\\test-policy.json",
+                      "Bytes":  146,
+                      "SHA256":  "C88B99924C8C4ED1BF9512E69B25C41FBECFE58E8E961FA2040D4AA1D2CC255C"
+                  },
+                  {
+                      "Path":  "config\\organizations\\social.json",
+                      "Bytes":  315,
+                      "SHA256":  "10F24455ABB10E0DFEE57517CF83AFC4B7ED9C0CA8B182D8B2D08497A35DDB92"
+                  },
+                  {
+                      "Path":  "src\\AI\\SocialObservation.cs",
+                      "Bytes":  2582,
+                      "SHA256":  "CD1C2A0805E227EC2A8CE138B1209FF20537F8C5446AC21EC89C2ED894B9A3AB"
+                  },
+                  {
+                      "Path":  "config\\organizations\\representative-mission.json",
+                      "Bytes":  87,
+                      "SHA256":  "FD3F1515C9390CBA40B760F551F609D921CD69ED1FD9B912148377E3381F6602"
+                  },
+                  {
+                      "Path":  "src\\AI\\SectWorkObservation.cs",
+                      "Bytes":  3316,
+                      "SHA256":  "344B9CBC65805F861283EB51989324A7B2AF062036D4D9C00B8CC3E10A411CFE"
+                  },
+                  {
+                      "Path":  "config\\organizations\\recruitment.json",
+                      "Bytes":  281,
+                      "SHA256":  "C4B94EEDF4ABFF53F040FFC2AF1D268A5D778E72940F6920AE4B7D288B3AC51B"
+                  },
+                  {
+                      "Path":  "src\\AI\\OrganizationObservation.cs",
+                      "Bytes":  5837,
+                      "SHA256":  "455730FF4EE10940AA2BBF0DE3A1A65CB1B91D41519B687341E0C57E88D63EBA"
+                  },
+                  {
+                      "Path":  "config\\organizations\\payroll.json",
+                      "Bytes":  85,
+                      "SHA256":  "C152F7C846521F16FAE99486DCFEE8983D67E5889CEF2EE99A7D8D865AA74F94"
+                  },
+                  {
+                      "Path":  "src\\AI\\MissionObservation.cs",
+                      "Bytes":  256,
+                      "SHA256":  "DC9277B56D8E953B143C1E19650C55D4397C157DED740F5EE46914EC33896037"
+                  },
+                  {
+                      "Path":  "config\\organizations\\labor.json",
+                      "Bytes":  204,
+                      "SHA256":  "635ED7E3E868161311BD0DB3B874AC3AD7921D42BA6097375E1B3603953A6798"
+                  },
+                  {
+                      "Path":  "src\\AI\\LifeUtility.cs",
+                      "Bytes":  2543,
+                      "SHA256":  "73236587908BAC0FBD634DE60698782DDAD9C4517D06137EA5F12ED5CA3BECF1"
+                  },
+                  {
+                      "Path":  "config\\organizations\\labor-autonomy.json",
+                      "Bytes":  104,
+                      "SHA256":  "A120ED590DFB56A2E2B020A803162FE758F629391F08FB338FFB6FD9F00D4D4A"
+                  },
+                  {
+                      "Path":  "src\\AI\\ExpeditionObservation.cs",
+                      "Bytes":  3048,
+                      "SHA256":  "086E88BB5448D0D2BDE91F1433BA8D261A178AD55CD79082BD62E28DD1A4B789"
+                  },
+                  {
+                      "Path":  "config\\organizations\\hunts.json",
+                      "Bytes":  92,
+                      "SHA256":  "E9098228B6C5EB04F794F9CA38F3DA948E890D7306A6C4BC736ABF426E6A593B"
+                  },
+                  {
+                      "Path":  "src\\AI\\DecisionSource.cs",
+                      "Bytes":  767,
+                      "SHA256":  "11613BC59BCE4E8901993206D115F4AC36A5620895739C60429E0B0820E7D6E1"
+                  },
+                  {
+                      "Path":  "config\\organizations\\hex-world.json",
+                      "Bytes":  213,
+                      "SHA256":  "60D0D3DF5FF44D872270D90BA5BC0A2D57B0A719AC3D89436E90DC4CC56F80D4"
+                  },
+                  {
+                      "Path":  "src\\AI\\CombatObservation.cs",
+                      "Bytes":  3383,
+                      "SHA256":  "048BCDAE0BA4830EF9EC288E1BAFDBB6917F97F5AFD5E9B195C0B9A50B9E19A0"
+                  },
+                  {
+                      "Path":  "config\\organizations\\facilities.json",
+                      "Bytes":  194,
+                      "SHA256":  "2F59E4E3B7E57868ECE5620F22EDED43A2F2AC76683BC06E7071E58EE3551EAF"
+                  },
+                  {
+                      "Path":  "src\\Persistence\\SaveMigration.cs",
+                      "Bytes":  3345,
+                      "SHA256":  "DAD281EF7DB614DAB81BA9F2A4F6768D8CD37B8E04641250F64F72FC9DBBB668"
+                  },
+                  {
+                      "Path":  "src\\Persistence\\Persistence.csproj",
+                      "Bytes":  136,
+                      "SHA256":  "9C1244D5F87F15D472C556E4E82031C76F192BDF15157916923F691A5DF605D7"
+                  },
+                  {
+                      "Path":  "src\\Persistence\\JsonWorldStore.cs",
+                      "Bytes":  1364,
+                      "SHA256":  "2A4FA791684C274E7C3E2A88430B3C832014EEB96227B50AA2BAC6273D69FC81"
+                  },
+                  {
+                      "Path":  "src\\Domain\\WorldTime.cs",
+                      "Bytes":  2364,
+                      "SHA256":  "08AE2A46379611F24589679ADE34673A3F402A24B681BDC1D3D394703320A089"
+                  },
+                  {
+                      "Path":  "src\\Domain\\TestProfessions.cs",
+                      "Bytes":  448,
+                      "SHA256":  "06694C0DFDE45F1A7EF77103CA3C7504B58104CCB54A40C4AB03247F71CF513D"
+                  },
+                  {
+                      "Path":  "src\\Domain\\Stamina.cs",
+                      "Bytes":  2473,
+                      "SHA256":  "12A1AEF82BEA177F08EEB72C223A59B65F7473418A79799E246A31844FD5517B"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SocialModels.cs",
+                      "Bytes":  1323,
+                      "SHA256":  "8020674CDA8599E3C90E51CCC54FB2BA38554E8D68AED1E2812B510F035A3CA5"
+                  },
+                  {
+                      "Path":  "src\\Domain\\Settlements.cs",
+                      "Bytes":  2167,
+                      "SHA256":  "D121E186AD07ADAF01C9F2C8C4AA9E369E72B5C058C8542DD0DE4CFD181DF0BB"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SettlementOrganizationDemo.cs",
+                      "Bytes":  285,
+                      "SHA256":  "9FD67F348D991381C51B0D459629486198E9D2114F91F522DF03B79C3E256392"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SettlementOperations.cs",
+                      "Bytes":  539,
+                      "SHA256":  "5E6B4E7E48C8D3DE6C3E2C0E621AEB6603311E004095755D4E27C034F92AE9A3"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SettlementEconomy.cs",
+                      "Bytes":  1955,
+                      "SHA256":  "D034B85EE54114C6C920A9D4ABF650D1BD50C58C230D84B0AD26EC110E82CC34"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SettlementDailyEconomy.cs",
+                      "Bytes":  1163,
+                      "SHA256":  "EB517BFB8255C91DB935062E044DC74C9834B583ABFB3CCA725D3CAD5435EE08"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SectPayrollRules.cs",
+                      "Bytes":  154,
+                      "SHA256":  "B22CCCCBCBD8C50D168625721543AF4FC59A9BDB5D11F589C68355B2109CC338"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SectFacilityRules.cs",
+                      "Bytes":  610,
+                      "SHA256":  "BF34AE497DF76DED20DF260111029DC1A9DC71E7AEC1EB1C994AE2E26F837D63"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SectDutyRules.cs",
+                      "Bytes":  439,
+                      "SHA256":  "8E03F2C4EFBEABFF09BD6A30E9C846FD50C082A995BE6851F00D29DAC17C2BF9"
+                  },
+                  {
+                      "Path":  "src\\Domain\\SceneSites.cs",
+                      "Bytes":  1101,
+                      "SHA256":  "0FA09BE6DD46EE601D0AA73EE800EE732802A8FD08BDF2B78D6F0C244B21A2F3"
+                  },
+                  {
+                      "Path":  "src\\Domain\\RegenerationRules.cs",
+                      "Bytes":  136,
+                      "SHA256":  "82D056A89913EC74FA691CA889DA96BDCF710DD3C288BE38B875373FBB63D10B"
+                  },
+                  {
+                      "Path":  "src\\Domain\\ProcurementRules.cs",
+                      "Bytes":  622,
+                      "SHA256":  "5F7E91EE2D9A931585B9D54DB724AE0A6BF377EA80943584C2CFF4389776D453"
+                  },
+                  {
+                      "Path":  "src\\Domain\\PerformanceModels.cs",
+                      "Bytes":  433,
+                      "SHA256":  "901414DAE7225F28C7D6C4E069F92648EBDF7BAE477D48349C3D0AEA834DFBA8"
+                  },
+                  {
+                      "Path":  "src\\Domain\\PaidLifeServices.cs",
+                      "Bytes":  588,
+                      "SHA256":  "5C88B810D744518CAAB3B12E4FAD84C0147CEC1369971E266341648482FB02F3"
+                  },
+                  {
+                      "Path":  "src\\Domain\\OrganizationSites.cs",
+                      "Bytes":  1248,
+                      "SHA256":  "4E32E4C3A9D48954E5892303CAE6C30A3E7B45E6C159ED36D4EA7C4BB6C7ADAD"
+                  },
+                  {
+                      "Path":  "src\\Domain\\OrganizationPolicy.cs",
+                      "Bytes":  217,
+                      "SHA256":  "251DE2E1D64068129DE1D742FE197667D0FD76D74ED0E63540524DF2F2FC5D42"
+                  },
+                  {
+                      "Path":  "src\\Domain\\OrganizationLabor.cs",
+                      "Bytes":  2941,
+                      "SHA256":  "80C58634D303AF05CE453193B8259DF29AC51E71F5BECF8F899A7FC90060CAFE"
+                  },
+                  {
+                      "Path":  "src\\Domain\\OrganizationDevelopmentRules.cs",
+                      "Bytes":  227,
+                      "SHA256":  "6F18E8BF9F0B2ECA3BA7276774331E1D8FF2701D137C7150B24E6065064A2EF8"
+                  },
+                  {
+                      "Path":  "src\\Domain\\MortalCultivation.cs",
+                      "Bytes":  6126,
+                      "SHA256":  "96AD8A569ABAF2087A52483D0EA46612E1AD78478F0282D5CB72D0ECD063FA57"
+                  },
+                  {
+                      "Path":  "src\\Domain\\Models-DESKTOP-K1FV25D.cs",
+                      "Bytes":  14463,
+                      "SHA256":  "9739E0FFBF3CD7D9C92050BC6C57E78301B4F5DB97CE7753E51E13B4DF183619"
+                  },
+                  {
+                      "Path":  "src\\Domain\\LifeSystem.cs",
+                      "Bytes":  1778,
+                      "SHA256":  "429C0C5AF68F7C85C7D41D4BA14A89731BC16B3F41D2AB64D848956BB86673CC"
+                  },
+                  {
+                      "Path":  "src\\Domain\\LifeSkills.cs",
+                      "Bytes":  1470,
+                      "SHA256":  "01CE83A39627A267BD59C1770EF3EE6471E265470B19DCBC7E8BF9E64D2EC32A"
+                  },
+                  {
+                      "Path":  "src\\Domain\\LedgerBalanceIndex.cs",
+                      "Bytes":  1133,
+                      "SHA256":  "4BCDD32B9AE7BC8D330EED6D253E2139DB0967B2AB23DA618E2D76F943C599D0"
+                  },
+                  {
+                      "Path":  "src\\Domain\\HexMap.cs",
+                      "Bytes":  4628,
+                      "SHA256":  "C4266AE9A2A3A6AEDD21A37EA0612DE17F93C0C12A10D85AFB2C7AC233F9F9EA"
+                  },
+                  {
+                      "Path":  "src\\Domain\\GameTimeDisplay.cs",
+                      "Bytes":  265,
+                      "SHA256":  "B6F9F201D41A20D5DF441CF4467444F458E4551AB47BA7C0775F96D122F4FC39"
+                  },
+                  {
+                      "Path":  "src\\Domain\\ExternalMarket.cs",
+                      "Bytes":  1170,
+                      "SHA256":  "2B75D69817DD1668CB1529FE9F1ED27E36B5458D3D2E63DF641A69CFFFBFCF03"
+                  },
+                  {
+                      "Path":  "src\\Domain\\ExpeditionModels.cs",
+                      "Bytes":  1032,
+                      "SHA256":  "D78ABFA210881B73D3D437947E97AE03E48CB2897D3A3F7E0B7067C9F34941E1"
+                  },
+                  {
+                      "Path":  "src\\Domain\\EquipmentDurability.cs",
+                      "Bytes":  1197,
+                      "SHA256":  "E54FDC9F4CB551574BF210957725ED5739189D6A39BDB362C397DDA33E39DB62"
+                  },
+                  {
+                      "Path":  "src\\Domain\\EconomyModels.cs",
+                      "Bytes":  0,
+                      "SHA256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+                  },
+                  {
+                      "Path":  "src\\Domain\\EconomyModels-DESKTOP-K1FV25D.cs",
+                      "Bytes":  2553,
+                      "SHA256":  "FF7D4AC39AB27C994AC98963B3D14ADCE788886D6B2EB70EC8F3D6793E42098D"
+                  },
+                  {
+                      "Path":  "src\\Domain\\DungeonRules.cs",
+                      "Bytes":  1249,
+                      "SHA256":  "80669DA2D418BF44149B5418CD7DA3E247F443BBA13E0AC90D4A028A96640700"
+                  },
+                  {
+                      "Path":  "src\\Domain\\Domain.csproj",
+                      "Bytes":  247,
+                      "SHA256":  "BCF55EFD9666850EF0B4F9D15F50C4ED85F6E84C0735B5FDA42E3F701C1AB212"
+                  },
+                  {
+                      "Path":  "src\\Domain\\DemoMap.cs",
+                      "Bytes":  446,
+                      "SHA256":  "F6A044AEE771B5540802118BAE362282A5B77C77D4811511EEB011CC4B7FAD4A"
+                  },
+                  {
+                      "Path":  "src\\Domain\\CurrentAttributes.cs",
+                      "Bytes":  601,
+                      "SHA256":  "45F26EE0B9D9B5CE7AA7FBF25A82731CE198D9C2175719B224CD8E69C5D27878"
+                  },
+                  {
+                      "Path":  "src\\Domain\\Currencies.cs",
+                      "Bytes":  277,
+                      "SHA256":  "AF88B299F4305B7EF75B3AF259DB5B07A96F9C4C5A7A589B174ADB4A62DD8409"
+                  },
+                  {
+                      "Path":  "src\\Domain\\CultivationMethods.cs",
+                      "Bytes":  3325,
+                      "SHA256":  "D51D92822D31D06721AC0ECBAEED364AF947C3650D402A7415D7D2F0DCE650A6"
+                  },
+                  {
+                      "Path":  "src\\Domain\\ConfigurationModels.cs",
+                      "Bytes":  556,
+                      "SHA256":  "D2AA7B50F64E83F540FFE324D546A044D3A454AB417C09EEB651166FBBA154FD"
+                  },
+                  {
+                      "Path":  "src\\Domain\\CombatModels.cs",
+                      "Bytes":  1222,
+                      "SHA256":  "D014D36D107B1AE5E8D81E4850136752BCB99E65B7656C8960EDAAA52BC38756"
+                  },
+                  {
+                      "Path":  "src\\Domain\\CharacterProgression-DESKTOP-K1FV25D.cs",
+                      "Bytes":  2654,
+                      "SHA256":  "B14BC782F8ABD9966C9A9D0C064E6759CE4810B2C84BD23B8DF8D0A644FC8016"
+                  },
+                  {
+                      "Path":  "src\\Domain\\CharacterGrowth.cs",
+                      "Bytes":  1261,
+                      "SHA256":  "188221A580DF187D67496BA45B132AF26176BE2393DBCF7EBC56052C8134204C"
+                  },
+                  {
+                      "Path":  "src\\Domain\\CharacterDevelopment.cs",
+                      "Bytes":  1560,
+                      "SHA256":  "FA08C517C4B1F42551C35155E008F4D026571823C42FE99D377B13A45C0831C0"
+                  },
+                  {
+                      "Path":  "src\\Domain\\BoardBattle.cs",
+                      "Bytes":  2051,
+                      "SHA256":  "EAEE51B6B30AC97FD568DB833956B47BFCBB5C8089C931AAFC16745D14B37292"
+                  },
+                  {
+                      "Path":  "config\\combat\\party.json",
+                      "Bytes":  68,
+                      "SHA256":  "3A18A97BE3F55D6FBEA27B399DE2B419C04A0022B1C8FAF07E6F0C5BC954EC0A"
+                  },
+                  {
+                      "Path":  "config\\combat\\formation.json",
+                      "Bytes":  511,
+                      "SHA256":  "1E6B2D87E1416E4B5C684ABFD1D1E273C3074B3165FEB57F385656A4F20E9651"
+                  },
+                  {
+                      "Path":  "config\\combat\\dungeon.json",
+                      "Bytes":  443,
+                      "SHA256":  "96F0D4C20C37A1CF886210BA89BFA6B88A6CED6AF39A49787BC209E920906828"
+                  },
+                  {
+                      "Path":  "config\\combat\\combat.json",
+                      "Bytes":  206,
+                      "SHA256":  "F8E2627B1F7D2EE3DCE7D5FF2A46A3D400D031BEFE02C4B9915850A81031136F"
+                  },
+                  {
+                      "Path":  "config\\combat\\board.json",
+                      "Bytes":  29,
+                      "SHA256":  "DBC763C3F076038EFA283B4C1ABB6D6E3D70CACF0295EC92EFB9D55C28E876FE"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\qi-awakening.json",
+                      "Bytes":  214,
+                      "SHA256":  "C53660BF90DB2407C582CFBDC1D9B686A9220F9E9867A8C6949ED3511921B9D8"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\mortal-training.json",
+                      "Bytes":  215,
+                      "SHA256":  "0C459B90A6946C45E307BEEEF43F1FE3026B232822D057E6BA9FB2303018A963"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\mortal-actions.json",
+                      "Bytes":  401,
+                      "SHA256":  "19B1C444C06B7FC1954645256BF7FC68A02B30CED66360E1D6B2E240EF5AC5AC"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\methods-proposal.json",
+                      "Bytes":  2343,
+                      "SHA256":  "CFD7B4547D052A5B6CADD02D2F8F72092AD9F01A9A5A39FBAABCC60492B4FBFC"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\method-test-npc.json",
+                      "Bytes":  123,
+                      "SHA256":  "BBED1D352B0B21A9F616FBF7B5DD94D2D7FD129B81EA86BE908AC5CEF6B69F55"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\method-scenario.json",
+                      "Bytes":  138,
+                      "SHA256":  "1C1C59B628A00BC84379275E2A671C4E9550E7A95442ADB528BE630750E8D5ED"
+                  },
+                  {
+                      "Path":  "config\\cultivation\\advancement.json",
+                      "Bytes":  464,
+                      "SHA256":  "00B4B57B189FEC202DD2BB9B0E65B7D3654F235A92988B3C24D58ECA507985CD"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\DeveloperPanel.cs",
+                      "Bytes":  9171,
+                      "SHA256":  "11E0C6460B6BD48620E877604F86099DB93B7567F4FC6F890B561CCB22590F15"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\DemoMapPanel.cs",
+                      "Bytes":  4302,
+                      "SHA256":  "22360DA26B3B344B9C44103927C831ABB0A202489BCB430F001200AC0DE48CE8"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\CultivationGame.csproj",
+                      "Bytes":  357,
+                      "SHA256":  "EB75AF63654BE1CA9C47B0EAFA5605B81C6BACADFB59121B7EA0A971C58365EC"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\CombatPanel.cs",
+                      "Bytes":  3939,
+                      "SHA256":  "3804DBFC87194C53314A8FEAB2A0EDB39CF723F226537459A1CACB35CE5583E4"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\CharacterJournalWindow.cs",
+                      "Bytes":  7909,
+                      "SHA256":  "24D8B6E313D6825D677BFE7C62E400F8F72604023E7011330DADFB95D76A6C66"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\CharacterAttributesWindow.cs",
+                      "Bytes":  10601,
+                      "SHA256":  "F2658AE20D8A61A94208E43750EA90FD97E61D35B34A2EDF531E219273FAA4DD"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\BoardBattlePanel.cs",
+                      "Bytes":  8841,
+                      "SHA256":  "34F9B97E2F0032CDC937247A7FEB6059823E8478B29946564407CDBF3417FCB5"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\GameplayPanel.cs",
+                      "Bytes":  5921,
+                      "SHA256":  "B630A84437F873BFB8899A2F2DD8A9DE6DAB184DF5A868C96890AEDFD0D59281"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\ExternalMarketPanel.cs",
+                      "Bytes":  5039,
+                      "SHA256":  "1E9D22B06A0D12A9826BC6F250ADCAF9B715A6A97D29B6E15B9C68CB501DEBFA"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\ExpeditionPanel.cs",
+                      "Bytes":  4943,
+                      "SHA256":  "A90E9C9159015761182369FFF772E2B83B701A699B37371D1DF993A4C69AA096"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\EventJournalPanel.cs",
+                      "Bytes":  1946,
+                      "SHA256":  "7E8B6BB8660DB73E32FC37E6C7CE274A8F94A2562D6D5A812088ACB6D59A7082"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\HexMapCanvas.cs",
+                      "Bytes":  5421,
+                      "SHA256":  "8CFCA0AF6FED6A9CE40D0F8CAEC11DADAE5C2ADECA490CD9091BB5B1D386B2AF"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\GovernancePanel.cs",
+                      "Bytes":  4852,
+                      "SHA256":  "29E683BFFA3EE0C66CD1A58E309F7805E0FCB0332983F7A2AE317BE1BED1C356"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\HexMapPanel.cs",
+                      "Bytes":  8714,
+                      "SHA256":  "6F0CC357ABA8D242D674672BFB8A00B473A1ACE5513DC9D7756F260FB31EA0A8"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\LifeSkillPanel.cs",
+                      "Bytes":  6147,
+                      "SHA256":  "CD96B8364E56B2F16C7D18B36EF24682262BBCA4FF490D80496B46C18802E38A"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\ValueChart.cs",
+                      "Bytes":  1488,
+                      "SHA256":  "56F894550AA2F9025293D6F12064AB3733EF25F1C9CBBD1AEB52E5ED03A58AF4"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SocialPanel.cs",
+                      "Bytes":  4495,
+                      "SHA256":  "AEBFA4D0CCEB55317075048409E3D9F0730B837D39EC04708BA783F2EA240D2B"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SiteScenePanel.cs",
+                      "Bytes":  4445,
+                      "SHA256":  "EC7CCB327FECEFF55DF45B2FE6059B29772610BC9120BD8969A74B51AFCC8177"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SiteCourtyard.cs",
+                      "Bytes":  2858,
+                      "SHA256":  "0584FDB873EA2FC38448DF771F75D58BE1D690C93761147FD1BB0AD25D1A0490"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SettlementPanel.Queries.cs",
+                      "Bytes":  19427,
+                      "SHA256":  "48799AB07FC1DCD0C4249D76F377A818875640C317AD8423E5E81B215E03C5B5"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SettlementPanel.OrganizationSites.cs",
+                      "Bytes":  2738,
+                      "SHA256":  "1723087AB956509C4CCE4231FDDF2E81654A781D738DF42D5337D81437AB5627"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SettlementPanel.cs",
+                      "Bytes":  9767,
+                      "SHA256":  "B84DC660202359AD5838CFCF6D9498F0C21F0189576913C3DECA11A91BF82D02"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SettlementManagementWindow.cs",
+                      "Bytes":  1132,
+                      "SHA256":  "25DCB142E320BDB537AEF5FAD6994F66B967E3C1F9F271006C83058793DCCEC0"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SectScenePanel.cs",
+                      "Bytes":  2554,
+                      "SHA256":  "2E090EF9F5F3C6E048A118CF7AB2D725FD43F929CEB35D11F7830F231288EF11"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SectFacilityPanel.cs",
+                      "Bytes":  5498,
+                      "SHA256":  "9F107EA0C388070AA63A4831BCE014B277866DA1CF5A96719ACD8A98A560824D"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SectEconomyPanel.cs",
+                      "Bytes":  2516,
+                      "SHA256":  "815B8BE793154C20DFED2E1F48DB88338AAEC85B339F0F56AD078C03D6B04434"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\SectCourtyard.cs",
+                      "Bytes":  4704,
+                      "SHA256":  "4531B4FC968392C7C7D7AAE30FD4117E8787EE8EAF042E34F4902387B9929D0E"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Main.tscn",
+                      "Bytes":  291,
+                      "SHA256":  "12E587167FA01307CE709BF9A6829A12C22D5868527E4FD51AEFEAEB5D3C7239"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\VillageSite.tscn",
+                      "Bytes":  175,
+                      "SHA256":  "87B2A206E9FE51199D4D91F066974333FA8CC5E4DF5B8934C2970F3F5911DA25"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\TownSite.tscn",
+                      "Bytes":  172,
+                      "SHA256":  "4F4FD432F97B993BF379B8590FF58A914015615E173ECCA55E64CC5C769767C2"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\StrongholdSite.tscn",
+                      "Bytes":  178,
+                      "SHA256":  "B0787B20CC420AEFBF2F081841B717A1DD7C686D1EC650166D36A574ACFD691D"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\SectSite.tscn",
+                      "Bytes":  172,
+                      "SHA256":  "551E7996AAF9FD37F861F86F0C386F2EA11F3A1E2F123F473BF0AF0D170A2AE6"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\QingyunSect.tscn",
+                      "Bytes":  167,
+                      "SHA256":  "11275ACABB86D17D09DC204A59D16F26BDD74CEE67DCA7E35CD072F798906791"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\GangSite.tscn",
+                      "Bytes":  172,
+                      "SHA256":  "FA95F8C2168809845A9EE04A7698B34828488B3CC7B8410C38E730E077D9C9B4"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Scenes\\Areas\\CitySite.tscn",
+                      "Bytes":  172,
+                      "SHA256":  "952C461977487A964AED0A380E993D7985D09679FFFDC5D5C14717C6228A5C53"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\project.godot",
+                      "Bytes":  614,
+                      "SHA256":  "8926035486924510107E0E77C50E3AC440881401B22241A008C14FB7B4692B24"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\PerformancePanel.cs",
+                      "Bytes":  1494,
+                      "SHA256":  "D1A783BE78525A0002F721E0FC7DD2E2D8A8963003841CAAEF774E127CDEC883"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\PaidServicePanel.cs",
+                      "Bytes":  4844,
+                      "SHA256":  "38B584D36AC0BD2EAC6DA55A928D76E26895032EDBB97C8C3A397A1FD57F24D5"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\OrganizationLaborPanel.cs",
+                      "Bytes":  6553,
+                      "SHA256":  "E4453E69AB56FA1FCA89F7BE7FC864EF67435168ECA2A8E9BC3B254BC440208A"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\MortalCultivationPanel.cs",
+                      "Bytes":  7638,
+                      "SHA256":  "80EF42A2351E815CDC0EB343E0E058FE1D05197D6F2F6D3569ACE0EAA2232DFB"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\MissionPanel.cs",
+                      "Bytes":  6104,
+                      "SHA256":  "F66FC216854EB663D615D5ACECBAF2D3D458018FA35E5FE7ECCDE4E66BF37BE3"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.VillageOrganizationSmoke.cs",
+                      "Bytes":  2146,
+                      "SHA256":  "CDE5C7844577260F4E2765B108C6393897B9652A234BB33D46A113A69FB2E2D9"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.TestScenarios.cs",
+                      "Bytes":  3578,
+                      "SHA256":  "779D682FC4500C2FDE3E5E9DC89AF13DB9FD1F6BAC151A5DA9A3AA300BF69A13"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.SpecialistsSmoke.cs",
+                      "Bytes":  2475,
+                      "SHA256":  "B4C00B7670480237ECC95113103CAD8199923FDA988DC970D4E546517610F898"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.SiteSmoke.cs",
+                      "Bytes":  2764,
+                      "SHA256":  "A2F3968152BF28CF32ADBE058B07BED78A5D6DFBAD45F020D84196DA36391815"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.SettlementManagementSmoke.cs",
+                      "Bytes":  4516,
+                      "SHA256":  "ADE7E8ED89A849E5478C34630DCDEAB2BDEC22F2C7BAF8ABE2DA4A0C327F1C89"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.Settlement.cs",
+                      "Bytes":  7025,
+                      "SHA256":  "9E042D65C4D2F234AB65379921D399D6EBBE1FB46295B204F818A07BD449255C"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.SectSceneSmoke.cs",
+                      "Bytes":  2755,
+                      "SHA256":  "9D86F72B412AF8BC934BB06E58E44E7CD9C9C55A016AEE7CDDED8012C9B07216"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.OrganizationLaborSmoke.cs",
+                      "Bytes":  2877,
+                      "SHA256":  "10C095D2ACCDCDD99042A2BFE4DB59DEBA3C3C67165245367A089E26D1CA7247"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.MortalCultivation.cs",
+                      "Bytes":  3985,
+                      "SHA256":  "92F434772571510FA6A41345CA3F9D4B4DC043F8C29F97546A1DB573FDA0EB44"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.MedicineOnlySmoke.cs",
+                      "Bytes":  1908,
+                      "SHA256":  "7FF4997195E9C5D1513187E307D43551D768C4A42A90B808B42EB5D1B9889010"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.LifeSkillsSmoke.cs",
+                      "Bytes":  2357,
+                      "SHA256":  "3E4063CDF2B14AC5174BE2FE3C4ABB7E1D8E86301BD24154385C739E2ECE3BE4"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.HexWorld.cs",
+                      "Bytes":  751,
+                      "SHA256":  "B35CD0565B4CB169F31C02D92AAC8FAB66FF15B1C98EBBB6E47A52329761DF15"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.HexSmoke.cs",
+                      "Bytes":  2208,
+                      "SHA256":  "72CAE87AC5B5392F34853136E4A07684ECACDF6B79828F823D0DC6877CE11B13"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.ExternalMarketSmoke.cs",
+                      "Bytes":  2073,
+                      "SHA256":  "1C56FFC1D1EEC54ECC7E345407654A5D93076D7963C59D076553C1CDEA0B8B74"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.cs",
+                      "Bytes":  79720,
+                      "SHA256":  "2879551C099ED36392279E39B0D854D46DE584B475C75C7C81D3C6AD63F6C954"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.CharacterFollowSmoke.cs",
+                      "Bytes":  3725,
+                      "SHA256":  "407BBE9ED561C1F5A1472B1AE3F45FC650CB1AC01508D45C4B85B5CBA8115A2E"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.CharacterAttributesSmoke.cs",
+                      "Bytes":  3616,
+                      "SHA256":  "534570848EA66699C9B066BEFA6891EFF7806B5EF59B6BE6163561D5C7A67BB8"
+                  },
+                  {
+                      "Path":  "src\\Presentation\\Main.ActionDriven.cs",
+                      "Bytes":  2841,
+                      "SHA256":  "1C0A4DFAD0D999386C965698724258AD2FBF959C5E4B94E8858217311379BF95"
+                  },
+                  {
+                      "Path":  "AGENTS.md",
+                      "Bytes":  15272,
+                      "SHA256":  "E59189CA70F0444452B0C951DC5B0D5612A256A3E4247873DE87074B5FC2743A"
+                  },
+                  {
+                      "Path":  "Directory.Build.props",
+                      "Bytes":  279,
+                      "SHA256":  "52CE182A67495FA32E75B8A08313B9002C06D41CC73272AD09BC5445B05E8181"
+                  },
+                  {
+                      "Path":  "CultivationGame.sln",
+                      "Bytes":  3287,
+                      "SHA256":  "63C0BE4686F8C5ABAFBADF6361419E064003AA6F8AB19EDEFAE9079B983366C9"
+                  }
+              ],
+    "Unreadable":  [
+                       {
+                           "Path":  "src\\Domain\\Models.cs",
+                           "Error":  "以 \"1\" 引數呼叫 \"ReadAllBytes\" 時發生例外狀況: \"拒絕存取路徑 \u0027C:\\Users\\蔡煜煒\\OneDrive\\文件\\git\\autoGame\\src\\Domain\\Models.cs\u0027。\""
+                       },
+                       {
+                           "Path":  "src\\Domain\\CharacterProgression.cs",
+                           "Error":  "以 \"1\" 引數呼叫 \"ReadAllBytes\" 時發生例外狀況: \"拒絕存取路徑 \u0027C:\\Users\\蔡煜煒\\OneDrive\\文件\\git\\autoGame\\src\\Domain\\CharacterProgression.cs\u0027。\""
+                       }
+                   ]
+}

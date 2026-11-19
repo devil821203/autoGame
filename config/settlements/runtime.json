@@ -1,0 +1,27 @@
+{
+  "InitialLevel": 1,
+  "InitialPopulation": 20,
+  "InitialHappiness": 50,
+  "MinimumHappiness": 0,
+  "MaximumHappiness": 100,
+  "InitialStones": 1000,
+  "HallCapacity": 30,
+  "HousingCapacity": 10,
+  "HallCapacityPerLevel": 20,
+  "EmployeeLimit": 5,
+  "DailyWage": 1,
+  "DailyOutputPerEmployee": 2,
+  "DailyOutputOverrides": { "Farm": 5, "Forestry": 5 },
+  "MaterialInfluence": 1,
+  "BuildingInfluence": 10,
+  "Outputs": { "Farm": "food", "Forestry": "wood", "Mine": "mineral" },
+  "Levels": [
+    { "Level": 2, "RequiredPopulation": 30, "Stones": 100, "Wood": 20 },
+    { "Level": 3, "RequiredPopulation": 50, "Stones": 300, "Wood": 50 }
+  ],
+  "Prices": [
+    { "Item": "food", "Buy": 1, "Sell": 2 },
+    { "Item": "wood", "Buy": 2, "Sell": 3 },
+    { "Item": "mineral", "Buy": 3, "Sell": 4 }
+  ]
+}

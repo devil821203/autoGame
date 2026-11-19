@@ -1,0 +1,8 @@
+{
+  "NearbyIntervalTicks": 1,
+  "RegionalIntervalTicks": 4,
+  "RemoteIntervalTicks": 16,
+  "RemoteCombatBatchTicks": 16,
+  "DiagnosticRetentionTicks": 120,
+  "LogCandidateDetails": false
+}

@@ -1,0 +1,10 @@
+{
+  "InitialCharacters": ["player", "npc:method-trainee"],
+  "GrantPolicy": "ScenarioOnly",
+  "UnavailableBehavior": "PauseAndSelect",
+  "SwitchActionPoints": 0,
+  "SwitchMinutes": 0,
+  "RequirePaused": true,
+  "AllowDuringCombat": false,
+  "ResetAutonomyOnSwitch": true
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "Balanced",
+    "Name": "均衡",
+    "WealthMultiplier": 1,
+    "GrowthMultiplier": 1,
+    "AlchemyExperienceMultiplier": 0,
+    "CombatMultiplier": 1
+  },
+  {
+    "Id": "Wealth",
+    "Name": "求財",
+    "WealthMultiplier": 1.5,
+    "GrowthMultiplier": 1,
+    "AlchemyExperienceMultiplier": 0,
+    "CombatMultiplier": 1
+  },
+  {
+    "Id": "Alchemy",
+    "Name": "丹道",
+    "WealthMultiplier": 1,
+    "GrowthMultiplier": 1,
+    "AlchemyExperienceMultiplier": 1,
+    "CombatMultiplier": 1
+  },
+  {
+    "Id": "Cultivation",
+    "Name": "修煉",
+    "WealthMultiplier": 1,
+    "GrowthMultiplier": 1.5,
+    "AlchemyExperienceMultiplier": 0,
+    "CombatMultiplier": 1
+  },
+  {
+    "Id": "Combat",
+    "Name": "戰鬥",
+    "WealthMultiplier": 1,
+    "GrowthMultiplier": 1,
+    "AlchemyExperienceMultiplier": 0,
+    "CombatMultiplier": 1.5
+  }
+]

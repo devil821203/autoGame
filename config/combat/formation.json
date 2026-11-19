@@ -1,0 +1,8 @@
+﻿{
+  "Fighters": [
+    { "ActorId": "player", "Side": "Left", "Cell": { "Row": 2, "Depth": 0 }, "Speed": 12, "Range": 1, "Ranged": false },
+    { "ActorId": "ally", "Side": "Left", "Cell": { "Row": 1, "Depth": 1 }, "Speed": 10, "Range": 5, "Ranged": true },
+    { "ActorId": "npc", "Side": "Right", "Cell": { "Row": 2, "Depth": 0 }, "Speed": 9, "Range": 1, "Ranged": false },
+    { "ActorId": "enemy-archer", "Side": "Right", "Cell": { "Row": 1, "Depth": 1 }, "Speed": 10, "Range": 5, "Ranged": true }
+  ]
+}

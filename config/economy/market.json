@@ -1,0 +1,24 @@
+[
+  {
+    "ResourceId": "herb",
+    "BasePrice": 65,
+    "TargetStock": 50,
+    "MinimumPrice": 20,
+    "MaximumPrice": 130,
+    "StockPriceStep": 1,
+    "Spread": 2,
+    "MarketId": "market",
+    "RegionId": "valley"
+  },
+  {
+    "ResourceId": "pill",
+    "BasePrice": 110,
+    "TargetStock": 5,
+    "MinimumPrice": 40,
+    "MaximumPrice": 220,
+    "StockPriceStep": 1,
+    "Spread": 2,
+    "MarketId": "market",
+    "RegionId": "valley"
+  }
+]

@@ -1,0 +1,26 @@
+﻿[
+    {
+        "Check":  "regional-world",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "regional-world",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "sqlite",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "save-picker",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "new-save",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "hex-world",
+        "ExitCode":  0
+    }
+]

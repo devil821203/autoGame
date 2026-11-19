@@ -1,0 +1,17 @@
+{
+  "HerbPrice": 4,
+  "PillPrice": 15,
+  "HerbsPerPill": 2,
+  "GatherTicks": 2,
+  "BrewTicks": 3,
+  "CultivateTicks": 3,
+  "GrowthPerPill": 10,
+  "ExperiencePerAction": 1,
+  "SkillChancePerExperience": 0.002,
+  "MaximumSkillBonus": 0.2,
+  "HealingPerPill": 40,
+  "MemoryTicks": 20,
+  "PlanLifetimeTicks": 30,
+  "DecisionBudget": 12,
+  "GatheringExperiencePerSpeedLevel": 10
+}

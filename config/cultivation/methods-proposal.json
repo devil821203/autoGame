@@ -1,0 +1,76 @@
+{
+  "Status": "TrainingEnabled_EffectsPending",
+  "UseCurrentAttributesForUpgrade": true,
+  "TrainingRules": {
+    "DurationTicks": 1,
+    "ActionPointCost": 1,
+    "StaminaCost": 1,
+    "BaseSkillProficiency": 1,
+    "BaseCultivationExperience": 1,
+    "IndependentSkillProficiency": true,
+    "CumulativeThresholds": true
+  },
+  "Methods": [
+    {
+      "Id": "Qingyun",
+      "Name": "青雲功",
+      "LayerCount": 3,
+      "CumulativeProficiencyThresholds": [100, 200, 300],
+      "EntryRequirements": { "Strength": 10, "Constitution": 10 },
+      "AdditionalLayerRequirements": [
+        { "Layer": 2, "Strength": 20, "Constitution": 20 },
+        { "Layer": 3, "Strength": 20, "Constitution": 20 }
+      ],
+      "Skills": [
+        {
+          "Id": "QingyunMind",
+          "Name": "青雲心法",
+          "Tags": ["心法", "練氣"],
+          "Training": "修練基本心法",
+          "CultivationTarget": "QiOrAwakeningEntry",
+          "AttributeBonuses": { "Strength": 10, "Constitution": 10, "Agility": 10 },
+          "QingyunFistFlatDamageByLayer": [10, 20, 30]
+        },
+        {
+          "Id": "QingyunFist",
+          "Name": "青雲拳法",
+          "Tags": ["招式", "練體"],
+          "Training": "修練基本拳法",
+          "PreferredTrainingAttribute": "Constitution",
+          "UseStaminaCost": 0,
+          "CooldownRounds": 1,
+          "PhysicalMultiplierByLayer": [1.2, 1.3, 1.4],
+          "ConstitutionCoefficientByLayer": [2, 3, 4]
+        },
+        {
+          "Id": "MightyBrick",
+          "Name": "力大飛磚",
+          "Tags": ["技巧", "練體"],
+          "Training": "修練力大飛磚",
+          "PreferredTrainingAttribute": "Strength",
+          "StrengthBonusByLayer": [10, 20, 30]
+        }
+      ]
+    },
+    {
+      "Id": "Liuxi",
+      "Name": "柳溪訣",
+      "LayerCount": 1,
+      "CumulativeProficiencyThresholds": [100],
+      "EntryRequirements": null,
+      "AdditionalLayerRequirements": [],
+      "Skills": [
+        {
+          "Id": "LiuxiSword",
+          "Name": "柳溪劍法",
+          "Tags": ["招式", "練體"],
+          "Training": "修練柳溪劍法",
+          "PreferredTrainingAttribute": "Agility",
+          "UseStaminaCost": 7,
+          "PhysicalAttackMultiplier": 1.1,
+          "AgilityCoefficient": 1.5
+        }
+      ]
+    }
+  ]
+}

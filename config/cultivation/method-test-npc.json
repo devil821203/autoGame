@@ -1,0 +1,6 @@
+{
+  "TemplateActorId": "npc:03",
+  "ActorId": "npc:method-trainee",
+  "Name": "功法修練者01",
+  "InitialMoney": 300
+}

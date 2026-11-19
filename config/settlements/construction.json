@@ -1,0 +1,9 @@
+﻿[
+  { "Kind": "Housing", "Stones": 20, "Wood": 10 },
+  { "Kind": "Farm", "Stones": 20, "Wood": 10 },
+  { "Kind": "Forestry", "Stones": 20, "Wood": 10 },
+  { "Kind": "Mine", "Stones": 20, "Wood": 10 },
+  { "Kind": "Shop", "Stones": 20, "Wood": 10 },
+  { "Kind": "Dormitory", "Stones": 20, "Wood": 10 },
+  { "Kind": "SeniorDormitory", "Stones": 20, "Wood": 10 }
+]

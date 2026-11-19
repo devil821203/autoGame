@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup><Compile Remove="**/*(1).cs" /></ItemGroup>
+  <!-- Canonical source files are active; retained sync copies are excluded to avoid duplicate types. -->
+  <ItemGroup>
+    <Compile Remove="Models-DESKTOP-K1FV25D.cs;CharacterProgression-DESKTOP-K1FV25D.cs;EconomyModels-DESKTOP-K1FV25D.cs" />
+  </ItemGroup>
+</Project>

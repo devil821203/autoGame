@@ -1,0 +1,8 @@
+{
+  "BuildOrder": ["Farm", "Forestry", "Mine"],
+  "TargetBuildingLevel": 2,
+  "MaximumSiteLevel": 2,
+  "ReserveMoney": 100,
+  "ReserveWood": 20,
+  "AutoStaff": true
+}

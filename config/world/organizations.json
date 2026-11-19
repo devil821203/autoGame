@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "sect",
+    "Name": "青雲宗",
+    "LeaderId": null,
+    "RegionId": "valley"
+  },
+  {
+    "Id": "market",
+    "Name": "青雲鎮商店",
+    "LeaderId": null,
+    "RegionId": "valley"
+  },
+  {
+    "Id": "grove",
+    "Name": "青雲谷藥圃",
+    "LeaderId": null,
+    "RegionId": "valley"
+  },
+  {
+    "Id": "consumed",
+    "Name": "已消耗資源",
+    "LeaderId": null,
+    "RegionId": "valley"
+  }
+]

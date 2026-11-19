@@ -1,0 +1,28 @@
+Godot Engine v4.3.stable.mono.official.77dcf97d8 - https://godotengine.org
+
+SCENARIO_CATALOG_UI_SMOKE_PASS
+
+================================================================
+CrashHandlerException: Program crashed with signal 11
+Engine version: Godot Engine v4.3.stable.mono.official (77dcf97d82cbfe4e4615475fa52ca03da645dbd8)
+Dumping the backtrace. Please include this when reporting the bug to the project developer.
+[1] error(22): C:/Users/蔡煜煒/OneDrive/文件/git/autoGame/.tools/godot43/Godot_v4.3-stable_mono_win64/Godot_v4.3-stable_mono_win64.exe
+[2] error(-1): failed to read executable information
+[3] error(-1): failed to read executable information
+[4] error(-1): failed to read executable information
+[5] error(-1): failed to read executable information
+[6] error(-1): failed to read executable information
+[7] error(-1): failed to read executable information
+[8] error(-1): failed to read executable information
+[9] error(-1): failed to read executable information
+[10] error(-1): failed to read executable information
+[11] error(-1): failed to read executable information
+[12] error(-1): failed to read executable information
+[13] error(-1): failed to read executable information
+[14] error(-1): failed to read executable information
+[15] error(-1): failed to read executable information
+[16] error(-1): failed to read executable information
+[17] error(-1): failed to read executable information
+[18] error(-1): failed to read executable information
+-- END OF BACKTRACE --
+================================================================

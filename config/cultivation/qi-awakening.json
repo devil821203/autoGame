@@ -1,0 +1,8 @@
+{
+  "SuccessProbabilityPerCompletedMeditation": 0.01,
+  "RollOnThresholdCompletion": false,
+  "PityEnabled": false,
+  "AttributePointsOnAwakening": 0,
+  "LevelGainOnAwakening": 0,
+  "ExperienceAfterAwakening": 0
+}

@@ -1,0 +1,8 @@
+Godot Engine v4.3.stable.mono.official.77dcf97d8 - https://godotengine.org
+
+PLAYER_CONTROL_UI_SMOKE_FAIL: System.InvalidOperationException: Sequence contains no matching element
+   at System.Linq.ThrowHelper.ThrowNoMatchException()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Cultivation.Presentation.Main.Render() in C:\Users\蔡煜煒\OneDrive\文件\git\autoGame\src\Presentation\Main.cs:line 1090
+   at Cultivation.Presentation.Main.SwitchSelectedControl() in C:\Users\蔡煜煒\OneDrive\文件\git\autoGame\src\Presentation\Main.PlayerControl.cs:line 53
+   at Cultivation.Presentation.Main.PlayerControlSmokeTest() in C:\Users\蔡煜煒\OneDrive\文件\git\autoGame\src\Presentation\Main.PlayerControl.cs:line 67

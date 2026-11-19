@@ -1,0 +1,13 @@
+{
+  "NpcCounts": [100, 1000, 5000],
+  "TemplateActorId": "npc:03",
+  "MinimumSteps": 5,
+  "MaximumSteps": 2000,
+  "MaximumWallSeconds": 30,
+  "MaximumWorkingSetMiB": 1024,
+  "DecisionCoverage": 1,
+  "ImportantStopSeconds": 1020,
+  "SoakNpcCount": 100,
+  "SoakYears": 3,
+  "SoakMaximumWallSeconds": 30
+}

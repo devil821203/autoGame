@@ -1,0 +1,7 @@
+{
+  "Consumption": [
+    { "ResourceId": "food", "UnitsPerResident": 1, "MaximumUnitsPerResident": 2, "MoneyPerUnit": 1 },
+    { "ResourceId": "wood", "UnitsPerResident": 1, "MaximumUnitsPerResident": 2, "MoneyPerUnit": 1 }
+  ],
+  "PopulationGrowth": { "InitialValue": 0, "MinimumValue": 0, "Threshold": 100, "PointsPerGroup": 1, "PopulationPerThreshold": 1 }
+}

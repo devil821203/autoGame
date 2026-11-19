@@ -1,0 +1,11 @@
+﻿{
+  "OrganizationId": "sect",
+  "MissionIntervalTicks": 20,
+  "ReviewIntervalTicks": 120,
+  "MissLimit": 3,
+  "PillQuantity": 5,
+  "HideQuantity": 5,
+  "PillReward": 120,
+  "HideReward": 15,
+  "MissionLifetimeTicks": 120
+}

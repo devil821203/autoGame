@@ -1,0 +1,13 @@
+{
+  "DurationMinutes": 30,
+  "ActionPoints": 3,
+  "RestoredDurability": 20,
+  "SuccessChance": 1,
+  "ServiceFee": 5,
+  "WeaponMaterial": "iron-material",
+  "ArmorMaterial": "beast-hide",
+  "MaterialQuantity": 1,
+  "DemoActors": ["player", "npc:03"],
+  "DemoMaterialQuantity": 5,
+  "DemoWearBattles": 80
+}

@@ -1,0 +1,26 @@
+﻿[
+    {
+        "Check":  "sqlite",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "sqlite",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "save-picker",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "new-save",
+        "ExitCode":  1
+    },
+    {
+        "Check":  "event-decisions",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "board-battle",
+        "ExitCode":  0
+    }
+]

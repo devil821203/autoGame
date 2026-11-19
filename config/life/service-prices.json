@@ -1,0 +1,6 @@
+{
+  "RequestActionPoints": 1,
+  "MedicalUtility": 200,
+  "LaborFees": {"medical":5,"severe-injury":15,"ointment":3,"bleeding-powder":5,"iron-sword":10,"leather-armor":10},
+  "MaterialPrices": {"herb":4,"ointment":12,"iron-material":5,"beast-hide":4}
+}

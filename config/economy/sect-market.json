@@ -1,0 +1,4 @@
+[
+  { "ResourceId": "herb", "BasePrice": 4, "TargetStock": 50, "MinimumPrice": 2, "MaximumPrice": 8, "StockPriceStep": 0, "Spread": 1 },
+  { "ResourceId": "pill", "BasePrice": 120, "TargetStock": 5, "MinimumPrice": 80, "MaximumPrice": 180, "StockPriceStep": 1, "Spread": 5 }
+]

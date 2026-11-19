@@ -1,0 +1,26 @@
+[
+  {
+    "Owner": "bandit:weak",
+    "Item": "spirit-stone",
+    "Quantity": 80,
+    "ActionId": "bandit-stones:bandit:weak"
+  },
+  {
+    "Owner": "bandit:weak",
+    "Item": "herb",
+    "Quantity": 3,
+    "ActionId": "bandit-herbs:bandit:weak"
+  },
+  {
+    "Owner": "bandit:strong",
+    "Item": "spirit-stone",
+    "Quantity": 80,
+    "ActionId": "bandit-stones:bandit:strong"
+  },
+  {
+    "Owner": "bandit:strong",
+    "Item": "herb",
+    "Quantity": 3,
+    "ActionId": "bandit-herbs:bandit:strong"
+  }
+]

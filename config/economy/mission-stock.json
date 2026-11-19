@@ -1,0 +1,284 @@
+[
+  {
+    "Owner": "player",
+    "Item": "spirit-stone",
+    "Quantity": 1000,
+    "ActionId": "initial:player:spirit-stone"
+  },
+  {
+    "Owner": "sect",
+    "Item": "spirit-stone",
+    "Quantity": 10000,
+    "ActionId": "initial:sect:spirit-stone"
+  },
+  {
+    "Owner": "sect",
+    "Item": "pill",
+    "Quantity": 5,
+    "ActionId": "initial:sect:pill"
+  },
+  {
+    "Owner": "market",
+    "Item": "spirit-stone",
+    "Quantity": 10000,
+    "ActionId": "initial:market:spirit-stone"
+  },
+  {
+    "Owner": "market",
+    "Item": "herb",
+    "Quantity": 50,
+    "ActionId": "initial:market:herb"
+  },
+  {
+    "Owner": "market",
+    "Item": "pill",
+    "Quantity": 5,
+    "ActionId": "initial:market:pill"
+  },
+  {
+    "Owner": "grove",
+    "Item": "herb",
+    "Quantity": 10000,
+    "ActionId": "initial:grove:herb"
+  },
+  {
+    "Owner": "npc:00",
+    "Item": "spirit-stone",
+    "Quantity": 1200,
+    "ActionId": "initial:npc:00:spirit-stone"
+  },
+  {
+    "Owner": "npc:01",
+    "Item": "spirit-stone",
+    "Quantity": 3000,
+    "ActionId": "initial:npc:01:spirit-stone"
+  },
+  {
+    "Owner": "npc:02",
+    "Item": "spirit-stone",
+    "Quantity": 800,
+    "ActionId": "initial:npc:02:spirit-stone"
+  },
+  {
+    "Owner": "npc:03",
+    "Item": "spirit-stone",
+    "Quantity": 300,
+    "ActionId": "initial:npc:03:spirit-stone"
+  },
+  {
+    "Owner": "npc:04",
+    "Item": "spirit-stone",
+    "Quantity": 200,
+    "ActionId": "initial:npc:04:spirit-stone"
+  },
+  {
+    "Owner": "npc:05",
+    "Item": "spirit-stone",
+    "Quantity": 600,
+    "ActionId": "initial:npc:05:spirit-stone"
+  },
+  {
+    "Owner": "npc:06",
+    "Item": "spirit-stone",
+    "Quantity": 260,
+    "ActionId": "initial:npc:06:spirit-stone"
+  },
+  {
+    "Owner": "npc:07",
+    "Item": "spirit-stone",
+    "Quantity": 270,
+    "ActionId": "initial:npc:07:spirit-stone"
+  },
+  {
+    "Owner": "npc:08",
+    "Item": "spirit-stone",
+    "Quantity": 280,
+    "ActionId": "initial:npc:08:spirit-stone"
+  },
+  {
+    "Owner": "npc:09",
+    "Item": "spirit-stone",
+    "Quantity": 290,
+    "ActionId": "initial:npc:09:spirit-stone"
+  },
+  {
+    "Owner": "npc:10",
+    "Item": "spirit-stone",
+    "Quantity": 300,
+    "ActionId": "initial:npc:10:spirit-stone"
+  },
+  {
+    "Owner": "npc:11",
+    "Item": "spirit-stone",
+    "Quantity": 310,
+    "ActionId": "initial:npc:11:spirit-stone"
+  },
+  {
+    "Owner": "npc:12",
+    "Item": "spirit-stone",
+    "Quantity": 320,
+    "ActionId": "initial:npc:12:spirit-stone"
+  },
+  {
+    "Owner": "npc:13",
+    "Item": "spirit-stone",
+    "Quantity": 330,
+    "ActionId": "initial:npc:13:spirit-stone"
+  },
+  {
+    "Owner": "npc:14",
+    "Item": "spirit-stone",
+    "Quantity": 340,
+    "ActionId": "initial:npc:14:spirit-stone"
+  },
+  {
+    "Owner": "npc:15",
+    "Item": "spirit-stone",
+    "Quantity": 350,
+    "ActionId": "initial:npc:15:spirit-stone"
+  },
+  {
+    "Owner": "npc:16",
+    "Item": "spirit-stone",
+    "Quantity": 360,
+    "ActionId": "initial:npc:16:spirit-stone"
+  },
+  {
+    "Owner": "npc:17",
+    "Item": "spirit-stone",
+    "Quantity": 370,
+    "ActionId": "initial:npc:17:spirit-stone"
+  },
+  {
+    "Owner": "npc:18",
+    "Item": "spirit-stone",
+    "Quantity": 380,
+    "ActionId": "initial:npc:18:spirit-stone"
+  },
+  {
+    "Owner": "npc:19",
+    "Item": "spirit-stone",
+    "Quantity": 390,
+    "ActionId": "initial:npc:19:spirit-stone"
+  },
+  {
+    "Owner": "npc:20",
+    "Item": "spirit-stone",
+    "Quantity": 400,
+    "ActionId": "initial:npc:20:spirit-stone"
+  },
+  {
+    "Owner": "npc:21",
+    "Item": "spirit-stone",
+    "Quantity": 410,
+    "ActionId": "initial:npc:21:spirit-stone"
+  },
+  {
+    "Owner": "npc:22",
+    "Item": "spirit-stone",
+    "Quantity": 420,
+    "ActionId": "initial:npc:22:spirit-stone"
+  },
+  {
+    "Owner": "npc:23",
+    "Item": "spirit-stone",
+    "Quantity": 430,
+    "ActionId": "initial:npc:23:spirit-stone"
+  },
+  {
+    "Owner": "npc:24",
+    "Item": "spirit-stone",
+    "Quantity": 440,
+    "ActionId": "initial:npc:24:spirit-stone"
+  },
+  {
+    "Owner": "npc:25",
+    "Item": "spirit-stone",
+    "Quantity": 450,
+    "ActionId": "initial:npc:25:spirit-stone"
+  },
+  {
+    "Owner": "npc:26",
+    "Item": "spirit-stone",
+    "Quantity": 460,
+    "ActionId": "initial:npc:26:spirit-stone"
+  },
+  {
+    "Owner": "npc:27",
+    "Item": "spirit-stone",
+    "Quantity": 470,
+    "ActionId": "initial:npc:27:spirit-stone"
+  },
+  {
+    "Owner": "npc:28",
+    "Item": "spirit-stone",
+    "Quantity": 480,
+    "ActionId": "initial:npc:28:spirit-stone"
+  },
+  {
+    "Owner": "npc:29",
+    "Item": "spirit-stone",
+    "Quantity": 490,
+    "ActionId": "initial:npc:29:spirit-stone"
+  },
+  {
+    "Owner": "npc:30",
+    "Item": "spirit-stone",
+    "Quantity": 500,
+    "ActionId": "initial:npc:30:spirit-stone"
+  },
+  {
+    "Owner": "npc:31",
+    "Item": "spirit-stone",
+    "Quantity": 510,
+    "ActionId": "initial:npc:31:spirit-stone"
+  },
+  {
+    "Owner": "npc:32",
+    "Item": "spirit-stone",
+    "Quantity": 520,
+    "ActionId": "initial:npc:32:spirit-stone"
+  },
+  {
+    "Owner": "npc:33",
+    "Item": "spirit-stone",
+    "Quantity": 530,
+    "ActionId": "initial:npc:33:spirit-stone"
+  },
+  {
+    "Owner": "npc:34",
+    "Item": "spirit-stone",
+    "Quantity": 540,
+    "ActionId": "initial:npc:34:spirit-stone"
+  },
+  {
+    "Owner": "npc:35",
+    "Item": "spirit-stone",
+    "Quantity": 550,
+    "ActionId": "initial:npc:35:spirit-stone"
+  },
+  {
+    "Owner": "npc:36",
+    "Item": "spirit-stone",
+    "Quantity": 560,
+    "ActionId": "initial:npc:36:spirit-stone"
+  },
+  {
+    "Owner": "npc:37",
+    "Item": "spirit-stone",
+    "Quantity": 570,
+    "ActionId": "initial:npc:37:spirit-stone"
+  },
+  {
+    "Owner": "npc:38",
+    "Item": "spirit-stone",
+    "Quantity": 580,
+    "ActionId": "initial:npc:38:spirit-stone"
+  },
+  {
+    "Owner": "npc:39",
+    "Item": "spirit-stone",
+    "Quantity": 590,
+    "ActionId": "initial:npc:39:spirit-stone"
+  }
+]

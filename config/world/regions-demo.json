@@ -1,0 +1,11 @@
+{
+  "Seed": 12345,
+  "Width": 7,
+  "Height": 7,
+  "Regions": [
+    { "Id": "valley", "Name": "青雲谷" },
+    { "Id": "greenland", "Name": "青石原" },
+    { "Id": "sunset", "Name": "落霞境" }
+  ],
+  "HomeSiteOverrides": { "settlement:wangchuan": { "Q": 6, "R": 6 } }
+}

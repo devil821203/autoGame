@@ -1,0 +1,6 @@
+[
+ {"Id":"ointment","Skill":"Pharmacy","Inputs":{"herb":2},"Output":"ointment","Ticks":3},
+ {"Id":"bleeding-powder","Skill":"Pharmacy","Inputs":{"herb":3},"Output":"bleeding-powder","Ticks":3},
+ {"Id":"iron-sword","Skill":"Smithing","Inputs":{"iron-material":2},"Output":"iron-sword","Ticks":4,"Slot":"weapon","Attack":6,"Defense":1},
+ {"Id":"leather-armor","Skill":"Smithing","Inputs":{"beast-hide":2,"iron-material":1},"Output":"leather-armor","Ticks":4,"Slot":"armor","Attack":0,"Defense":4}
+]

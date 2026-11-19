@@ -1,0 +1,9 @@
+{
+  "StaminaCostPerAction": 1,
+  "ExperiencePerAction": 1,
+  "BaseExperiencePerLevel": 100,
+  "LevelsPerLayer": 10,
+  "ExperienceMultiplierPerLayer": 1.2,
+  "AttributePointsPerLevel": 1,
+  "FreePointsPerLevel": 0
+}

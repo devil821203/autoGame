@@ -1,0 +1,7 @@
+{
+  "GroupsPerAttempt": 10,
+  "ResourcesPerGroup": { "food": 1, "wood": 1 },
+  "SuccessProbability": 0.1,
+  "PopulationPerSuccess": 1,
+  "ActionPoints": 1
+}

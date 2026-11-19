@@ -1,0 +1,5 @@
+[
+  { "Id": "sect", "Name": "青雲宗", "LeaderId": "player", "Kind": "Sect" },
+  { "Id": "gang", "Name": "青雲幫", "Kind": "Gang" },
+  { "Id": "stronghold", "Name": "黑風寨", "Kind": "Stronghold" }
+]

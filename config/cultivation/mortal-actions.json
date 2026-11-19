@@ -1,0 +1,13 @@
+﻿{
+  "DurationTicks": 1,
+  "ActionPoints": 1,
+  "InitialAttributeValue": 10,
+  "InitialAspectLevel": 0,
+  "InitiationExperienceRequired": 100,
+  "QiAttributeWeights": { "Sensitivity": 1, "QiSense": 1, "Comprehension": 1, "Luck": 1 },
+  "ApplyGrowthModifiers": true,
+  "BlockSevereInjury": true,
+  "AllowCancellation": false,
+  "RefundActionPointsOnInterruption": false,
+  "AiTrainingUtility": 20
+}

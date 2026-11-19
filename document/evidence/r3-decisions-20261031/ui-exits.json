@@ -1,0 +1,26 @@
+﻿[
+    {
+        "Check":  "event-decisions",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "event-decisions",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "action-lifecycle",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "discrete-events",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "scenario-catalog",
+        "ExitCode":  0
+    },
+    {
+        "Check":  "board-battle",
+        "ExitCode":  0
+    }
+]

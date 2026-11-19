@@ -1,0 +1,14 @@
+﻿[
+    {
+        "Mode":  "scenario-catalog",
+        "ExitCode":  0
+    },
+    {
+        "Mode":  "action-driven",
+        "ExitCode":  0
+    },
+    {
+        "Mode":  "board-battle",
+        "ExitCode":  0
+    }
+]

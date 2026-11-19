@@ -1,0 +1,6 @@
+﻿[
+  { "Id": "player", "Name": "行者", "BaseAttack": 12, "BaseDefense": 2 },
+  { "Id": "ally", "Name": "同門弓手", "BaseAttack": 8, "BaseDefense": 2 },
+  { "Id": "npc", "Name": "試煉劍士", "BaseAttack": 8, "BaseDefense": 2 },
+  { "Id": "enemy-archer", "Name": "試煉弓手", "BaseAttack": 8, "BaseDefense": 2 }
+]

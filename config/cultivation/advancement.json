@@ -1,0 +1,19 @@
+{
+  "MethodId": "qingmu",
+  "LearningCost": 20,
+  "LearningTicks": 3,
+  "BreakthroughTicks": 4,
+  "BreakthroughPills": 2,
+  "CultivationPerRealm": 50,
+  "MaximumRealm": 3,
+  "MethodExperiencePerLevel": 5,
+  "MaximumMethodLevel": 5,
+  "SkillExperiencePerLevel": 10,
+  "GrowthBonusPerMethodLevel": 2,
+  "AttackPerRealm": 4,
+  "DefensePerRealm": 2,
+  "AttackPerMethodLevel": 1,
+  "WeaponId": "iron-sword",
+  "WeaponAttack": 6,
+  "WeaponDefense": 1
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "Owner": "player",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:player"
+  },
+  {
+    "Owner": "player",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:player"
+  },
+  {
+    "Owner": "npc:00",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:00"
+  },
+  {
+    "Owner": "npc:01",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:01"
+  },
+  {
+    "Owner": "npc:02",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:02"
+  },
+  {
+    "Owner": "npc:03",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:03"
+  },
+  {
+    "Owner": "npc:04",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:04"
+  },
+  {
+    "Owner": "npc:04",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:04"
+  },
+  {
+    "Owner": "npc:05",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:05"
+  },
+  {
+    "Owner": "npc:06",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:06"
+  },
+  {
+    "Owner": "npc:07",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:07"
+  },
+  {
+    "Owner": "npc:08",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:08"
+  },
+  {
+    "Owner": "npc:09",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:09"
+  },
+  {
+    "Owner": "npc:09",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:09"
+  },
+  {
+    "Owner": "npc:10",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:10"
+  },
+  {
+    "Owner": "npc:11",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:11"
+  },
+  {
+    "Owner": "npc:12",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:12"
+  },
+  {
+    "Owner": "npc:13",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:13"
+  },
+  {
+    "Owner": "npc:14",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:14"
+  },
+  {
+    "Owner": "npc:14",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:14"
+  },
+  {
+    "Owner": "npc:15",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:15"
+  },
+  {
+    "Owner": "npc:16",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:16"
+  },
+  {
+    "Owner": "npc:17",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:17"
+  },
+  {
+    "Owner": "npc:18",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:18"
+  },
+  {
+    "Owner": "npc:19",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:19"
+  },
+  {
+    "Owner": "npc:19",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:19"
+  },
+  {
+    "Owner": "npc:20",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:20"
+  },
+  {
+    "Owner": "npc:21",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:21"
+  },
+  {
+    "Owner": "npc:22",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:22"
+  },
+  {
+    "Owner": "npc:23",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:23"
+  },
+  {
+    "Owner": "npc:24",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:24"
+  },
+  {
+    "Owner": "npc:24",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:24"
+  },
+  {
+    "Owner": "npc:25",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:25"
+  },
+  {
+    "Owner": "npc:26",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:26"
+  },
+  {
+    "Owner": "npc:27",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:27"
+  },
+  {
+    "Owner": "npc:28",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:28"
+  },
+  {
+    "Owner": "npc:29",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:29"
+  },
+  {
+    "Owner": "npc:29",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:29"
+  },
+  {
+    "Owner": "npc:30",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:30"
+  },
+  {
+    "Owner": "npc:31",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:31"
+  },
+  {
+    "Owner": "npc:32",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:32"
+  },
+  {
+    "Owner": "npc:33",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:33"
+  },
+  {
+    "Owner": "npc:34",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:34"
+  },
+  {
+    "Owner": "npc:34",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:34"
+  },
+  {
+    "Owner": "npc:35",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:35"
+  },
+  {
+    "Owner": "npc:36",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:36"
+  },
+  {
+    "Owner": "npc:37",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:37"
+  },
+  {
+    "Owner": "npc:38",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:38"
+  },
+  {
+    "Owner": "npc:39",
+    "Item": "pill",
+    "Quantity": 3,
+    "ActionId": "growth-pill:npc:39"
+  },
+  {
+    "Owner": "npc:39",
+    "Item": "iron-sword",
+    "Quantity": 1,
+    "ActionId": "growth-weapon:npc:39"
+  }
+]

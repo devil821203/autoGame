@@ -1,0 +1,243 @@
+﻿[
+  {
+    "Id": "player",
+    "WealthWeight": 0.25,
+    "GrowthWeight": 8,
+    "Cultivation": 50,
+    "Identity": "Player",
+    "OrganizationId": "sect",
+    "Position": "Leader"
+  },
+  {
+    "Id": "npc:00",
+    "WealthWeight": 0.25,
+    "GrowthWeight": 8,
+    "Cultivation": 40,
+    "Identity": "Alchemist",
+    "OrganizationId": "sect",
+    "Position": "Member"
+  },
+  {
+    "Id": "npc:01",
+    "WealthWeight": 0.25,
+    "GrowthWeight": 8,
+    "Cultivation": 50,
+    "Identity": "Alchemist",
+    "OrganizationId": "sect",
+    "Position": "Member"
+  },
+  {
+    "Id": "npc:02",
+    "WealthWeight": 0.25,
+    "GrowthWeight": 8,
+    "Cultivation": 40,
+    "Identity": "Alchemist",
+    "OrganizationId": "sect",
+    "Position": "Member",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:03",
+    "WealthWeight": 0.25,
+    "GrowthWeight": 8,
+    "Cultivation": 50,
+    "Identity": "Alchemist",
+    "OrganizationId": "sect",
+    "Position": "Member"
+  },
+  {
+    "Id": "npc:04",
+    "Cultivation": 40,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:05",
+    "Cultivation": 50,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:06",
+    "Cultivation": 40,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:07",
+    "Cultivation": 50,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:08",
+    "Cultivation": 40,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:09",
+    "Cultivation": 50,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:10",
+    "Cultivation": 40,
+    "Health": 100,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:11",
+    "Cultivation": 50,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:12",
+    "Cultivation": 40,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:13",
+    "Cultivation": 50,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:14",
+    "Cultivation": 40,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:15",
+    "Cultivation": 50,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:16",
+    "Cultivation": 40,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:17",
+    "Cultivation": 50,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:18",
+    "Cultivation": 40,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:19",
+    "Cultivation": 50,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:20",
+    "Cultivation": 40,
+    "Health": 100,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:21",
+    "Cultivation": 50,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:22",
+    "Cultivation": 40,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:23",
+    "Cultivation": 50,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:24",
+    "Cultivation": 40,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:25",
+    "Cultivation": 50,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:26",
+    "Cultivation": 40,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:27",
+    "Cultivation": 50,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:28",
+    "Cultivation": 40,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:29",
+    "Cultivation": 50,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:30",
+    "Cultivation": 40,
+    "Health": 100,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:31",
+    "Cultivation": 50,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:32",
+    "Cultivation": 40,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:33",
+    "Cultivation": 50,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:34",
+    "Cultivation": 40,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:35",
+    "Cultivation": 50,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:36",
+    "Cultivation": 40,
+    "Identity": "Herbalist"
+  },
+  {
+    "Id": "npc:37",
+    "Cultivation": 50,
+    "Identity": "Alchemist"
+  },
+  {
+    "Id": "npc:38",
+    "Cultivation": 40,
+    "Identity": "Fighter",
+    "MethodId": "qingmu"
+  },
+  {
+    "Id": "npc:39",
+    "Cultivation": 50,
+    "Identity": "Herbalist"
+  }
+]
